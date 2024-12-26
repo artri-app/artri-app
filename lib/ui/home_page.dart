@@ -1,3 +1,4 @@
+import 'package:artriapp/ui/navbar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,6 +45,7 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+      bottomNavigationBar: const NavBar(),
     );
   }
 }
