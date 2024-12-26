@@ -10,28 +10,25 @@ class NavBar extends StatelessWidget {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.fitness_center),
-          label: 'Exercise',
+          label: 'Exercício',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.trending_up),
-          label: 'Evolution',
+          label: 'Evolução',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.checklist),
-          label: 'Diary',
+          label: 'Diário',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.info),
           label: 'Artrite',
         ),
       ],
-      currentIndex: 0,
       unselectedItemColor: Colors.white,
       selectedItemColor: Colors.greenAccent[600],
       backgroundColor: Colors.greenAccent[100],
-      onTap: (index) {
-        // Handle item tap
-      },
+      iconSize: 32,
     );
   }
 }
