@@ -1,3 +1,4 @@
+import 'package:artriapp/views/widgets/input_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,6 +37,7 @@ class _HomePageState extends State<HomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const InputText(),
           ],
         ),
       ),

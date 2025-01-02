@@ -1,4 +1,4 @@
-import 'package:artriapp/ui/home_page.dart';
+import 'package:artriapp/views/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
