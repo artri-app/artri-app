@@ -1,4 +1,4 @@
-import 'package:artriapp/ui/navbar.dart';
+import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
