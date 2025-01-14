@@ -1,4 +1,5 @@
 import 'package:artriapp/views/change_password/change_password_page.dart';
+import 'package:artriapp/views/user_diary/user_diary_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,11 +39,21 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ElevatedButton(
-                onPressed: () => {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => const ChangePasswordPage()))
-                    },
-                child: const Text('Go to change password page'))
+              onPressed: () => {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const ChangePasswordPage()),
+                )
+              },
+              child: const Text('Go to change password page'),
+            ),
+            ElevatedButton(
+              onPressed: () => {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const UserDiaryPage()),
+                )
+              },
+              child: const Text('Go to user diary page'),
+            )
           ],
         ),
       ),
