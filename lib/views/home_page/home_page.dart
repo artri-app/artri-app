@@ -1,4 +1,4 @@
-import 'package:artriapp/views/widgets/navbar.dart';
+import 'package:artriapp/views/change_password/change_password_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,6 +37,12 @@ class _HomePageState extends State<HomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(
+                onPressed: () => {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const ChangePasswordPage()))
+                    },
+                child: const Text('Go to change password page'))
           ],
         ),
       ),
@@ -45,7 +51,6 @@ class _HomePageState extends State<HomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: const NavBar(),
     );
   }
 }
