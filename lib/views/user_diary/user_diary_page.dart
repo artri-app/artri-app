@@ -1,3 +1,4 @@
+import 'package:artriapp/utils/custom_border.dart';
 import 'package:artriapp/views/user_diary/widgets/scale_selector.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:flutter/material.dart';
@@ -84,10 +85,15 @@ class _UserDiaryPageState extends State<UserDiaryPage> {
                       widthFactor: 0.85,
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color(0xff0058aa),
-                            width: 2,
+                          border: const CustomBoxBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(24),
+                            ),
                           ),
+                          // Border.all(
+                          //   color: const Color(0xff0058aa),
+                          //   width: 2,
+                          // ),
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: Padding(

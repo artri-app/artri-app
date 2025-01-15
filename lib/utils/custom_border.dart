@@ -187,3 +187,179 @@ class CustomInputBorder extends InputBorder {
         borderSide: borderSide.scale(t), borderRadius: borderRadius);
   }
 }
+
+class CustomBoxBorder extends BoxBorder {
+  final double borderWidth;
+  final Color borderColor;
+  final BorderRadius borderRadius;
+
+  const CustomBoxBorder(
+      {this.borderWidth = 1,
+      this.borderColor = const Color(0xff0058aa),
+      this.borderRadius = BorderRadius.zero});
+
+  @override
+  BorderSide get bottom =>
+      const BorderSide(color: Colors.transparent, width: 0);
+
+  @override
+  BorderSide get top => const BorderSide(color: Colors.transparent, width: 0);
+
+  BorderSide get right => BorderSide(color: borderColor, width: borderWidth);
+
+  BorderSide get left => BorderSide(color: borderColor, width: borderWidth);
+
+  @override
+  EdgeInsetsGeometry get dimensions {
+    return EdgeInsets.all(left.strokeInset);
+  }
+
+  @override
+  bool get isUniform {
+    return true;
+  }
+
+  @override
+  ShapeBorder scale(double t) {
+    return CustomBoxBorder(borderWidth: borderWidth * t);
+  }
+
+  @override
+  void paint(Canvas canvas, Rect rect,
+      {TextDirection? textDirection,
+      BoxShape shape = BoxShape.rectangle,
+      BorderRadius? borderRadius}) {
+    Paint? paint;
+
+    paint = createPaintForBorder();
+    if (this.borderRadius.topLeft.x != 0.0 && paint != null) {
+      canvas.drawArc(
+        rectForCorner(
+          rect.topLeft,
+          this.borderRadius.topLeft,
+          1,
+          1,
+          borderWidth,
+        ),
+        pi / 2 * 2,
+        pi / 2,
+        false,
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder();
+    if (this.borderRadius.topRight.x != 0.0 && paint != null) {
+      canvas.drawArc(
+        rectForCorner(
+          rect.topRight,
+          this.borderRadius.topRight,
+          -1,
+          1,
+          borderWidth,
+        ),
+        pi / 2 * 3,
+        pi / 2,
+        false,
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder();
+    if (paint != null) {
+      canvas.drawLine(
+        rect.topRight +
+            Offset(
+              -1 * (borderWidth) / 2,
+              this.borderRadius.topRight.y +
+                  (this.borderRadius.topRight.x == 0 ? (borderWidth) : 0.0),
+            ),
+        rect.bottomRight +
+            Offset(
+              -1 * (borderWidth) / 2,
+              -this.borderRadius.bottomRight.y,
+            ),
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder();
+    if (this.borderRadius.bottomRight.x != 0.0 && paint != null) {
+      canvas.drawArc(
+        rectForCorner(
+          rect.bottomRight,
+          this.borderRadius.bottomRight,
+          -1,
+          -1,
+          borderWidth,
+        ),
+        pi / 2 * 0,
+        pi / 2,
+        false,
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder();
+    if (this.borderRadius.bottomLeft.x != 0.0 && paint != null) {
+      canvas.drawArc(
+        rectForCorner(
+          rect.bottomLeft,
+          this.borderRadius.bottomLeft,
+          1,
+          -1,
+          borderWidth,
+        ),
+        pi / 2 * 1,
+        pi / 2,
+        false,
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder();
+    if (paint != null) {
+      canvas.drawLine(
+        rect.bottomLeft +
+            Offset(
+              (borderWidth) / 2,
+              -this.borderRadius.bottomLeft.y -
+                  (this.borderRadius.bottomLeft.x == 0 ? (borderWidth) : 0.0),
+            ),
+        rect.topLeft + Offset((borderWidth) / 2, this.borderRadius.topLeft.y),
+        paint,
+      );
+    }
+  }
+
+  Rect rectForCorner(
+    Offset offset,
+    Radius radius,
+    num signX,
+    num signY, [
+    double? sideWidth,
+  ]) {
+    sideWidth ??= 0;
+    final double d = sideWidth / 2;
+    final double borderRadiusX = radius.x - d;
+    final double borderRadiusY = radius.y - d;
+    final Rect rect = Rect.fromPoints(
+      offset + Offset(signX.sign * d, signY.sign * d),
+      offset +
+          Offset(signX.sign * d, signY.sign * d) +
+          Offset(
+            signX.sign * 2 * borderRadiusX,
+            signY.sign * 2 * borderRadiusY,
+          ),
+    );
+
+    return rect;
+  }
+
+  Paint? createPaintForBorder() {
+    return Paint()
+      ..style = PaintingStyle.stroke
+      ..color = borderColor
+      ..strokeWidth = borderWidth;
+  }
+}
