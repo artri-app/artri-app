@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
-class NavBar extends StatelessWidget {
+class NavBar extends StatefulWidget {
   const NavBar({super.key});
+
+  @override
+  NavBarState createState() => NavBarState();
+}
+
+class NavBarState extends State<NavBar> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +38,12 @@ class NavBar extends StatelessWidget {
           label: 'Artrite',
         ),
       ],
+      currentIndex: _selectedIndex,
       unselectedItemColor: Colors.white,
       selectedItemColor: Colors.greenAccent[600],
       backgroundColor: Colors.greenAccent[100],
       iconSize: 32,
+      onTap: _onItemTapped,
     );
   }
 }
