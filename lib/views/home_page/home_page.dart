@@ -1,6 +1,7 @@
-import 'package:artriapp/views/change_password/change_password_page.dart';
-import 'package:artriapp/views/user_diary/user_diary_page.dart';
 import 'package:flutter/material.dart';
+import 'package:artriapp/views/widgets/input_text.dart';
+import 'package:artriapp/views/widgets/navbar.dart';
+import 'package:artriapp/views/config_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -20,12 +21,26 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _navigateToConfigPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ConfigPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Settings',
+            onPressed: () => _navigateToConfigPage(context),
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -38,22 +53,7 @@ class _HomePageState extends State<HomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ElevatedButton(
-              onPressed: () => {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const ChangePasswordPage()),
-                )
-              },
-              child: const Text('Go to change password page'),
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const UserDiaryPage()),
-                )
-              },
-              child: const Text('Go to user diary page'),
-            )
+            const InputText(placeholder: 'Placeholder'),
           ],
         ),
       ),
