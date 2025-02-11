@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:artriapp/views/widgets/button.dart';
 import 'package:artriapp/views/widgets/input_text.dart';
-import 'package:artriapp/views/widgets/navbar.dart';
-import 'package:artriapp/views/config_page.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -13,54 +13,78 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _navigateToConfigPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ConfigPage()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: 'Settings',
-            onPressed: () => _navigateToConfigPage(context),
-          ),
-        ],
-      ),
+          title: Text(widget.title),
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.montserrat(
+            textStyle: const TextStyle(
+                color: Color.fromARGB(255, 2, 89, 64),
+                fontWeight: FontWeight.w300,
+                fontSize: 50),
+          )),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 200),
+              child: const Column(
+                children: [
+                  InputText(placeholder: 'Usuário'),
+                  SizedBox(height: 24),
+                  InputText(placeholder: 'Senha')
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            CustomButton(
+              text: 'ENTRAR',
+              onPressed: () {},
+              borderRadius: 20,
+              gradientColors: const [
+                Color.fromARGB(255, 3, 166, 74),
+                Color.fromARGB(255, 4, 191, 138),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                overlayColor: WidgetStateProperty.all(Colors.transparent),
+              ),
+              child: const Text(
+                'ESQUECI MINHA SENHA',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 4, 191, 138),
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
+              ),
+            ),
             const Text(
-              'You have pushed the button this many times:',
+              'Caso não possua conta, cadastre-se!',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 3, 166, 74),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w300),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            const SizedBox(height: 24),
+            CustomButton(
+              text: 'CADASTRAR',
+              onPressed: () {},
+              borderRadius: 20,
+              gradientColors: const [
+                Color.fromARGB(255, 2, 104, 115),
+                Color.fromARGB(255, 4, 191, 138),
+              ],
             ),
-            const InputText(placeholder: 'Placeholder'),
+            const SizedBox(height: 80)
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
