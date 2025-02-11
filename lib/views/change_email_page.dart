@@ -14,7 +14,7 @@ class ChangeEmailPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: 'Settings',
-            color: Color(0xFF026873),
+            color: const Color(0xFF026873),
             onPressed: () {
               // Do something
             },

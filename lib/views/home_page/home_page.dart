@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:artriapp/views/widgets/input_text.dart';
-import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:artriapp/views/config_page.dart';
 
 class HomePage extends StatefulWidget {
