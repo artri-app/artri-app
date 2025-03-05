@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({super.key});
@@ -7,9 +8,19 @@ class InfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff025940),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xff025940),
+        title: const Text(
+          'Informações',
+        ),
+        centerTitle: true,
+        titleTextStyle: GoogleFonts.montserrat(
+          textStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 36,
+          ),
+        ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -39,7 +50,7 @@ class InfoPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF03A64A),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 fixedSize: const Size(300, 50),
@@ -51,7 +62,7 @@ class InfoPage extends StatelessWidget {
                 'Artrite Reumatóide',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Color(0xFF056A75),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -59,7 +70,7 @@ class InfoPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF03A64A),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 fixedSize: const Size(300, 50),
@@ -71,7 +82,7 @@ class InfoPage extends StatelessWidget {
                 'Tratamentos',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Color(0xFF056A75),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -79,7 +90,7 @@ class InfoPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF03A64A),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 fixedSize: const Size(300, 50),
@@ -91,7 +102,7 @@ class InfoPage extends StatelessWidget {
                 'Minha Dor',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Color(0xFF056A75),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -99,7 +110,7 @@ class InfoPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF03A64A),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 fixedSize: const Size(300, 50),
@@ -111,7 +122,7 @@ class InfoPage extends StatelessWidget {
                 'Sono',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Color(0xFF056A75),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -119,7 +130,7 @@ class InfoPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF03A64A),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 fixedSize: const Size(300, 50),
@@ -131,7 +142,7 @@ class InfoPage extends StatelessWidget {
                 'Alimentação',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Color(0xFF056A75),
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -139,7 +150,7 @@ class InfoPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: Color(0xFF03A64A),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 fixedSize: const Size(300, 50),
@@ -151,7 +162,7 @@ class InfoPage extends StatelessWidget {
                 'Leis e Direitos',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Color(0xFF056A75),
+                  color: Colors.white,
                 ),
               ),
             ),
