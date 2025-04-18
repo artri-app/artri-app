@@ -22,20 +22,20 @@ class NavBarState extends State<NavBar> {
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.fitness_center),
-          label: 'Exercício',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.trending_up),
-          label: 'Evolução',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.checklist),
           label: 'Diário',
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.fitness_center),
+          label: 'Exercício',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.info),
           label: 'Artrite',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.trending_up),
+          label: 'Evolução',
         ),
       ],
       currentIndex: _selectedIndex,
