@@ -17,68 +17,68 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-        titleTextStyle: GoogleFonts.montserrat(
-          textStyle: const TextStyle(
-              color: Color.fromARGB(255, 2, 89, 64),
-              fontWeight: FontWeight.w300,
-              fontSize: 50),
-        ),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.green,
-                width: 2.0,
-              ),
-            ),
-            child: const Center(
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.green,
-                size: 24,
-              ),
-            ),
-          ),
-        ),
-      ),
+          title: Text(widget.title),
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.montserrat(
+            textStyle: const TextStyle(
+                color: Color.fromARGB(255, 2, 89, 64),
+                fontWeight: FontWeight.w300,
+                fontSize: 50),
+          )),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 250),
-              child: Column(
+              constraints: const BoxConstraints(maxWidth: 200),
+              child: const Column(
                 children: [
-                  Text(
-                    'Insira seu e-mail para receber sua senha de acesso',
-                    style: GoogleFonts.jetBrainsMono(
-                      textStyle: const TextStyle(
-                        letterSpacing: 1.5,
-                        color: Color.fromARGB(255, 115, 115, 115),
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 26),
-                  const InputText(placeholder: 'E-MAIL')
+                  InputText(placeholder: 'Usuário'),
+                  SizedBox(height: 24),
+                  InputText(placeholder: 'Senha')
                 ],
               ),
             ),
             const SizedBox(height: 24),
             CustomButton(
-              text: 'ENVIAR',
+              text: 'ENTRAR',
               onPressed: () {},
-              borderRadius: 40,
+              borderRadius: 20,
               gradientColors: const [
                 Color.fromARGB(255, 3, 166, 74),
+                Color.fromARGB(255, 4, 191, 138),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                shadowColor: WidgetStateProperty.all(Colors.transparent),
+                overlayColor: WidgetStateProperty.all(Colors.transparent),
+              ),
+              child: const Text(
+                'ESQUECI MINHA SENHA',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 4, 191, 138),
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
+              ),
+            ),
+            const Text(
+              'Caso não possua conta, cadastre-se!',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 3, 166, 74),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w300),
+            ),
+            const SizedBox(height: 24),
+            CustomButton(
+              text: 'CADASTRAR',
+              onPressed: () {},
+              borderRadius: 20,
+              gradientColors: const [
+                Color.fromARGB(255, 2, 104, 115),
                 Color.fromARGB(255, 4, 191, 138),
               ],
             ),
