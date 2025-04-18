@@ -1,5 +1,5 @@
 import 'package:artriapp/utils/custom_border.dart';
-import 'package:artriapp/views/user_diary/widgets/scale_selector.dart';
+import 'package:artriapp/views/widgets/scale_selector.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';

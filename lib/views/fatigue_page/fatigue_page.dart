@@ -1,6 +1,6 @@
-import 'package:artriapp/views/widgets/checkboxList.dart';
+import 'package:artriapp/views/widgets/checkbox_list.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
-import 'package:artriapp/views/widgets/painScaleSelector.dart';
+import 'package:artriapp/views/widgets/pain_scale_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
