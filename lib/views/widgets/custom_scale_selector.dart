@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
-class PainScaleSelectorWidget extends StatefulWidget {
+class CustomScaleSelectorWidget extends StatefulWidget {
   final int? initialValue;
   final void Function(int selectedLevel)? onChanged;
+  final String? label;
 
-  const PainScaleSelectorWidget({
-    Key? key,
+  const CustomScaleSelectorWidget({
+    super.key,
     this.initialValue,
     this.onChanged,
-  }) : super(key: key);
+    this.label,
+  });
 
   @override
-  _PainScaleSelectorWidgetState createState() =>
-      _PainScaleSelectorWidgetState();
+  _CustomScaleSelectorWidgetState createState() =>
+      _CustomScaleSelectorWidgetState();
 }
 
-class _PainScaleSelectorWidgetState extends State<PainScaleSelectorWidget> {
+class _CustomScaleSelectorWidgetState extends State<CustomScaleSelectorWidget> {
   late int selectedLevel;
 
   @override
@@ -63,19 +65,30 @@ class _PainScaleSelectorWidgetState extends State<PainScaleSelectorWidget> {
         ),
         SizedBox(height: 24),
         Text(
-          _getPainLabel(selectedLevel),
+          widget.label == "Fadiga"
+              ? _getFatigueLabel(selectedLevel)
+              : _getSleepLabel(selectedLevel),
           style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
         ),
       ],
     );
   }
 
-  String _getPainLabel(int level) {
+  String _getFatigueLabel(int level) {
     if (level == -1) return 'Selecione um nível';
-    if (level == 0) return 'Sem dor';
-    if (level <= 3) return 'Dor leve';
-    if (level <= 6) return 'Dor média';
-    if (level <= 9) return 'Dor forte';
-    return 'Máximo de dor';
+    if (level == 0) return 'Nenhuma';
+    if (level <= 3) return 'Fadiga leve';
+    if (level <= 6) return 'Fadiga média';
+    if (level <= 9) return 'Fadiga forte';
+    return 'Excessiva';
+  }
+
+  String _getSleepLabel(int level) {
+    if (level == -1) return 'Selecione um nível';
+    if (level == 0) return 'Muito ruim';
+    if (level <= 3) return 'Sono ruim';
+    if (level <= 6) return 'Sono razoável';
+    if (level <= 9) return 'Sono bom';
+    return 'Excelente';
   }
 }

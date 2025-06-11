@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatelessWidget {
   final IconData icon;
   final String label;
-  final Color color;
   final VoidCallback onPressed;
+  final Color color;
 
   const RoundedButton({
     super.key,
+    required this.color,
     required this.icon,
     required this.label,
-    required this.color,
     required this.onPressed,
   });
 

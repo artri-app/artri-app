@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:artriapp/views/home/home_page.dart';
+import 'package:artriapp/views/exercise/exercise_page.dart';
 import 'package:artriapp/views/info/info_page.dart';
 
 class NavBar extends StatefulWidget {
@@ -29,7 +30,10 @@ class NavBarState extends State<NavBar> {
         );
         break;
       case 1:
-        print('Exercício tapped');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ExercisePage()),
+        );
         break;
       case 2:
         Navigator.push(

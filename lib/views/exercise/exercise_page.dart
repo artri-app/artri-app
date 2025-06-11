@@ -1,3 +1,4 @@
+import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -109,6 +110,7 @@ class ExercisePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(),
     );
   }
 }

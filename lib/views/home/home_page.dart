@@ -6,6 +6,9 @@ import 'package:artriapp/views/widgets/button_rounded.dart';
 import 'package:artriapp/views/widgets/button_fade.dart';
 import 'package:artriapp/views/widgets/question_card.dart';
 import 'package:artriapp/views/config/config_page.dart';
+import 'package:artriapp/views/pain/pain_page.dart';
+import 'package:artriapp/views/fatigue/fatigue_page.dart';
+import 'package:artriapp/views/sleep/sleep_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () => Navigator.push(
@@ -75,19 +79,34 @@ class HomePage extends StatelessWidget {
                       color: Color(0xFF026873),
                       icon: Icons.abc,
                       label: 'Dor',
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PainPage(),
+                        ),
+                      ),
                     ),
                     RoundedButton(
                       color: Color(0xFF026873),
                       icon: Icons.abc,
                       label: 'Fadiga',
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const FatiguePage(),
+                        ),
+                      ),
                     ),
                     RoundedButton(
                       color: Color(0xFF026873),
                       icon: Icons.abc,
                       label: 'Sono',
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SleepPage(),
+                        ),
+                      ),
                     ),
                     RoundedButton(
                       color: Color(0xFF026873),
