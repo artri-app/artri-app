@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SendPassword extends StatefulWidget {
-  const SendPassword({super.key, required this.title});
+  const SendPassword({super.key, this.title = 'ArtriApp'});
 
   final String title;
 

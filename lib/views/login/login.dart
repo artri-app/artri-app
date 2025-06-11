@@ -2,9 +2,11 @@ import 'package:artriapp/views/widgets/button.dart';
 import 'package:artriapp/views/widgets/input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:artriapp/views/home/home_page.dart';
+import 'package:artriapp/views/login/send_password.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key, required this.title});
+  const Login({super.key, this.title = 'ArtriApp'});
 
   final String title;
 
@@ -29,6 +31,10 @@ class _LoginState extends State<Login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
+            const CircleAvatar(
+              radius: 64,
+              backgroundColor: Color(0xFF025940),
+            ),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 200),
               child: const Column(
@@ -42,7 +48,12 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 24),
             CustomButton(
               text: 'ENTRAR',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
+              },
               borderRadius: 20,
               gradientColors: const [
                 Color.fromARGB(255, 3, 166, 74),
@@ -50,7 +61,12 @@ class _LoginState extends State<Login> {
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SendPassword()),
+                );
+              },
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(Colors.transparent),
                 shadowColor: WidgetStateProperty.all(Colors.transparent),

@@ -15,20 +15,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Stack(
         children: [
-          Positioned(
-            top: 10,
-            right: 10,
-            child: IconButton(
-              onPressed: () => {},
-              iconSize: 40,
-              icon: const Icon(
-                Icons.settings,
-                color: Color(0xff025940),
-              ),
-            ),
-          ),
           Center(
             child: FractionallySizedBox(
               widthFactor: 0.5,

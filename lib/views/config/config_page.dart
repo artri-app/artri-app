@@ -2,30 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:artriapp/views/widgets/button.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:artriapp/views/change_email/change_email_page.dart';
+import 'package:artriapp/views/change_password/change_password.dart';
 
 class ConfigPage extends StatelessWidget {
   const ConfigPage({super.key});
 
-  void _navigateToChangeEmailPage(BuildContext context) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const ChangeEmailPage()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: 'Settings',
-            color: Color(0xFF026873),
-            onPressed: () {
-              // Do something
-            },
-          ),
-        ],
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Align(
@@ -45,15 +30,23 @@ class ConfigPage extends StatelessWidget {
               const SizedBox(height: 48),
               CustomButton(
                 text: 'Alterar Email',
-                onPressed: () => _navigateToChangeEmailPage(context),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChangeEmailPage(),
+                  ),
+                ),
                 gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
               ),
               const SizedBox(height: 16),
               CustomButton(
                 text: 'Alterar Senha',
-                onPressed: () {
-                  // Do something
-                },
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChangePasswordPage(),
+                  ),
+                ),
                 gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
               ),
               const SizedBox(height: 16),
