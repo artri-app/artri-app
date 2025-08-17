@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:artriapp/views/widgets/button.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
-import 'package:artriapp/views/change_email_page.dart';
+import 'package:artriapp/views/change_email/change_email_page.dart';
 
 class ConfigPage extends StatelessWidget {
   const ConfigPage({super.key});
