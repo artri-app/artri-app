@@ -1,4 +1,3 @@
-import 'package:artriapp/views/widgets/checkboxList.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:artriapp/views/widgets/painScaleSelector.dart';
 import 'package:flutter/material.dart';

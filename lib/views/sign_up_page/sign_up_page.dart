@@ -3,16 +3,16 @@ import 'package:artriapp/views/widgets/input_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   final String title;
 
-  const Login({super.key, required this.title});
+  const SignUpPage({super.key, required this.title});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
