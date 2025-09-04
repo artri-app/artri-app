@@ -1,4 +1,5 @@
 import 'package:artriapp/utils/enums/input_text_type.dart';
+import 'package:artriapp/utils/routes.dart';
 import 'package:artriapp/view_models/login_view_model.dart';
 import 'package:artriapp/views/widgets/button.dart';
 import 'package:artriapp/views/widgets/input_text.dart';
@@ -54,7 +55,7 @@ class LoginPage extends StatelessWidget {
               CustomButton(
                 text: 'ENTRAR',
                 onPressed: () async {
-                  await viewModel.handleUserLoginButton();
+                  await viewModel.handleUserLoginButton(context);
                 },
                 borderRadius: 20,
                 gradientColors: const [
@@ -88,7 +89,9 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 24),
               CustomButton(
                 text: 'CADASTRAR',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.signUp);
+                },
                 borderRadius: 20,
                 gradientColors: const [
                   Color.fromARGB(255, 2, 104, 115),

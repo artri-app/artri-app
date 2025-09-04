@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:artriapp/services/auth_service.dart';
+import 'package:artriapp/utils/routes.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewModel extends ChangeNotifier {
@@ -12,10 +13,13 @@ class LoginViewModel extends ChangeNotifier {
 
   LoginViewModel(this._authService);
 
-  handleUserLoginButton() async {
+  handleUserLoginButton(BuildContext context) async {
     try {
-      print("Sending login request");
-      print("API Response ${await _authService.login(email, password)})");
+      var response = await _authService.login(email, password);
+
+      if (response.isSuccess) {
+        Navigator.pushReplacementNamed(context, Routes.configuration);
+      }
     } catch (e) {
       log('Error on user login, $e');
     }

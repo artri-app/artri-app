@@ -27,21 +27,17 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.green,
-                width: 2.0,
-              ),
+          child: IconButton.outlined(
+            onPressed: () => Navigator.pop(context),
+            iconSize: 24,
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.green,
             ),
-            child: const Center(
-              child: Icon(
-                Icons.arrow_back,
+            style: IconButton.styleFrom(
+              side: const BorderSide(
                 color: Colors.green,
-                size: 24,
+                width: 2,
               ),
             ),
           ),
