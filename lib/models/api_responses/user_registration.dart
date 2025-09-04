@@ -32,7 +32,7 @@ class UserRegistration {
     };
   }
 
-  UserRegistration fromMap(Map<String, dynamic> map) {
+  factory UserRegistration.fromMap(Map<String, dynamic> map) {
     return UserRegistration(
       username: map['username'],
       email: map['email'],
