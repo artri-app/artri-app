@@ -39,8 +39,8 @@ lib/
 │       │   └── <widget>.dart
 │       └── <view-name>.dart 
 │
-├── controllers/            # Business logic controllers
-│   └── <controller_name>.dart
+├── view_models/            # Business logic controllers
+│   └── <view_model_name>.dart
 │
 ├── blocs/                  # Business logic components (For BLoC pattern)
 │   └── <bloc_name>.dart
