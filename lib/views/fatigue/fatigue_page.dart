@@ -1,5 +1,6 @@
+import 'package:artriapp/views/config/config_page.dart';
 import 'package:artriapp/views/widgets/navbar.dart';
-import 'package:artriapp/views/widgets/painScaleSelector.dart';
+import 'package:artriapp/views/widgets/custom_scale_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,28 +9,31 @@ class FatiguePage extends StatefulWidget {
   const FatiguePage({super.key});
 
   @override
-  State<FatiguePage> createState() => _FatgiuePageState();
+  State<FatiguePage> createState() => _FatiguePageState();
 }
 
-class _FatgiuePageState extends State<FatiguePage> {
+class _FatiguePageState extends State<FatiguePage> {
   List<String> selecionados = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            top: 10,
-            right: 10,
-            child: IconButton(
-              onPressed: () => {},
-              iconSize: 40,
-              icon: const Icon(
-                Icons.settings_outlined,
-                color: Color(0xff025940),
-              ),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ConfigPage()),
+            ),
+            icon: const Icon(
+              Icons.settings,
+              color: Color(0xff025940),
+              size: 30,
             ),
           ),
+        ],
+      ),
+      body: Stack(
+        children: [
           Center(
             child: FractionallySizedBox(
               widthFactor: 0.85,
@@ -57,7 +61,7 @@ class _FatgiuePageState extends State<FatiguePage> {
                       'Olá, Usuário!',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
-                        fontSize: 52,
+                        fontSize: 28,
                         color: const Color(0xff025940),
                       ),
                     ),
@@ -65,7 +69,7 @@ class _FatgiuePageState extends State<FatiguePage> {
                       'Como você está hoje?'.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
-                        fontSize: 24,
+                        fontSize: 18,
                         color: Colors.black,
                       ),
                     ),
@@ -74,7 +78,7 @@ class _FatgiuePageState extends State<FatiguePage> {
                       'Fadiga'.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
-                        fontSize: 52,
+                        fontSize: 28,
                         color: const Color(0xff025940),
                       ),
                     ),
@@ -84,12 +88,13 @@ class _FatgiuePageState extends State<FatiguePage> {
                           .toUpperCase(),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
-                        fontSize: 24,
+                        fontSize: 18,
                         color: Colors.black,
                       ),
                     ),
                     SizedBox(height: 4),
-                    PainScaleSelectorWidget(
+                    CustomScaleSelectorWidget(
+                      label: 'Fadiga',
                       onChanged: (value) {
                         print('Valor selecionado: $value');
                       },

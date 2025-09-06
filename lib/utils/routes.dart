@@ -1,4 +1,4 @@
-import 'package:artriapp/views/config_page/config_page.dart';
+import 'package:artriapp/views/config/config_page.dart';
 import 'package:artriapp/views/login_page/login_page.dart';
 import 'package:artriapp/views/sign_up_page/sign_up_page.dart';
 import 'package:flutter/material.dart';

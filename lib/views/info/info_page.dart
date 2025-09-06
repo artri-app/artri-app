@@ -1,6 +1,13 @@
+import 'package:artriapp/views/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:artriapp/views/info/data/alimentacao.dart';
+import 'package:artriapp/views/info/data/artrite_reumatoide.dart';
+import 'package:artriapp/views/info/data/leis_direitos.dart';
+import 'package:artriapp/views/info/data/minha_dor.dart';
+import 'package:artriapp/views/info/data/sono.dart';
+import 'package:artriapp/views/info/data/tratamentos.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({super.key});
@@ -48,7 +55,12 @@ class InfoPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ArtriteReumatoideInfoPage(),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF03A64A),
                 padding:
@@ -68,7 +80,12 @@ class InfoPage extends StatelessWidget {
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const TratamentosInfoPage(),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF03A64A),
                 padding:
@@ -88,7 +105,12 @@ class InfoPage extends StatelessWidget {
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MinhaDorInfoPage(),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF03A64A),
                 padding:
@@ -108,7 +130,12 @@ class InfoPage extends StatelessWidget {
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SonoInfoPage(),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF03A64A),
                 padding:
@@ -128,7 +155,12 @@ class InfoPage extends StatelessWidget {
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AlimentacaoInfoPage(),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF03A64A),
                 padding:
@@ -148,7 +180,12 @@ class InfoPage extends StatelessWidget {
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LeisDireitosInfoPage(),
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF03A64A),
                 padding:
@@ -169,6 +206,7 @@ class InfoPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(currentPage: 2, previousPage: 0),
     );
   }
 }
