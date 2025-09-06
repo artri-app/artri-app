@@ -1,4 +1,4 @@
-import 'package:artriapp/ui/app.dart';
+import 'package:artriapp/views/app.dart';
 import 'package:flutter/material.dart';
 
 void main() {
