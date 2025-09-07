@@ -1,3 +1,4 @@
+import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -44,7 +45,7 @@ class _ScaleSelectorState extends State<ScaleSelector> {
               child: Text(
                 (i + 1).toString(),
                 style: GoogleFonts.openSans(
-                  color: const Color(0xff025940),
+                  color: AppColors.darkGreen,
                   fontWeight:
                       _selectedScale == i ? FontWeight.bold : FontWeight.normal,
                   fontSize: 24,
