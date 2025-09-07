@@ -7,6 +7,8 @@ class Routes {
   static const String configuration = "/configuration";
   static const String changeEmail = "/change-email";
   static const String changePassword = "/change-password";
+  static const String diary = "/diary";
+  static const String loggedPage = "/loggedPage";
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -15,6 +17,8 @@ class Routes {
       configuration: (context) => const ConfigPage(),
       changeEmail: (context) => const ChangeEmailPage(),
       changePassword: (context) => const ChangePasswordPage(),
+      diary: (context) => const HomePage(),
+      loggedPage: (context) => const LoggedPage(),
     };
   }
 }

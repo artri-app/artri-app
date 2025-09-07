@@ -18,7 +18,7 @@ class LoginViewModel extends ChangeNotifier {
       var response = await _authService.login(email, password);
 
       if (response.isSuccess) {
-        Navigator.pushReplacementNamed(context, Routes.configuration);
+        Navigator.pushReplacementNamed(context, Routes.loggedPage);
       }
     } catch (e) {
       log('Error on user login, $e');

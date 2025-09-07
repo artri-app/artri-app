@@ -12,3 +12,4 @@ export "sleep/sleep_page.dart";
 export "swelling/swelling_page.dart";
 export "user_diary/user_diary_page.dart";
 export "config/config_page.dart";
+export "logged_page/logged_page.dart";
