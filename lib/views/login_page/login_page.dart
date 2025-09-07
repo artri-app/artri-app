@@ -1,8 +1,7 @@
 import 'package:artriapp/utils/enums/input_text_type.dart';
 import 'package:artriapp/utils/routes.dart';
 import 'package:artriapp/view_models/login_view_model.dart';
-import 'package:artriapp/views/widgets/button.dart';
-import 'package:artriapp/views/widgets/input_text.dart';
+import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
