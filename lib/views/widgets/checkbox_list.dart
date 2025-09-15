@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CheckboxGroup extends StatefulWidget {
   final Function(List<String>) onChanged;
 
-  const CheckboxGroup({required this.onChanged});
+  const CheckboxGroup({super.key, required this.onChanged});
 
   @override
   _CheckboxGroupState createState() => _CheckboxGroupState();

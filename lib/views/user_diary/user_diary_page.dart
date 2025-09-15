@@ -1,4 +1,3 @@
-import 'package:artriapp/utils/custom_border.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
