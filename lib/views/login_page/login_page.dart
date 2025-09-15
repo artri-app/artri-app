@@ -3,6 +3,7 @@ import 'package:artriapp/utils/routes.dart';
 import 'package:artriapp/view_models/login_view_model.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
+                    SvgPicture.asset(
+                      "assets/images/logo-ArtriApp-v2.svg",
+                    ),
                     InputText(
                       placeholder: 'Usuário',
                       value: viewModel.email,
