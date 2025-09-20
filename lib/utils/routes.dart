@@ -1,5 +1,5 @@
 import "package:artriapp/views/index.dart";
-import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Routes {
   static const String login = "/login";
@@ -10,15 +10,36 @@ class Routes {
   static const String diary = "/diary";
   static const String loggedPage = "/loggedPage";
 
-  static Map<String, WidgetBuilder> getRoutes() {
-    return {
-      login: (context) => const LoginPage(title: 'ArtriApp'),
-      signUp: (context) => const SignUpPage(title: 'ArtriApp'),
-      configuration: (context) => const ConfigPage(),
-      changeEmail: (context) => const ChangeEmailPage(),
-      changePassword: (context) => const ChangePasswordPage(),
-      diary: (context) => const HomePage(),
-      loggedPage: (context) => const LoggedPage(),
-    };
+  static List<GoRoute> getGoRoutes() {
+    return [
+      GoRoute(
+        path: login,
+        builder: (context, state) => const LoginPage(title: 'ArtriApp'),
+      ),
+      GoRoute(
+        path: signUp,
+        builder: (context, state) => const SignUpPage(title: 'ArtriApp'),
+      ),
+      GoRoute(
+        path: configuration,
+        builder: (context, state) => const ConfigPage(),
+      ),
+      GoRoute(
+        path: changeEmail,
+        builder: (context, state) => const ChangeEmailPage(),
+      ),
+      GoRoute(
+        path: changePassword,
+        builder: (context, state) => const ChangePasswordPage(),
+      ),
+      GoRoute(
+        path: diary,
+        builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        path: loggedPage,
+        builder: (context, state) => const LoggedPage(),
+      ),
+    ];
   }
 }
