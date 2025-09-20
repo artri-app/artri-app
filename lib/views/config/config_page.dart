@@ -29,13 +29,13 @@ class ConfigPage extends StatelessWidget {
                 const SizedBox(height: 48),
                 CustomButton(
                   text: 'Alterar Email',
-                  onPressed: () => context.goNamed(Routes.changeEmail),
+                  onPressed: () => context.go(Routes.changeEmail),
                   gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
                 ),
                 const SizedBox(height: 16),
                 CustomButton(
                   text: 'Alterar Senha',
-                  onPressed: () => context.goNamed(Routes.changePassword),
+                  onPressed: () => context.go(Routes.changePassword),
                   gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
                 ),
                 const SizedBox(height: 16),

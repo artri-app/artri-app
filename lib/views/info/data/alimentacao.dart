@@ -1,6 +1,7 @@
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AlimentacaoInfoPage extends StatelessWidget {
@@ -24,22 +25,17 @@ class AlimentacaoInfoPage extends StatelessWidget {
         ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.white,
-                width: 2.0,
+          child: IconButton.outlined(
+            onPressed: () => context.pop(),
+            style: ButtonStyle(
+              side: WidgetStatePropertyAll(
+                const BorderSide(color: Colors.white, width: 2),
               ),
             ),
-            child: const Center(
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 24,
-              ),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 24,
             ),
           ),
         ),
