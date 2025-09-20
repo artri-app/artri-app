@@ -4,6 +4,7 @@ import 'package:artriapp/view_models/login_view_model.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -93,7 +94,7 @@ class LoginPage extends StatelessWidget {
               CustomButton(
                 text: 'CADASTRAR',
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.signUp);
+                  context.goNamed(Routes.signUp);
                 },
                 borderRadius: 20,
                 gradientColors: const [

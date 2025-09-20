@@ -13,3 +13,7 @@ export "swelling/swelling_page.dart";
 export "user_diary/user_diary_page.dart";
 export "config/config_page.dart";
 export "logged_page/logged_page.dart";
+export "info/data/artrite_reumatoide.dart";
+export "info/data/minha_dor.dart";
+export "info/data/sono.dart";
+export "info/data/tratamentos.dart";

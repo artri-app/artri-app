@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:artriapp/services/auth_service.dart';
 import 'package:artriapp/services/index.dart';
 import 'package:artriapp/utils/index.dart';
-import 'package:artriapp/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginViewModel extends ChangeNotifier {
   String _email = '';
@@ -30,7 +29,7 @@ class LoginViewModel extends ChangeNotifier {
           SecurityToken.refreshToken,
         );
 
-        Navigator.pushReplacementNamed(context, Routes.loggedPage);
+        context.pushReplacementNamed(Routes.loggedPage);
       }
     } catch (e) {
       log('Error on user login, $e');

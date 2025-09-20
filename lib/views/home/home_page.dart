@@ -1,11 +1,9 @@
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:artriapp/views/widgets/index.dart';
-import 'package:artriapp/views/pain/pain_page.dart';
-import 'package:artriapp/views/fatigue/fatigue_page.dart';
-import 'package:artriapp/views/sleep/sleep_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,7 +17,6 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Gap(20),
               Container(
                 width: 120,
                 height: 120,
@@ -41,7 +38,6 @@ class HomePage extends StatelessWidget {
                   color: const Color(0xff026873),
                 ),
               ),
-              const Gap(10),
               Text(
                 'Como você está hoje?'.toUpperCase(),
                 style: GoogleFonts.montserrat(
@@ -59,34 +55,19 @@ class HomePage extends StatelessWidget {
                     color: Color(0xFF026873),
                     icon: Icons.abc,
                     label: 'Dor',
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PainPage(),
-                      ),
-                    ),
+                    onPressed: () => context.goNamed(Routes.painPage),
                   ),
                   RoundedButton(
                     color: Color(0xFF026873),
                     icon: Icons.abc,
                     label: 'Fadiga',
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const FatiguePage(),
-                      ),
-                    ),
+                    onPressed: () => context.goNamed(Routes.fatiguePage),
                   ),
                   RoundedButton(
                     color: Color(0xFF026873),
                     icon: Icons.abc,
                     label: 'Sono',
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SleepPage(),
-                      ),
-                    ),
+                    onPressed: () => context.goNamed(Routes.sleepPage),
                   ),
                   RoundedButton(
                     color: Color(0xFF026873),
@@ -125,31 +106,10 @@ class HomePage extends StatelessWidget {
               QuestionCard(
                 question: 'Você está se sentindo bem?',
               ),
-              const Gap(20),
             ],
           ),
         ),
       ),
     );
-
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     automaticallyImplyLeading: false,
-    //     actions: [
-    //       IconButton(
-    //         onPressed: () => Navigator.push(
-    //           context,
-    //           MaterialPageRoute(builder: (context) => const ConfigPage()),
-    //         ),
-    //         icon: const Icon(
-    //           Icons.settings,
-    //           color: AppColors.darkGreen,
-    //           size: 30,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    //   body: ,
-    // );
   }
 }

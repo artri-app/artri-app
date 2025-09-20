@@ -1,5 +1,6 @@
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton.outlined(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(context),
             iconSize: 24,
             icon: Icon(
               Icons.arrow_back,
