@@ -98,24 +98,5 @@ class _SwellingPageState extends State<SwellingPage> {
         ),
       ],
     );
-
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     actions: [
-    //       IconButton(
-    //         onPressed: () => Navigator.push(
-    //           context,
-    //           MaterialPageRoute(builder: (context) => const ConfigPage()),
-    //         ),
-    //         icon: const Icon(
-    //           Icons.settings,
-    //           color: AppColors.darkGreen,
-    //           size: 30,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    //   bottomNavigationBar: const NavBar(),
-    // );
   }
 }
