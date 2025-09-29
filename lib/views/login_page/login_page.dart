@@ -1,5 +1,5 @@
 import 'package:artriapp/utils/enums/input_text_type.dart';
-import 'package:artriapp/utils/routes.dart';
+import 'package:artriapp/utils/app_routes.dart';
 import 'package:artriapp/view_models/login_view_model.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -17,96 +17,103 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(title),
-          centerTitle: true,
-          titleTextStyle: GoogleFonts.montserrat(
-            textStyle: const TextStyle(
-                color: Color.fromARGB(255, 2, 89, 64),
-                fontWeight: FontWeight.w300,
-                fontSize: 50),
-          )),
-      body: Consumer<LoginViewModel>(builder: (context, viewModel, child) {
-        final Size screenSize = MediaQuery.of(context).size;
+        title: Text(title),
+        centerTitle: true,
+        titleTextStyle: GoogleFonts.montserrat(
+          textStyle: const TextStyle(
+            color: Color.fromARGB(255, 2, 89, 64),
+            fontWeight: FontWeight.w300,
+            fontSize: 50,
+          ),
+        ),
+      ),
+      body: Consumer<LoginViewModel>(
+        builder: (context, viewModel, child) {
+          final Size screenSize = MediaQuery.of(context).size;
 
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: screenSize.width * 0.8,
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: screenSize.width * 0.8,
+                  ),
+                  child: Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/logo-ArtriApp-v2.svg',
+                      ),
+                      InputText(
+                        placeholder: 'Usuário',
+                        value: viewModel.email,
+                        onValueChanged: (value) => viewModel.setEmail(value),
+                      ),
+                      const SizedBox(height: 24),
+                      InputText(
+                        placeholder: 'Senha',
+                        onValueChanged: (value) => viewModel.setPassword(value),
+                        type: InputTextType.password,
+                      ),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    SvgPicture.asset(
-                      "assets/images/logo-ArtriApp-v2.svg",
-                    ),
-                    InputText(
-                      placeholder: 'Usuário',
-                      value: viewModel.email,
-                      onValueChanged: (value) => viewModel.setEmail(value),
-                    ),
-                    const SizedBox(height: 24),
-                    InputText(
-                      placeholder: 'Senha',
-                      onValueChanged: (value) => viewModel.setPassword(value),
-                      type: InputTextType.password,
-                    )
+                const SizedBox(height: 24),
+                CustomButton(
+                  text: 'ENTRAR',
+                  onPressed: () async {
+                    await viewModel.handleUserLoginButton(context);
+                  },
+                  borderRadius: 20,
+                  gradientColors: const [
+                    Color.fromARGB(255, 3, 166, 74),
+                    Color.fromARGB(255, 4, 191, 138),
                   ],
                 ),
-              ),
-              const SizedBox(height: 24),
-              CustomButton(
-                text: 'ENTRAR',
-                onPressed: () async {
-                  await viewModel.handleUserLoginButton(context);
-                },
-                borderRadius: 20,
-                gradientColors: const [
-                  Color.fromARGB(255, 3, 166, 74),
-                  Color.fromARGB(255, 4, 191, 138),
-                ],
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                  shadowColor: WidgetStateProperty.all(Colors.transparent),
-                  overlayColor: WidgetStateProperty.all(Colors.transparent),
-                ),
-                child: const Text(
-                  'ESQUECI MINHA SENHA',
-                  style: TextStyle(
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all(Colors.transparent),
+                    shadowColor: WidgetStateProperty.all(Colors.transparent),
+                    overlayColor: WidgetStateProperty.all(Colors.transparent),
+                  ),
+                  child: const Text(
+                    'ESQUECI MINHA SENHA',
+                    style: TextStyle(
                       color: Color.fromARGB(255, 4, 191, 138),
                       decoration: TextDecoration.underline,
                       fontWeight: FontWeight.w400,
-                      fontSize: 16),
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
-              ),
-              const Text(
-                'Caso não possua conta, cadastre-se!',
-                style: TextStyle(
+                const Text(
+                  'Caso não possua conta, cadastre-se!',
+                  style: TextStyle(
                     color: Color.fromARGB(255, 3, 166, 74),
                     fontSize: 22,
-                    fontWeight: FontWeight.w300),
-              ),
-              const SizedBox(height: 24),
-              CustomButton(
-                text: 'CADASTRAR',
-                onPressed: () {
-                  context.go(Routes.signUp);
-                },
-                borderRadius: 20,
-                gradientColors: const [
-                  Color.fromARGB(255, 2, 104, 115),
-                  Color.fromARGB(255, 4, 191, 138),
-                ],
-              ),
-              const SizedBox(height: 80)
-            ],
-          ),
-        );
-      }),
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                CustomButton(
+                  text: 'CADASTRAR',
+                  onPressed: () {
+                    context.go(AppRoutes.signUp);
+                  },
+                  borderRadius: 20,
+                  gradientColors: const [
+                    Color.fromARGB(255, 2, 104, 115),
+                    Color.fromARGB(255, 4, 191, 138),
+                  ],
+                ),
+                const SizedBox(height: 80),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -19,7 +19,7 @@ class LoginViewModel extends ChangeNotifier {
     try {
       var response = await _authService.login(email, password);
 
-      if (response.refreshToken != "" && response.accessToken != "") {
+      if (response.refreshToken != '' && response.accessToken != '') {
         await _securityTokenService.saveToken(
           response.accessToken,
           SecurityToken.accessToken,
@@ -29,7 +29,7 @@ class LoginViewModel extends ChangeNotifier {
           SecurityToken.refreshToken,
         );
 
-        context.go(Routes.loggedPage);
+        context.go(AppRoutes.diary);
       }
     } catch (e) {
       log('Error on user login, $e');
