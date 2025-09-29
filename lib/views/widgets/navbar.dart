@@ -1,24 +1,15 @@
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({super.key, required this.onItemTapped});
-
+class NavBar extends StatelessWidget {
+  final int selectedIndex;
   final ValueChanged<int> onItemTapped;
 
-  @override
-  NavBarState createState() => NavBarState();
-}
-
-class NavBarState extends State<NavBar> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      widget.onItemTapped(index);
-    });
-  }
+  const NavBar({
+    super.key,
+    required this.onItemTapped,
+    required this.selectedIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +33,12 @@ class NavBarState extends State<NavBar> {
           label: 'Evolução',
         ),
       ],
-      currentIndex: _selectedIndex,
+      currentIndex: selectedIndex,
       unselectedItemColor: Colors.white,
       selectedItemColor: AppColors.lightGreen,
       backgroundColor: AppColors.darkGreen,
       iconSize: 32,
-      onTap: _onItemTapped,
+      onTap: (value) => {onItemTapped.call(value)},
     );
   }
 }

@@ -12,14 +12,14 @@ class CheckboxGroup extends StatefulWidget {
 
 class _CheckboxGroupState extends State<CheckboxGroup> {
   final Map<String, bool> _items = {
-    "Mãos": false,
-    "Braço": false,
-    "Ombro": false,
-    "Coluna": false,
-    "Quadril": false,
-    "Joelho": false,
-    "Tornozelo": false,
-    "Pés": false,
+    'Mãos': false,
+    'Braço': false,
+    'Ombro': false,
+    'Coluna': false,
+    'Quadril': false,
+    'Joelho': false,
+    'Tornozelo': false,
+    'Pés': false,
   };
 
   void _updateSelection() {
@@ -34,8 +34,6 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
       shrinkWrap: true,
       crossAxisCount: 2,
       childAspectRatio: 4,
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
       children: _items.keys.map((String key) {
         return GestureDetector(
           onTap: () {
@@ -60,11 +58,14 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
                     const BorderSide(color: Color.fromARGB(255, 93, 196, 190)),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              Text(key,
-                  style: GoogleFonts.montserrat(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18)),
+              Text(
+                key,
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                ),
+              ),
             ],
           ),
         );

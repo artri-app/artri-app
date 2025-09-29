@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FadeButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
-  final double width;
+  final double? width;
   final double height;
   final double elevation;
 
@@ -11,7 +12,7 @@ class FadeButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onPressed,
-    this.width = 160,
+    this.width,
     this.height = 48,
     this.elevation = 4, // Default elevation value
   });
@@ -48,10 +49,10 @@ class FadeButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+              label.toUpperCase(),
+              style: GoogleFonts.montserrat(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
                 color: Color(0xff026873),
               ),
             ),
