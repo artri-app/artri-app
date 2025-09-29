@@ -42,36 +42,20 @@ class LoggedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).uri;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32.0,
-                vertical: 48.0,
-              ),
-              child: Center(
-                child: child,
-              ),
-            ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        primary: true,
+        child: SizedBox(
+          height: size.height - 66,
+          width: size.width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: child,
           ),
-          Positioned(
-            right: 0,
-            child: IconButton(
-              onPressed: () => context.push(
-                AppRoutes.configuration,
-              ),
-              icon: const Icon(
-                Icons.settings_outlined,
-                color: AppColors.darkGreen,
-              ),
-              iconSize: 42,
-            ),
-          ),
-        ],
+        ),
       ),
       bottomNavigationBar: NavBar(
         onItemTapped: (idx) => _onItemTapped(context, idx),

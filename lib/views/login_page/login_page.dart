@@ -31,85 +31,88 @@ class LoginPage extends StatelessWidget {
         builder: (context, viewModel, child) {
           final Size screenSize = MediaQuery.of(context).size;
 
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: screenSize.width * 0.8,
-                  ),
-                  child: Column(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/logo-ArtriApp-v2.svg',
-                      ),
-                      InputText(
-                        placeholder: 'Usuário',
-                        value: viewModel.email,
-                        onValueChanged: (value) => viewModel.setEmail(value),
-                      ),
-                      const SizedBox(height: 24),
-                      InputText(
-                        placeholder: 'Senha',
-                        onValueChanged: (value) => viewModel.setPassword(value),
-                        type: InputTextType.password,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 24),
-                CustomButton(
-                  text: 'ENTRAR',
-                  onPressed: () async {
-                    await viewModel.handleUserLoginButton(context);
-                  },
-                  borderRadius: 20,
-                  gradientColors: const [
-                    Color.fromARGB(255, 3, 166, 74),
-                    Color.fromARGB(255, 4, 191, 138),
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStateProperty.all(Colors.transparent),
-                    shadowColor: WidgetStateProperty.all(Colors.transparent),
-                    overlayColor: WidgetStateProperty.all(Colors.transparent),
-                  ),
-                  child: const Text(
-                    'ESQUECI MINHA SENHA',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 4, 191, 138),
-                      decoration: TextDecoration.underline,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
+          return SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: screenSize.width * 0.8,
+                    ),
+                    child: Column(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/images/logo-ArtriApp-v2.svg',
+                        ),
+                        InputText(
+                          placeholder: 'Usuário',
+                          value: viewModel.email,
+                          onValueChanged: (value) => viewModel.setEmail(value),
+                        ),
+                        const SizedBox(height: 24),
+                        InputText(
+                          placeholder: 'Senha',
+                          onValueChanged: (value) =>
+                              viewModel.setPassword(value),
+                          type: InputTextType.password,
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                const Text(
-                  'Caso não possua conta, cadastre-se!',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 3, 166, 74),
-                    fontSize: 22,
-                    fontWeight: FontWeight.w300,
+                  const SizedBox(height: 24),
+                  CustomButton(
+                    text: 'ENTRAR',
+                    onPressed: () async {
+                      await viewModel.handleUserLoginButton(context);
+                    },
+                    borderRadius: 20,
+                    gradientColors: const [
+                      Color.fromARGB(255, 3, 166, 74),
+                      Color.fromARGB(255, 4, 191, 138),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 24),
-                CustomButton(
-                  text: 'CADASTRAR',
-                  onPressed: () {
-                    context.go(AppRoutes.signUp);
-                  },
-                  borderRadius: 20,
-                  gradientColors: const [
-                    Color.fromARGB(255, 2, 104, 115),
-                    Color.fromARGB(255, 4, 191, 138),
-                  ],
-                ),
-                const SizedBox(height: 80),
-              ],
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStateProperty.all(Colors.transparent),
+                      shadowColor: WidgetStateProperty.all(Colors.transparent),
+                      overlayColor: WidgetStateProperty.all(Colors.transparent),
+                    ),
+                    child: const Text(
+                      'ESQUECI MINHA SENHA',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 4, 191, 138),
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  const Text(
+                    'Caso não possua conta, cadastre-se!',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 3, 166, 74),
+                      fontSize: 22,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  CustomButton(
+                    text: 'CADASTRAR',
+                    onPressed: () {
+                      context.go(AppRoutes.signUp);
+                    },
+                    borderRadius: 20,
+                    gradientColors: const [
+                      Color.fromARGB(255, 2, 104, 115),
+                      Color.fromARGB(255, 4, 191, 138),
+                    ],
+                  ),
+                  const SizedBox(height: 80),
+                ],
+              ),
             ),
           );
         },
