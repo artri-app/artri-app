@@ -21,6 +21,10 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Setup the environment
+
+This project use `.env` file for communication with APIs. Make sure your `.env` file is set before start the project and following the `.env_example` file.
+
 # Project architecture
 
 This project will follow the concepts of MVC architecture pattern, so the current project use this following organization:
