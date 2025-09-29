@@ -25,7 +25,9 @@ class RefreshTokenPolicy implements RetryPolicy {
 
   @override
   FutureOr<bool> shouldAttemptRetryOnException(
-      Exception reason, BaseRequest request) {
+    Exception reason,
+    BaseRequest request,
+  ) {
     return false;
   }
 
@@ -40,9 +42,13 @@ class RefreshTokenPolicy implements RetryPolicy {
       var response = await _authService.refreshAuthToken(refreshToken);
 
       await _securityTokenService.saveToken(
-          response.accessToken, SecurityToken.accessToken);
+        response.accessToken,
+        SecurityToken.accessToken,
+      );
       await _securityTokenService.saveToken(
-          response.refreshToken, SecurityToken.refreshToken);
+        response.refreshToken,
+        SecurityToken.refreshToken,
+      );
 
       return true;
     }

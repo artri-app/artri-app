@@ -11,8 +11,11 @@ class AuthService {
     String password,
   ) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/token/"),
-      body: {"username": user, "password": password},
+      Uri.parse('$baseUrl/token/'),
+      body: {
+        'username': user,
+        'password': password,
+      },
     );
 
     return AuthTokenResponse.fromJson(jsonDecode(response.body));
@@ -22,7 +25,7 @@ class AuthService {
     UserRegistration newUser,
   ) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/register/"),
+      Uri.parse('$baseUrl/register/'),
       body: newUser.toMap(),
     );
 
@@ -33,8 +36,8 @@ class AuthService {
     String email,
   ) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/password_reset/"),
-      body: {"email": email},
+      Uri.parse('$baseUrl/password_reset/'),
+      body: {'email': email},
     );
 
     return Map<String, String>.from(jsonDecode(response.body));
@@ -45,8 +48,8 @@ class AuthService {
     String newPassword,
   ) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/password_reset/"),
-      body: {"password": newPassword, "token": token},
+      Uri.parse('$baseUrl/password_reset/'),
+      body: {'password': newPassword, 'token': token},
     );
 
     return Map<String, String>.from(jsonDecode(response.body));
@@ -56,8 +59,8 @@ class AuthService {
     String token,
   ) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/password_reset/"),
-      body: {"token": token},
+      Uri.parse('$baseUrl/password_reset/'),
+      body: {'token': token},
     );
 
     return Map<String, String>.from(jsonDecode(response.body));
@@ -65,8 +68,8 @@ class AuthService {
 
   Future<AuthTokenResponse> refreshAuthToken(String refreshToken) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/token/refresh/"),
-      body: {"refresh": refreshToken},
+      Uri.parse('$baseUrl/token/refresh/'),
+      body: {'refresh': refreshToken},
     );
 
     return AuthTokenResponse.fromJson(jsonDecode(response.body));
