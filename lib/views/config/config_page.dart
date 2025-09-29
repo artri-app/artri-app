@@ -29,14 +29,14 @@ class ConfigPage extends StatelessWidget {
                 const SizedBox(height: 48),
                 CustomButton(
                   text: 'Alterar Email',
-                  onPressed: () => context.go(Routes.changeEmail),
-                  gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
+                  onPressed: () => context.go(AppRoutes.changeEmail),
+                  gradientColors: AppGradients.greenGradient,
                 ),
                 const SizedBox(height: 16),
                 CustomButton(
                   text: 'Alterar Senha',
-                  onPressed: () => context.go(Routes.changePassword),
-                  gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
+                  onPressed: () => context.go(AppRoutes.changePassword),
+                  gradientColors: AppGradients.greenGradient,
                 ),
                 const SizedBox(height: 16),
                 CustomButton(
@@ -44,7 +44,7 @@ class ConfigPage extends StatelessWidget {
                   onPressed: () {
                     // Do something
                   },
-                  gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
+                  gradientColors: AppGradients.greenGradient,
                 ),
               ],
             ),

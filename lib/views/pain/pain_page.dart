@@ -103,28 +103,24 @@ class _PainPageState extends State<PainPage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Flexible(
-                              fit: FlexFit.tight,
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'DIPIRONA 22:00H',
-                                    style: GoogleFonts.montserrat(
-                                      color: AppColors.darkGreen,
-                                      fontSize: 18,
-                                    ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'DIPIRONA 22:00H',
+                                  style: GoogleFonts.montserrat(
+                                    color: AppColors.darkGreen,
+                                    fontSize: 18,
                                   ),
-                                  Text(
-                                    'IBUPROFENO 10:00H',
-                                    style: GoogleFonts.montserrat(
-                                      color: AppColors.darkGreen,
-                                      fontSize: 18,
-                                    ),
+                                ),
+                                Text(
+                                  'IBUPROFENO 10:00H',
+                                  style: GoogleFonts.montserrat(
+                                    color: AppColors.darkGreen,
+                                    fontSize: 18,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                             const Icon(
                               Icons.edit_outlined,
@@ -135,7 +131,7 @@ class _PainPageState extends State<PainPage> {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

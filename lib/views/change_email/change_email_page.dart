@@ -36,7 +36,7 @@ class ChangeEmailPage extends StatelessWidget {
               onPressed: () {
                 // Do something
               },
-              gradientColors: const [Color(0xFF03A64B), Color(0xFF04BF89)],
+              gradientColors: AppGradients.greenGradient,
             ),
           ],
         ),

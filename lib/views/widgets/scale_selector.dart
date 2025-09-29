@@ -6,8 +6,11 @@ class ScaleSelector extends StatefulWidget {
   final int selectedOption;
   final String label;
 
-  const ScaleSelector(
-      {super.key, this.selectedOption = 0, this.label = 'label'});
+  const ScaleSelector({
+    super.key,
+    this.selectedOption = 0,
+    this.label = 'label',
+  });
 
   @override
   State<ScaleSelector> createState() => _ScaleSelectorState();
@@ -30,7 +33,7 @@ class _ScaleSelectorState extends State<ScaleSelector> {
                 () {
                   _selectedScale = i;
                 },
-              )
+              ),
             },
             child: Container(
               width: 50,
@@ -83,7 +86,7 @@ class _ScaleSelectorState extends State<ScaleSelector> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: _createScaleWidgets(),
-        )
+        ),
       ],
     );
   }

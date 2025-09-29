@@ -86,7 +86,6 @@ class _SwellingPageState extends State<SwellingPage> {
                   ),
                   SizedBox(height: 4),
                   CustomScaleSelectorWidget(
-                    label: 'Inchaço',
                     onChanged: (value) {
                       print('Valor selecionado: $value');
                     },

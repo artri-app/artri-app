@@ -77,7 +77,6 @@ class _FatgiuePageState extends State<SleepPage> {
                   ),
                   SizedBox(height: 4),
                   CustomScaleSelectorWidget(
-                    label: 'Sono',
                     onChanged: (value) {
                       print('Valor selecionado: $value');
                     },

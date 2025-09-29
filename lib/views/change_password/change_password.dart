@@ -56,7 +56,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   label: 'Insira a sua nova senha:',
                 ),
                 const Gap(42),
-                ElevatedButton(onPressed: () => {}, child: const Text('Enviar'))
+                ElevatedButton(
+                  onPressed: () => {},
+                  child: const Text('Enviar'),
+                ),
               ],
             ),
           ),
