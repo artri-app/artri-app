@@ -180,10 +180,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: eb059dfe59f08546e9787f895bd01652076f996bcbf485a8609ef990419ad227
+      sha256: b1488741c9ce37b72e026377c69a59c47378493156fc38efb5a54f6def3f92a3
       url: "https://pub.dev"
     source: hosted
-    version: "16.2.1"
+    version: "16.2.2"
   google_fonts:
     dependency: "direct main"
     description:
@@ -249,7 +249,7 @@ packages:
     source: hosted
     version: "3.0.2"
   lints:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: lints
       sha256: a5e2b223cb7c9c8efdc663ef484fdd95bb243bff242ef5b13e26883547fce9a0
