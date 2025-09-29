@@ -1,7 +1,8 @@
 export 'custom_border.dart';
 export 'env_variables.dart';
-export 'routes.dart';
+export 'app_routes.dart';
 export 'app_colors.dart';
+export 'app_transition_page.dart';
 
 export 'enums/days_of_week.dart';
 export 'enums/exercise_difficulty.dart';

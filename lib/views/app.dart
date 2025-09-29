@@ -1,6 +1,6 @@
 import 'package:artriapp/services/index.dart';
 import 'package:artriapp/utils/providers/index.dart';
-import 'package:artriapp/utils/routes.dart';
+import 'package:artriapp/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,9 +10,9 @@ class App extends StatelessWidget {
   App({super.key});
   final _router = GoRouter(
     initialLocation: SecurityTokenService().userLoggedIn()
-        ? Routes.loggedPage
-        : Routes.login,
-    routes: Routes.getGoRoutes(),
+        ? AppRoutes.diary
+        : AppRoutes.login,
+    routes: AppRoutes.getGoRoutes(),
   );
 
   @override

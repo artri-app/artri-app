@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 class CustomInputBorder extends InputBorder {
   final BorderRadius borderRadius;
 
-  const CustomInputBorder(
-      {super.borderSide = const BorderSide(width: 1, color: Color(0xFF0058aa)),
-      this.borderRadius = BorderRadius.zero});
+  const CustomInputBorder({
+    super.borderSide = const BorderSide(width: 1, color: Color(0xFF0058aa)),
+    this.borderRadius = BorderRadius.zero,
+  });
 
   @override
   InputBorder copyWith({BorderSide? borderSide, BorderRadius? borderRadius}) {
     return CustomInputBorder(
-        borderSide: borderSide ?? this.borderSide,
-        borderRadius: borderRadius ?? this.borderRadius);
+      borderSide: borderSide ?? this.borderSide,
+      borderRadius: borderRadius ?? this.borderRadius,
+    );
   }
 
   @override
@@ -40,11 +42,14 @@ class CustomInputBorder extends InputBorder {
   bool get isOutline => true;
 
   @override
-  void paint(Canvas canvas, Rect rect,
-      {double? gapStart,
-      double gapExtent = 0.0,
-      double gapPercentage = 0.0,
-      TextDirection? textDirection}) {
+  void paint(
+    Canvas canvas,
+    Rect rect, {
+    double? gapStart,
+    double gapExtent = 0.0,
+    double gapPercentage = 0.0,
+    TextDirection? textDirection,
+  }) {
     Paint? paint;
 
     paint = createPaintForBorder(borderSide);
@@ -184,7 +189,9 @@ class CustomInputBorder extends InputBorder {
   @override
   ShapeBorder scale(double t) {
     return CustomInputBorder(
-        borderSide: borderSide.scale(t), borderRadius: borderRadius);
+      borderSide: borderSide.scale(t),
+      borderRadius: borderRadius,
+    );
   }
 }
 
@@ -193,10 +200,11 @@ class CustomBoxBorder extends BoxBorder {
   final Color borderColor;
   final BorderRadius borderRadius;
 
-  const CustomBoxBorder(
-      {this.borderWidth = 1,
-      this.borderColor = const Color(0xff0058aa),
-      this.borderRadius = BorderRadius.zero});
+  const CustomBoxBorder({
+    this.borderWidth = 1,
+    this.borderColor = const Color(0xff0058aa),
+    this.borderRadius = BorderRadius.zero,
+  });
 
   @override
   BorderSide get bottom =>
@@ -225,10 +233,13 @@ class CustomBoxBorder extends BoxBorder {
   }
 
   @override
-  void paint(Canvas canvas, Rect rect,
-      {TextDirection? textDirection,
-      BoxShape shape = BoxShape.rectangle,
-      BorderRadius? borderRadius}) {
+  void paint(
+    Canvas canvas,
+    Rect rect, {
+    TextDirection? textDirection,
+    BoxShape shape = BoxShape.rectangle,
+    BorderRadius? borderRadius,
+  }) {
     Paint? paint;
 
     paint = createPaintForBorder();

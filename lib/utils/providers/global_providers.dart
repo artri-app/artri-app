@@ -11,9 +11,11 @@ class GlobalProviders {
 
   final _viewModelProviders = <SingleChildWidget>[
     ChangeNotifierProvider(
-        create: (context) => LoginViewModel(
-            Provider.of<AuthService>(context, listen: false),
-            Provider.of<SecurityTokenService>(context, listen: false))),
+      create: (context) => LoginViewModel(
+        Provider.of<AuthService>(context, listen: false),
+        Provider.of<SecurityTokenService>(context, listen: false),
+      ),
+    ),
   ];
 
   static List<SingleChildWidget> getProviders() {
