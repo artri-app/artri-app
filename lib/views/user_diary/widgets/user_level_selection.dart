@@ -43,7 +43,8 @@ class UserLevelSelection extends StatelessWidget {
                       SessionTitle(title: title!),
                       tooltipMessage != null
                           ? HintIndicatorTooltip(
-                              tooltipMessage: tooltipMessage!)
+                              tooltipMessage: tooltipMessage!,
+                            )
                           : Gap(0),
                     ],
                   )

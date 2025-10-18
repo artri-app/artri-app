@@ -23,7 +23,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.sentiment_dissatisfied_rounded,
               label: 'Dor',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 AppRoutes.painSelectionPage,
               ),
             ),
@@ -31,7 +31,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.battery_alert_outlined,
               label: 'Fadiga',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 AppRoutes.fatigueSelectionPage,
               ),
             ),
@@ -39,7 +39,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.bedtime_outlined,
               label: 'Sono',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 AppRoutes.sleepSelectionPage,
               ),
             ),
@@ -47,7 +47,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.healing,
               label: 'Inchaço',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 AppRoutes.swellingSelectionPage,
               ),
             ),

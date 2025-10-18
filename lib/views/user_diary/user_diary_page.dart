@@ -53,7 +53,7 @@ class UserDiaryPage extends StatelessWidget {
           right: 0,
           top: 0,
           child: IconButton(
-            onPressed: () => context.push(
+            onPressed: () => context.go(
               AppRoutes.configuration,
             ),
             icon: const Icon(

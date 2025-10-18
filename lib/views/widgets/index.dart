@@ -10,3 +10,5 @@ export 'scale_selector.dart';
 export 'session_title.dart';
 export 'hint_indicator_tooltip.dart';
 export 'confirmation_buttons.dart';
+export 'exercise_button.dart';
+export 'clear_scaffold_view.dart';

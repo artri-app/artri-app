@@ -4,7 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SessionTitle extends StatelessWidget {
   final String title;
-  const SessionTitle({super.key, required this.title});
+  final double? size;
+  const SessionTitle({
+    super.key,
+    required this.title,
+    this.size = 28,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,7 @@ class SessionTitle extends StatelessWidget {
       title.toUpperCase(),
       textAlign: TextAlign.center,
       style: GoogleFonts.montserrat(
-        fontSize: 28,
+        fontSize: size,
         color: AppColors.darkGreen,
       ),
     );

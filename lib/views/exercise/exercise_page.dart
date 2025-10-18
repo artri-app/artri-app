@@ -1,5 +1,7 @@
+import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class ExercisePage extends StatelessWidget {
   const ExercisePage({super.key});
@@ -11,7 +13,7 @@ class ExercisePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => context.go(AppRoutes.physicalExercises),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
