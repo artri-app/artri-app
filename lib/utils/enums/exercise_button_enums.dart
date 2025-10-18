@@ -1,0 +1,4 @@
+enum ExerciseButtonSide {
+  left,
+  right,
+}
