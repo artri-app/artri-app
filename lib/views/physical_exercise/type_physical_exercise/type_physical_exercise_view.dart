@@ -2,6 +2,7 @@ import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TypePhysicalExerciseView extends StatelessWidget {
@@ -48,7 +49,10 @@ class TypePhysicalExerciseView extends StatelessWidget {
               width: screenWidth * 0.65,
             ),
             ExerciseButton(
-              onClick: () => const {},
+              onClick: () => context.go(
+                AppRoutes.exerciseRoutineStep
+                    .replaceFirst(':id', 'advanced_$title'),
+              ),
               buttonText: 'Avançado',
               color: AppColors.neutral,
               side: ExerciseButtonSide.left,

@@ -6,6 +6,7 @@ class AppColors {
   static const Color darkBlue = Color(0xff026873);
   static const Color lightBrown = Color(0xffc6bfaf);
   static const Color neutral = Color(0xffefecea);
+  static const Color darkGreenSurface = Color(0xffabd1c6);
 }
 
 class AppGradients {

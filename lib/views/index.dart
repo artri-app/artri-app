@@ -15,4 +15,4 @@ export 'info/data/artrite_reumatoide.dart';
 export 'info/data/minha_dor.dart';
 export 'info/data/sono.dart';
 export 'info/data/tratamentos.dart';
-export 'physical_exercise/physical_exercise_home_view.dart';
+export 'physical_exercise/index.dart';

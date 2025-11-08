@@ -45,15 +45,17 @@ class LoggedPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        primary: true,
-        child: SizedBox(
-          height: size.height - 66,
-          width: size.width,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: child,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          primary: true,
+          child: SizedBox(
+            height: size.height - 66,
+            width: size.width,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: child,
+            ),
           ),
         ),
       ),

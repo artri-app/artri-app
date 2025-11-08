@@ -14,7 +14,7 @@ class SessionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      title.toUpperCase(),
+      title,
       textAlign: TextAlign.center,
       style: GoogleFonts.montserrat(
         fontSize: size,
