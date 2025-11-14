@@ -2,9 +2,10 @@ import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:artriapp/views/info/data/alimentacao.dart';
 import 'package:artriapp/views/info/data/leis_direitos.dart';
-import 'package:artriapp/views/physical_exercise/type_physical_exercise/type_physical_exercise_view.dart';
+import 'package:artriapp/views/physical_exercise/type_physical_exercise/type_physical_exercise.dart';
 import 'package:artriapp/views/user_diary/widgets/index.dart';
 import 'package:artriapp/views/user_diary/widgets/user_level_selection_with_options.dart';
+import 'package:artriapp/views/widgets/index.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
@@ -28,10 +29,12 @@ class AppRoutes {
   static const String info = '/info';
   static const String evolution = '/evolution';
   static const String physicalExercises = '/physical-exercise';
-  static final String handExercises = '$physicalExercises/hand';
+  static const String handExercises = '$physicalExercises/hand';
   static const String feetExercises = '$physicalExercises/feet';
   static const String customExercises = '$physicalExercises/custom';
-  static const String exerciseRoutineStep = '$physicalExercises/step/:id';
+  static const String handExerciseRoutineStep = '$handExercises/step/:id';
+  static const String feetExerciseRoutineStep = '$feetExercises/step/:id';
+  static const String customExerciseRoutineStep = '$customExercises/step/:id';
 
   static List<RouteBase> getGoRoutes() {
     return [
@@ -164,30 +167,40 @@ class AppRoutes {
         path: physicalExercises,
         builder: (context, state) => const PhysicalExerciseHomeView(),
         routes: [
-          GoRoute(
-            path: 'hand',
-            builder: (context, state) => const TypePhysicalExerciseView(
-              title: 'Mãos',
+          ShellRoute(
+            pageBuilder: (context, state, child) => noneTransitionPage(
+              context: context,
+              state: state,
+              child: ClearScaffoldView(child: child),
             ),
-          ),
-          GoRoute(
-            path: 'feet',
-            builder: (context, state) => const TypePhysicalExerciseView(
-              title: 'Pés',
-            ),
-          ),
-          GoRoute(
-            path: 'custom',
-            builder: (context, state) => const TypePhysicalExerciseView(
-              title: 'Personalizado',
-            ),
-          ),
-          GoRoute(
-            path: 'step/:id',
-            builder: (context, state) {
-              final id = state.pathParameters['id'];
-              return ExerciseRoutineStepView(exerciseId: id!);
-            },
+            routes: [
+              ShellRoute(
+                pageBuilder: (context, state, child) => noneTransitionPage(
+                  context: context,
+                  state: state,
+                  child: TypePhysicalExercise(title: 'Mãos'),
+                ),
+                routes: [
+                  GoRoute(path: )
+                ],
+              ),
+              ShellRoute(
+                pageBuilder: (context, state, child) => noneTransitionPage(
+                  context: context,
+                  state: state,
+                  child: TypePhysicalExercise(title: 'Pés'),
+                ),
+                routes: [],
+              ),
+              ShellRoute(
+                pageBuilder: (context, state, child) => noneTransitionPage(
+                  context: context,
+                  state: state,
+                  child: TypePhysicalExercise(title: 'Personalizado'),
+                ),
+                routes: [],
+              ),
+            ],
           ),
         ],
       ),
