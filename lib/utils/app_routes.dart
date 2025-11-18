@@ -174,31 +174,55 @@ class AppRoutes {
               child: ClearScaffoldView(child: child),
             ),
             routes: [
-              ShellRoute(
-                pageBuilder: (context, state, child) => noneTransitionPage(
+              GoRoute(
+                path: 'hand', // Caminho relativo
+                pageBuilder: (context, state) => noneTransitionPage(
                   context: context,
                   state: state,
-                  child: TypePhysicalExercise(title: 'Mãos'),
+                  child: const TypePhysicalExercise(title: 'Mãos'),
                 ),
                 routes: [
-                  GoRoute(path: )
+                  // Adicione a rota do passo aqui para a lista não ficar vazia se fosse um Shell,
+                  // e para permitir a navegação.
+                  GoRoute(
+                    path: 'step/:id',
+                    builder: (context, state) => ExerciseRoutineStepView(
+                      exerciseId: state.pathParameters['id'] ?? '',
+                    ),
+                  ),
                 ],
               ),
-              ShellRoute(
-                pageBuilder: (context, state, child) => noneTransitionPage(
+              GoRoute(
+                path: 'feet',
+                pageBuilder: (context, state) => noneTransitionPage(
                   context: context,
                   state: state,
-                  child: TypePhysicalExercise(title: 'Pés'),
+                  child: const TypePhysicalExercise(title: 'Pés'),
                 ),
-                routes: [],
+                routes: [
+                   GoRoute(
+                    path: 'step/:id',
+                    builder: (context, state) => ExerciseRoutineStepView(
+                      exerciseId: state.pathParameters['id'] ?? '',
+                    ),
+                  ),
+                ], 
               ),
-              ShellRoute(
-                pageBuilder: (context, state, child) => noneTransitionPage(
+              GoRoute(
+                path: 'custom',
+                pageBuilder: (context, state) => noneTransitionPage(
                   context: context,
                   state: state,
-                  child: TypePhysicalExercise(title: 'Personalizado'),
+                  child: const TypePhysicalExercise(title: 'Personalizado'),
                 ),
-                routes: [],
+                routes: [
+                   GoRoute(
+                    path: 'step/:id',
+                    builder: (context, state) => ExerciseRoutineStepView(
+                      exerciseId: state.pathParameters['id'] ?? '',
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
