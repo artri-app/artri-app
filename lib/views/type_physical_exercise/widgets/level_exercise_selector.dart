@@ -4,23 +4,18 @@ import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TypePhysicalExercise extends StatelessWidget {
-  final String title;
-
-  const TypePhysicalExercise({super.key, required this.title});
+class LevelExerciseSelector extends StatelessWidget {
+  const LevelExerciseSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Column(
-      spacing: 48,
+      mainAxisSize: MainAxisSize.min,
+      spacing: 40,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SessionTitle(
-          title: title,
-          size: 36,
-        ),
         Text(
           'Escolha um nível de dificuldade para iniciar os exercícios:',
           style: GoogleFonts.montserrat(
