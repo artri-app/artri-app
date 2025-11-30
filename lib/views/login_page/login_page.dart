@@ -1,5 +1,5 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/enums/input_text_type.dart';
-import 'package:artriapp/utils/app_routes.dart';
 import 'package:artriapp/view_models/login_view_model.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +56,7 @@ class LoginPage extends StatelessWidget {
                           onValueChanged: (value) =>
                               viewModel.setPassword(value),
                           type: InputTextType.password,
+                          value: viewModel.password,
                         ),
                       ],
                     ),
@@ -102,7 +103,7 @@ class LoginPage extends StatelessWidget {
                   CustomButton(
                     text: 'CADASTRAR',
                     onPressed: () {
-                      context.go(AppRoutes.signUp);
+                      context.push(NotLoggedRoutes.signUp);
                     },
                     borderRadius: 20,
                     gradientColors: const [
