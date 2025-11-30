@@ -25,52 +25,61 @@ class ExerciseButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
 
-    return GestureDetector(
-      onTap: () => onClick(),
-      child: Stack(
-        fit: StackFit.loose,
-        clipBehavior: Clip.none,
-        alignment: AlignmentGeometry.center,
-        children: [
-          Container(
-            width: width ?? screenSize.width * 0.5,
-            height: 62,
-            padding: EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 16,
-            ),
-            decoration: BoxDecoration(
-              gradient: gradientColors != null
-                  ? LinearGradient(
-                      colors: gradientColors ?? [],
-                    )
-                  : null,
-              color: color,
-              borderRadius: BorderRadius.all(
-                Radius.circular(200),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        onTap: () => onClick(),
+        child: Stack(
+          fit: StackFit.loose,
+          clipBehavior: Clip.none,
+          alignment: AlignmentGeometry.center,
+          children: [
+            Container(
+              width: width ?? screenSize.width * 0.5,
+              height: 62,
+              padding: EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 16,
               ),
-            ),
-            child: Center(
-              child: Text(
-                buttonText,
-                style: GoogleFonts.montserrat(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 28,
+              decoration: BoxDecoration(
+                gradient: gradientColors != null
+                    ? LinearGradient(
+                        colors: gradientColors ?? [],
+                      )
+                    : null,
+                color: color,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(200),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: side == ExerciseButtonSide.left ? 36 : 0,
+                  right: side == ExerciseButtonSide.right ? 36 : 0,
+                ),
+                child: Center(
+                  child: Text(
+                    buttonText,
+                    style: GoogleFonts.montserrat(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 28,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            right: side == ExerciseButtonSide.right ? -12 : null,
-            left: side == ExerciseButtonSide.left ? -12 : null,
-            child: Icon(
-              Icons.play_circle_outline_outlined,
-              size: 84,
-              color: AppColors.darkGreen,
+            Positioned(
+              right: side == ExerciseButtonSide.right ? -12 : null,
+              left: side == ExerciseButtonSide.left ? -12 : null,
+              child: Icon(
+                Icons.play_circle_outline_outlined,
+                size: 84,
+                color: AppColors.darkGreen,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
