@@ -32,31 +32,35 @@ This project will follow the concepts of MVC architecture pattern, so the curren
 ``` bash
 lib/
 │
-├── models/                 # Data models representing the business logic entities
-│   └── <model_name>.dart   # Example model
+├── models/                      # Data models representing the business logic entities
+│   └── <model_name>.dart        # Example model
 │
-├── views/                  # UI screens and widgets
-│   ├── widgets             # Shared widgets with views
+├── views/                       # UI screens and widgets
+│   ├── widgets                  # Shared widgets with views
 │   │   └── <widget>.dart
-│   └── <view-name>         # View folder
-│       ├── widgets         # Widgets used only on the page
+│   └── <view-name>              # View folder
+│       ├── widgets              # Widgets used only on the page
 │       │   └── <widget>.dart
 │       └── <view-name>.dart 
 │
-├── view_models/            # Business logic controllers
+├── view_models/                 # Business logic controllers
 │   └── <view_model_name>.dart
 │
-├── blocs/                  # Business logic components (For BLoC pattern)
+├── blocs/                       # Business logic components (For BLoC pattern)
 │   └── <bloc_name>.dart
 │
-├── services/               # Services like API or database management
-│   └── <service_name>.dart # Service for network calls
+├── services/                    # Services like API or database management
+│   └── <service_name>.dart      # Service for network calls
 │
-├── utils/                  # Utility functions and constants
-│   ├── constants.dart      # Application constants
-│   └── utils.dart          # Utility functions
+├── utils/                       # Utility functions and constants
+│   ├── constants.dart           # Application constants
+│   └── utils.dart               # Utility functions
 │
-└── main.dart               # Entry point of the app
+├── routes/                      # Routes 
+│   ├── index.dart               # Export all routes
+│   └── <route_name>.routes.dart # Route for each usage
+│
+└── main.dart                    # Entry point of the app
 ```
 
 # Additional information

@@ -1,3 +1,4 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -53,8 +54,8 @@ class UserDiaryPage extends StatelessWidget {
           right: 0,
           top: 0,
           child: IconButton(
-            onPressed: () => context.go(
-              AppRoutes.configuration,
+            onPressed: () => context.push(
+              SettingsRoutes.configuration,
             ),
             icon: const Icon(
               Icons.settings_outlined,

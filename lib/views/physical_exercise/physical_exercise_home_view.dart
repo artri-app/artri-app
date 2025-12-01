@@ -1,3 +1,4 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,12 @@ class PhysicalExerciseHomeView extends StatelessWidget {
             ),
           ),
           ExerciseButton(
-            onClick: () => context.go(AppRoutes.handExercises),
+            onClick: () => context.push(ExerciseRoutes.handExercises),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Mãos',
           ),
           ExerciseButton(
-            onClick: () => context.go(AppRoutes.feetExercises),
+            onClick: () => context.push(ExerciseRoutes.feetExercises),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Pés',
           ),
@@ -47,7 +48,7 @@ class PhysicalExerciseHomeView extends StatelessWidget {
             ),
           ),
           ExerciseButton(
-            onClick: () => context.go(AppRoutes.customExercises),
+            onClick: () => context.push(ExerciseRoutes.customExercises),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Personalizados',
             width: MediaQuery.of(context).size.width * 0.65,

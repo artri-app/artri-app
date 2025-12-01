@@ -1,6 +1,5 @@
 export 'custom_border.dart';
 export 'env_variables.dart';
-export 'app_routes.dart';
 export 'app_colors.dart';
 export 'app_transition_page.dart';
 

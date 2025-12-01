@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/services/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class LoginViewModel extends ChangeNotifier {
           SecurityToken.refreshToken,
         );
 
-        context.go(AppRoutes.diary);
+        context.go(HomeRoutes.diary);
       }
     } catch (e) {
       log('Error on user login, $e');

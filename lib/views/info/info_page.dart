@@ -1,4 +1,4 @@
-import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/routes/app.routes.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';

@@ -1,3 +1,4 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:artriapp/views/widgets/index.dart';
@@ -29,13 +30,13 @@ class ConfigPage extends StatelessWidget {
                 const SizedBox(height: 48),
                 CustomButton(
                   text: 'Alterar Email',
-                  onPressed: () => context.go(AppRoutes.changeEmail),
+                  onPressed: () => context.push(SettingsRoutes.changeEmail),
                   gradientColors: AppGradients.greenGradient,
                 ),
                 const SizedBox(height: 16),
                 CustomButton(
                   text: 'Alterar Senha',
-                  onPressed: () => context.go(AppRoutes.changePassword),
+                  onPressed: () => context.push(SettingsRoutes.changePassword),
                   gradientColors: AppGradients.greenGradient,
                 ),
                 const SizedBox(height: 16),

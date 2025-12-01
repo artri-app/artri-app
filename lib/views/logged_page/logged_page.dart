@@ -1,4 +1,4 @@
-import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,13 +9,13 @@ class LoggedPage extends StatelessWidget {
 
   int _currentIndex(String location) {
     switch (location) {
-      case AppRoutes.diary:
+      case HomeRoutes.diary:
         return 0;
-      case AppRoutes.exercise:
+      case HomeRoutes.exercise:
         return 1;
-      case AppRoutes.info:
+      case HomeRoutes.info:
         return 2;
-      case AppRoutes.evolution:
+      case HomeRoutes.evolution:
         return 3;
       default:
         return 0;
@@ -25,16 +25,16 @@ class LoggedPage extends StatelessWidget {
   void _onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go(AppRoutes.diary);
+        context.go(HomeRoutes.diary);
         break;
       case 1:
-        context.go(AppRoutes.exercise);
+        context.go(HomeRoutes.exercise);
         break;
       case 2:
-        context.go(AppRoutes.info);
+        context.go(HomeRoutes.info);
         break;
       case 3:
-        context.go(AppRoutes.evolution);
+        context.go(HomeRoutes.evolution);
         break;
     }
   }
