@@ -85,7 +85,7 @@ class QuestionCard extends StatelessWidget {
                           onPressed: () {},
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

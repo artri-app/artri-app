@@ -1,3 +1,4 @@
+import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,8 +6,11 @@ class ScaleSelector extends StatefulWidget {
   final int selectedOption;
   final String label;
 
-  const ScaleSelector(
-      {super.key, this.selectedOption = 0, this.label = 'label'});
+  const ScaleSelector({
+    super.key,
+    this.selectedOption = 0,
+    this.label = 'label',
+  });
 
   @override
   State<ScaleSelector> createState() => _ScaleSelectorState();
@@ -29,7 +33,7 @@ class _ScaleSelectorState extends State<ScaleSelector> {
                 () {
                   _selectedScale = i;
                 },
-              )
+              ),
             },
             child: Container(
               width: 50,
@@ -44,7 +48,7 @@ class _ScaleSelectorState extends State<ScaleSelector> {
               child: Text(
                 (i + 1).toString(),
                 style: GoogleFonts.openSans(
-                  color: const Color(0xff025940),
+                  color: AppColors.darkGreen,
                   fontWeight:
                       _selectedScale == i ? FontWeight.bold : FontWeight.normal,
                   fontSize: 24,
@@ -82,7 +86,7 @@ class _ScaleSelectorState extends State<ScaleSelector> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: _createScaleWidgets(),
-        )
+        ),
       ],
     );
   }

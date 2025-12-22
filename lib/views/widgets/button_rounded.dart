@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class RoundedButton extends StatelessWidget {
   final IconData icon;
@@ -23,12 +24,13 @@ class RoundedButton extends StatelessWidget {
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             backgroundColor: color,
+            minimumSize: const Size(64, 64), // Fixed size
             shape: const CircleBorder(), // Circular shape
             padding: const EdgeInsets.all(16), // Adjust padding for icon size
           ),
-          child: Icon(icon, size: 24, color: Colors.white), // Centered icon
+          child: Icon(icon, size: 46, color: Colors.white), // Centered icon
         ),
-        // const SizedBox(height: 8), // Space between icon and label
+        const Gap(4), // Space between icon and label
         Text(
           label,
           style: TextStyle(fontSize: 14, color: color),

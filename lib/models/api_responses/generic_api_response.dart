@@ -15,7 +15,8 @@ class GenericApiResponse {
       } =>
         GenericApiResponse(message: error, isSuccess: false),
       _ => throw const FormatException(
-          'Invalid structure of Generic Api Response'),
+          'Invalid structure of Generic Api Response',
+        ),
     };
   }
 }

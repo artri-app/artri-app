@@ -1,5 +1,4 @@
-import 'package:artriapp/views/widgets/button.dart';
-import 'package:artriapp/views/widgets/input_text.dart';
+import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,9 +20,10 @@ class _SendPasswordState extends State<SendPassword> {
         centerTitle: true,
         titleTextStyle: GoogleFonts.montserrat(
           textStyle: const TextStyle(
-              color: Color.fromARGB(255, 2, 89, 64),
-              fontWeight: FontWeight.w300,
-              fontSize: 50),
+            color: Color.fromARGB(255, 2, 89, 64),
+            fontWeight: FontWeight.w300,
+            fontSize: 50,
+          ),
         ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class _SendPasswordState extends State<SendPassword> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 26),
-                  const InputText(placeholder: 'E-MAIL')
+                  const InputText(placeholder: 'E-MAIL'),
                 ],
               ),
             ),
@@ -82,7 +82,7 @@ class _SendPasswordState extends State<SendPassword> {
                 Color.fromARGB(255, 4, 191, 138),
               ],
             ),
-            const SizedBox(height: 80)
+            const SizedBox(height: 80),
           ],
         ),
       ),

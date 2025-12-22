@@ -1,6 +1,6 @@
-import 'package:artriapp/views/widgets/button.dart';
-import 'package:artriapp/views/widgets/input_text.dart';
+import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -21,14 +21,15 @@ class _SignUpPageState extends State<SignUpPage> {
         centerTitle: true,
         titleTextStyle: GoogleFonts.montserrat(
           textStyle: const TextStyle(
-              color: Color.fromARGB(255, 2, 89, 64),
-              fontWeight: FontWeight.w300,
-              fontSize: 50),
+            color: Color.fromARGB(255, 2, 89, 64),
+            fontWeight: FontWeight.w300,
+            fontSize: 50,
+          ),
         ),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton.outlined(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(context),
             iconSize: 24,
             icon: Icon(
               Icons.arrow_back,
@@ -64,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 26),
-                  const InputText(placeholder: 'E-MAIL')
+                  const InputText(placeholder: 'E-MAIL'),
                 ],
               ),
             ),
@@ -78,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 Color.fromARGB(255, 4, 191, 138),
               ],
             ),
-            const SizedBox(height: 80)
+            const SizedBox(height: 80),
           ],
         ),
       ),

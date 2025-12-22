@@ -1,150 +1,70 @@
-import 'package:artriapp/utils/custom_border.dart';
-import 'package:artriapp/views/widgets/scale_selector.dart';
-import 'package:artriapp/views/widgets/navbar.dart';
+import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class UserDiaryPage extends StatefulWidget {
-  const UserDiaryPage({super.key});
+class UserDiaryPage extends StatelessWidget {
+  final Widget child;
+  const UserDiaryPage({super.key, required this.child});
 
-  @override
-  State<UserDiaryPage> createState() => _UserDiaryPageState();
-}
-
-class _UserDiaryPageState extends State<UserDiaryPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            top: 10,
-            right: 10,
-            child: IconButton(
-              onPressed: () => {},
-              iconSize: 40,
-              icon: const Icon(
-                Icons.settings_outlined,
-                color: Color(0xff025940),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: AppColors.darkGreen,
+              ),
+              child: const Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 80,
               ),
             ),
-          ),
-          Center(
-            child: FractionallySizedBox(
-              widthFactor: 0.85,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color(0xff025940),
-                      ),
-                      child: const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 110,
-                      ),
-                    ),
-                    const Gap(46),
-                    Text(
-                      'Olá, Andressa!',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 52,
-                        color: const Color(0xff025940),
-                      ),
-                    ),
-                    Text(
-                      'Como você está hoje?'.toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 24,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const Gap(52),
-                    const ScaleSelector(
-                      label: 'Dor',
-                    ),
-                    const Gap(52),
-                    Text(
-                      'REMÉDIOS',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 28,
-                        color: const Color(0xff026873),
-                      ),
-                    ),
-                    FractionallySizedBox(
-                      widthFactor: 0.85,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: const CustomBoxBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(24),
-                            ),
-                          ),
-                          // Border.all(
-                          //   color: const Color(0xff0058aa),
-                          //   width: 2,
-                          // ),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 16,
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Flexible(
-                                fit: FlexFit.tight,
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'DIPIRONA 22:00H',
-                                      style: GoogleFonts.montserrat(
-                                        color: const Color(0xff025940),
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Text(
-                                      'IBUPROFENO 10:00H',
-                                      style: GoogleFonts.montserrat(
-                                        color: const Color(0xff025940),
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const Icon(
-                                Icons.edit_outlined,
-                                size: 42,
-                                color: Color(0xff525252),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+            const Gap(24),
+            Text(
+              'Olá, {nome}!',
+              style: GoogleFonts.montserrat(
+                fontSize: 28,
+                color: const Color(0xff026873),
               ),
             ),
+            Text(
+              'Como você está hoje?'.toUpperCase(),
+              style: GoogleFonts.montserrat(
+                fontSize: 18,
+                color: Colors.black,
+              ),
+            ),
+            const Gap(32),
+            child,
+          ],
+        ),
+        Positioned(
+          right: 0,
+          top: 0,
+          child: IconButton(
+            onPressed: () => context.push(
+              SettingsRoutes.configuration,
+            ),
+            icon: const Icon(
+              Icons.settings_outlined,
+              color: AppColors.darkGreen,
+            ),
+            iconSize: 42,
           ),
-        ],
-      ),
-      bottomNavigationBar: const NavBar(),
+        ),
+      ],
     );
   }
 }

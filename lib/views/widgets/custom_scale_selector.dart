@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class CustomScaleSelectorWidget extends StatefulWidget {
   final int? initialValue;
   final void Function(int selectedLevel)? onChanged;
-  final String? label;
 
   const CustomScaleSelectorWidget({
     super.key,
     this.initialValue,
     this.onChanged,
-    this.label,
   });
 
   @override
@@ -63,32 +61,7 @@ class _CustomScaleSelectorWidgetState extends State<CustomScaleSelectorWidget> {
             );
           }),
         ),
-        SizedBox(height: 24),
-        Text(
-          widget.label == "Fadiga"
-              ? _getFatigueLabel(selectedLevel)
-              : _getSleepLabel(selectedLevel),
-          style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-        ),
       ],
     );
-  }
-
-  String _getFatigueLabel(int level) {
-    if (level == -1) return 'Selecione um nível';
-    if (level == 0) return 'Nenhuma';
-    if (level <= 3) return 'Fadiga leve';
-    if (level <= 6) return 'Fadiga média';
-    if (level <= 9) return 'Fadiga forte';
-    return 'Excessiva';
-  }
-
-  String _getSleepLabel(int level) {
-    if (level == -1) return 'Selecione um nível';
-    if (level == 0) return 'Muito ruim';
-    if (level <= 3) return 'Sono ruim';
-    if (level <= 6) return 'Sono razoável';
-    if (level <= 9) return 'Sono bom';
-    return 'Excelente';
   }
 }
