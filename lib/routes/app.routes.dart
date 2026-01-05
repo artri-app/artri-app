@@ -1,9 +1,7 @@
+import 'package:artriapp/models/index.dart';
 import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/routes/logged.routes.dart';
 import 'package:go_router/go_router.dart';
-
-abstract class RoutesSession {
-  static List<RouteBase> getGoRoutes() => [];
-}
 
 class AppRoutes implements RoutesSession {
   static const String artriteInfoPage = '/artrite-info';
@@ -16,9 +14,7 @@ class AppRoutes implements RoutesSession {
   static List<RouteBase> getGoRoutes() {
     return [
       ...NotLoggedRoutes.getGoRoutes(),
-      ...SettingsRoutes.getGoRoutes(),
-      ...HomeRoutes.getGoRoutes(),
-      ...ExerciseRoutes.getGoRoutes(),
+      ...LoggedRoutes.getGoRoutes(),
       // GoRoute(
       //   path: artriteInfoPage,
       //   builder: (context, state) => const ArtriteReumatoideInfoPage(),

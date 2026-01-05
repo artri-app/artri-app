@@ -9,13 +9,13 @@ class LoggedPage extends StatelessWidget {
 
   int _currentIndex(String location) {
     switch (location) {
-      case HomeRoutes.diary:
+      case LoggedRoutes.diary:
         return 0;
-      case HomeRoutes.exercise:
+      case LoggedRoutes.exercise:
         return 1;
-      case HomeRoutes.info:
+      case LoggedRoutes.info:
         return 2;
-      case HomeRoutes.evolution:
+      case LoggedRoutes.evolution:
         return 3;
       default:
         return 0;
@@ -25,16 +25,16 @@ class LoggedPage extends StatelessWidget {
   void _onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go(HomeRoutes.diary);
+        context.go(LoggedRoutes.diary);
         break;
       case 1:
-        context.go(HomeRoutes.exercise);
+        context.go(LoggedRoutes.exercise);
         break;
       case 2:
-        context.go(HomeRoutes.info);
+        context.go(LoggedRoutes.info);
         break;
       case 3:
-        context.go(HomeRoutes.evolution);
+        context.go(LoggedRoutes.evolution);
         break;
     }
   }
