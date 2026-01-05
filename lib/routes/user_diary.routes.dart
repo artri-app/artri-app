@@ -1,4 +1,4 @@
-import 'package:artriapp/routes/app.routes.dart';
+import 'package:artriapp/models/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
