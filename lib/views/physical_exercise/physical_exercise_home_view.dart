@@ -29,12 +29,12 @@ class PhysicalExerciseHomeView extends StatelessWidget {
             ),
           ),
           ExerciseButton(
-            onClick: () => context.push(ExerciseRoutes.handExercises),
+            onClick: () => context.go(PhysicalExerciseRoutes.handExercises),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Mãos',
           ),
           ExerciseButton(
-            onClick: () => context.push(ExerciseRoutes.feetExercises),
+            onClick: () => context.go(PhysicalExerciseRoutes.feetExercises),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Pés',
           ),
@@ -48,7 +48,7 @@ class PhysicalExerciseHomeView extends StatelessWidget {
             ),
           ),
           ExerciseButton(
-            onClick: () => context.push(ExerciseRoutes.customExercises),
+            onClick: () => context.go(PhysicalExerciseRoutes.customExercises),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Personalizados',
             width: MediaQuery.of(context).size.width * 0.65,
