@@ -13,7 +13,7 @@ export 'sign_up_page/send_password.dart';
 export 'sign_up_page/sign_up_page.dart';
 export 'sleep/sleep_page.dart';
 export 'swelling/swelling_page.dart';
-export 'config/config_page.dart';
+export 'logged_settings/logged_settings_page.dart';
 export 'logged_page/logged_page.dart';
 export 'info/index.dart';
 export 'physical_exercise/index.dart';
