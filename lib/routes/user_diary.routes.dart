@@ -9,6 +9,7 @@ class UserDiaryRoutes implements RoutesSession {
   static const String sleepSelectionPage = '/sleep-selection';
   static const String swellingSelectionPage = '/swelling-selection';
   static const String painSelectionPage = '/pain-selection';
+  static const String settings = '/settings';
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
@@ -63,6 +64,14 @@ class UserDiaryRoutes implements RoutesSession {
               tooltipMessage:
                   'Inchaço é quando uma parte do corpo parece maior ou mais “cheia” do que o normal, como se estivesse acumulando líquido ou inflamada. A região inchada pode ficar mais dura, quente, avermelhada ou sensível ao toque.',
             ),
+          ),
+        ),
+        GoRoute(
+          path: settings,
+          pageBuilder: (context, state) => noneTransitionPage(
+            context: context,
+            state: state,
+            child: LoggedSettingsPage(),
           ),
         ),
       ];

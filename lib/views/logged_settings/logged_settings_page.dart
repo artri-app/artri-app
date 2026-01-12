@@ -9,44 +9,37 @@ class LoggedSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 48.0),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const CircleAvatar(
-              radius: 64,
-              backgroundColor: AppColors.darkGreen,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Configurações',
-              style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
-            ),
-            const SizedBox(height: 48),
-            CustomButton(
-              text: 'Alterar Email',
-              onPressed: () => context.go(SettingsRoutes.changeEmail),
-              gradientColors: AppGradients.greenGradient,
-            ),
-            const SizedBox(height: 16),
-            CustomButton(
-              text: 'Alterar Senha',
-              onPressed: () => context.go(SettingsRoutes.changePassword),
-              gradientColors: AppGradients.greenGradient,
-            ),
-            const SizedBox(height: 16),
-            CustomButton(
-              text: 'Permissões',
-              onPressed: () {
-                // Do something
-              },
-              gradientColors: AppGradients.greenGradient,
-            ),
-          ],
-        ),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 16),
+          const Text(
+            'Configurações',
+            style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
+          ),
+          const SizedBox(height: 48),
+          CustomButton(
+            text: 'Alterar Email',
+            onPressed: () => context.go(SettingsRoutes.changeEmail),
+            gradientColors: AppGradients.greenGradient,
+          ),
+          const SizedBox(height: 16),
+          CustomButton(
+            text: 'Alterar Senha',
+            onPressed: () => context.go(SettingsRoutes.changePassword),
+            gradientColors: AppGradients.greenGradient,
+          ),
+          const SizedBox(height: 16),
+          CustomButton(
+            text: 'Permissões',
+            onPressed: () {
+              // Do something
+            },
+            gradientColors: AppGradients.greenGradient,
+          ),
+        ],
       ),
     );
   }

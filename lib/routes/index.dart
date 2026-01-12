@@ -4,3 +4,4 @@ export 'app.routes.dart';
 export 'logged.routes.dart';
 export 'exercise.routes.dart';
 export 'physical_exercise.routes.dart';
+export 'user_diary.routes.dart';
