@@ -8,11 +8,11 @@ class SettingsRoutes implements RoutesSession {
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
-          path: "change-email",
+          path: 'change-email',
           builder: (context, state) => const ChangeEmailPage(),
         ),
         GoRoute(
-          path: "change-password",
+          path: 'change-password',
           builder: (context, state) => const ChangePasswordPage(),
         ),
       ];

@@ -1,6 +1,5 @@
 import 'package:artriapp/models/index.dart';
 import 'package:artriapp/routes/index.dart';
-import 'package:artriapp/routes/logged.routes.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes implements RoutesSession {
