@@ -11,6 +11,9 @@ class UserDiaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String location = GoRouterState.of(context).uri.toString();
+    final bool isSetting = location == UserDiaryRoutes.settings;
+
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -54,11 +57,11 @@ class UserDiaryPage extends StatelessWidget {
           right: 0,
           top: 0,
           child: IconButton(
-            onPressed: () => context.push(
-              SettingsRoutes.configuration,
+            onPressed: () => context.go(
+              isSetting ? LoggedRoutes.diary : UserDiaryRoutes.settings,
             ),
-            icon: const Icon(
-              Icons.settings_outlined,
+            icon: Icon(
+              isSetting ? Icons.settings : Icons.settings_outlined,
               color: AppColors.darkGreen,
             ),
             iconSize: 42,

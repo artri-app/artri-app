@@ -1,0 +1,46 @@
+import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/utils/index.dart';
+import 'package:flutter/material.dart';
+import 'package:artriapp/views/widgets/index.dart';
+import 'package:go_router/go_router.dart';
+
+class LoggedSettingsPage extends StatelessWidget {
+  const LoggedSettingsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 16),
+          const Text(
+            'Configurações',
+            style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
+          ),
+          const SizedBox(height: 48),
+          CustomButton(
+            text: 'Alterar Email',
+            onPressed: () => context.go(SettingsRoutes.changeEmail),
+            gradientColors: AppGradients.greenGradient,
+          ),
+          const SizedBox(height: 16),
+          CustomButton(
+            text: 'Alterar Senha',
+            onPressed: () => context.go(SettingsRoutes.changePassword),
+            gradientColors: AppGradients.greenGradient,
+          ),
+          const SizedBox(height: 16),
+          CustomButton(
+            text: 'Permissões',
+            onPressed: () {
+              // Do something
+            },
+            gradientColors: AppGradients.greenGradient,
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,23 +1,18 @@
-import 'package:artriapp/routes/app.routes.dart';
+import 'package:artriapp/models/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
 
 class SettingsRoutes implements RoutesSession {
-  static const String configuration = '/configuration';
-  static const String changeEmail = '/change-email';
-  static const String changePassword = '/change-password';
+  static const String changeEmail = 'configuration/change-email';
+  static const String changePassword = 'configuration/change-password';
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
-          path: configuration,
-          builder: (context, state) => const ConfigPage(),
-        ),
-        GoRoute(
-          path: changeEmail,
+          path: 'change-email',
           builder: (context, state) => const ChangeEmailPage(),
         ),
         GoRoute(
-          path: changePassword,
+          path: 'change-password',
           builder: (context, state) => const ChangePasswordPage(),
         ),
       ];

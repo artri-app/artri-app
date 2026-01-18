@@ -10,7 +10,7 @@ class App extends StatelessWidget {
   App({super.key});
   final _router = GoRouter(
     initialLocation: SecurityTokenService().userLoggedIn()
-        ? HomeRoutes.diary
+        ? LoggedRoutes.diary
         : NotLoggedRoutes.login,
     routes: AppRoutes.getGoRoutes(),
   );
