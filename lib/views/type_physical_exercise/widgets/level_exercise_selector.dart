@@ -7,6 +7,16 @@ import 'package:google_fonts/google_fonts.dart';
 class LevelExerciseSelector extends StatelessWidget {
   const LevelExerciseSelector({super.key});
 
+  static const whichLevelDialog = SimpleDialog(
+    title: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(Icons.priority_high),
+        Text('ATENÇÃO'),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -45,6 +55,16 @@ class LevelExerciseSelector extends StatelessWidget {
           color: AppColors.neutral,
           side: ExerciseButtonSide.left,
           width: screenWidth * 0.65,
+        ),
+        CustomButton(
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => whichLevelDialog,
+          ),
+          text: 'Qual devo escolher?',
+          color: AppColors.lightBrown,
+          width: screenWidth * 0.80,
+          textColor: Colors.black,
         ),
       ],
     );
