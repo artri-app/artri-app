@@ -12,3 +12,5 @@ export 'hint_indicator_tooltip.dart';
 export 'confirmation_buttons.dart';
 export 'exercise_button.dart';
 export 'clear_scaffold_view.dart';
+export 'custom_simple_dialog_action.dart';
+export 'custom_simple_dialog.dart';
