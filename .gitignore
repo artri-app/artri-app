@@ -44,3 +44,5 @@ app.*.map.json
 
 # Env files
 *.env
+macos/Flutter/ephemeral/flutter_export_environment.sh
+macos/Flutter/ephemeral/Flutter-Generated.xcconfig
