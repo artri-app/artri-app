@@ -32,12 +32,9 @@ class ClearScaffoldView extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: SizedBox.fromSize(
-          size: MediaQuery.of(context).size,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: child ?? Placeholder(),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: child ?? Placeholder(),
         ),
       ),
     );

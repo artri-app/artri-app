@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseRoutineStepView extends StatelessWidget {
-  final String exerciseId;
+  final int exerciseId;
   const ExerciseRoutineStepView({super.key, required this.exerciseId});
 
   @override
