@@ -2,14 +2,26 @@ import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LevelExerciseSelector extends StatelessWidget {
   const LevelExerciseSelector({super.key});
 
+  static const whichLevelDialog = SimpleDialog(
+    title: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(Icons.priority_high),
+        Text('ATENÇÃO'),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    String currentPath = GoRouterState.of(context).uri.path;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -26,25 +38,35 @@ class LevelExerciseSelector extends StatelessWidget {
           ),
         ),
         ExerciseButton(
-          onClick: () => const {},
+          onClick: () => context.go('$currentPath/easy'),
           side: ExerciseButtonSide.left,
           buttonText: 'Iniciante',
           color: AppColors.neutral,
           width: screenWidth * 0.65,
         ),
         ExerciseButton(
-          onClick: () => const {},
+          onClick: () => context.go('$currentPath/medium'),
           side: ExerciseButtonSide.left,
           buttonText: 'Intermediário',
           color: AppColors.neutral,
           width: screenWidth * 0.65,
         ),
         ExerciseButton(
-          onClick: () => {},
+          onClick: () => context.go('$currentPath/hard'),
           buttonText: 'Avançado',
           color: AppColors.neutral,
           side: ExerciseButtonSide.left,
           width: screenWidth * 0.65,
+        ),
+        CustomButton(
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => whichLevelDialog,
+          ),
+          text: 'Qual devo escolher?',
+          color: AppColors.lightBrown,
+          width: screenWidth * 0.80,
+          textColor: Colors.black,
         ),
       ],
     );

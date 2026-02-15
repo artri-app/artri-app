@@ -69,3 +69,4 @@ The bellow information is additional, but can help you to understand how flutter
 
 - [The architecture of flutter](https://docs.flutter.dev/resources/architectural-overview#building-widgets)
 - [Best practices of flutter](https://www.mindinventory.com/blog/flutter-development-best-practices/)
+- [Widgets design](https://docs.flutter.dev/ui/widgets)
