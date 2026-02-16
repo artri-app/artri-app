@@ -27,7 +27,8 @@ class PhysicalExerciseRoutes implements RoutesSession {
                   title: 'Mãos',
                   child: child,
                   subtitle: DifficultyHelper.getDifficultyText(
-                      state.pathParameters['difficulty']),
+                    state.pathParameters['difficulty'],
+                  ),
                 ),
               ),
               routes: [
@@ -52,7 +53,8 @@ class PhysicalExerciseRoutes implements RoutesSession {
                   title: 'Pés',
                   child: child,
                   subtitle: DifficultyHelper.getDifficultyText(
-                      state.pathParameters['difficulty']),
+                    state.pathParameters['difficulty'],
+                  ),
                 ),
               ),
               routes: [
@@ -77,7 +79,8 @@ class PhysicalExerciseRoutes implements RoutesSession {
                   title: 'Personalizado',
                   child: child,
                   subtitle: DifficultyHelper.getDifficultyText(
-                      state.pathParameters['difficulty']),
+                    state.pathParameters['difficulty'],
+                  ),
                 ),
               ),
               routes: [

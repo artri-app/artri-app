@@ -32,7 +32,7 @@ class ExerciseRoutineOverviewView extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
