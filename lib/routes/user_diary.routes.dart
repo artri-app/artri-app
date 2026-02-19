@@ -14,17 +14,13 @@ class UserDiaryRoutes implements RoutesSession {
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
           path: diary,
-          pageBuilder: (context, state) => noneTransitionPage(
-            context: context,
-            state: state,
+          pageBuilder: (context, state) => NoTransitionPage(
             child: UserDiaryInitialSelection(),
           ),
         ),
         GoRoute(
           path: fatigueSelectionPage,
-          pageBuilder: (context, state) => noneTransitionPage(
-            context: context,
-            state: state,
+          pageBuilder: (context, state) => NoTransitionPage(
             child: const UserLevelSelection(
               title: 'Fadiga',
               tooltipMessage:
@@ -35,9 +31,7 @@ class UserDiaryRoutes implements RoutesSession {
         ),
         GoRoute(
           path: painSelectionPage,
-          pageBuilder: (context, state) => noneTransitionPage(
-            context: context,
-            state: state,
+          pageBuilder: (context, state) => NoTransitionPage(
             child: UserLevelSelectionWithOptions(
               title: 'Dor',
             ),
@@ -45,9 +39,7 @@ class UserDiaryRoutes implements RoutesSession {
         ),
         GoRoute(
           path: sleepSelectionPage,
-          pageBuilder: (context, state) => noneTransitionPage(
-            context: context,
-            state: state,
+          pageBuilder: (context, state) => NoTransitionPage(
             child: const UserLevelSelection(
               title: 'Sono',
               description: 'De 0 a 10, como esta seu nível de sono hoje?',
@@ -56,9 +48,7 @@ class UserDiaryRoutes implements RoutesSession {
         ),
         GoRoute(
           path: swellingSelectionPage,
-          pageBuilder: (context, state) => noneTransitionPage(
-            context: context,
-            state: state,
+          pageBuilder: (context, state) => NoTransitionPage(
             child: UserLevelSelectionWithOptions(
               title: 'Inchaço',
               tooltipMessage:
@@ -68,9 +58,7 @@ class UserDiaryRoutes implements RoutesSession {
         ),
         GoRoute(
           path: settings,
-          pageBuilder: (context, state) => noneTransitionPage(
-            context: context,
-            state: state,
+          pageBuilder: (context, state) => NoTransitionPage(
             child: LoggedSettingsPage(),
           ),
         ),

@@ -6,92 +6,92 @@ import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
 
 class PhysicalExerciseRoutes implements RoutesSession {
-  static const String physicalExercises = '/exercise/physical-exercise';
+  static const String physicalExercises = '/physical-exercise';
   static const String handExercises = '$physicalExercises/hand';
   static const String feetExercises = '$physicalExercises/feet';
   static const String customExercises = '$physicalExercises/custom';
 
   static List<RouteBase> getGoRoutes() => [
-        ShellRoute(
-          pageBuilder: (context, state, child) => noneTransitionPage(
-            context: context,
-            state: state,
-            child: ClearScaffoldView(child: child),
-          ),
+        GoRoute(
+          path: physicalExercises,
+          builder: (context, state) => const PhysicalExerciseHomeView(),
           routes: [
             ShellRoute(
-              pageBuilder: (context, state, child) => noneTransitionPage(
-                context: context,
-                state: state,
-                child: TypePhysicalExercise(
-                  title: 'Mãos',
-                  child: child,
-                  subtitle: DifficultyHelper.getDifficultyText(
-                    state.pathParameters['difficulty'],
-                  ),
-                ),
-              ),
+              builder: (context, state, child) =>
+                  ClearScaffoldView(child: child),
               routes: [
-                GoRoute(
-                  path: 'hand',
-                  builder: (context, state) => const LevelExerciseSelector(),
+                ShellRoute(
+                  pageBuilder: (context, state, child) => NoTransitionPage(
+                    child: TypePhysicalExercise(
+                      title: 'Mãos',
+                      child: child,
+                      subtitle: DifficultyHelper.getDifficultyText(
+                        state.pathParameters['difficulty'],
+                      ),
+                    ),
+                  ),
                   routes: [
                     GoRoute(
-                      path: ':difficulty',
+                      path: 'hand',
                       builder: (context, state) =>
-                          const ExerciseRoutineOverviewView(),
+                          const LevelExerciseSelector(),
+                      routes: [
+                        GoRoute(
+                          path: ':difficulty',
+                          builder: (context, state) =>
+                              const ExerciseRoutineOverviewView(),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            ShellRoute(
-              pageBuilder: (context, state, child) => noneTransitionPage(
-                context: context,
-                state: state,
-                child: TypePhysicalExercise(
-                  title: 'Pés',
-                  child: child,
-                  subtitle: DifficultyHelper.getDifficultyText(
-                    state.pathParameters['difficulty'],
+                ShellRoute(
+                  pageBuilder: (context, state, child) => NoTransitionPage(
+                    child: TypePhysicalExercise(
+                      title: 'Pés',
+                      child: child,
+                      subtitle: DifficultyHelper.getDifficultyText(
+                        state.pathParameters['difficulty'],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              routes: [
-                GoRoute(
-                  path: 'feet',
-                  builder: (context, state) => const LevelExerciseSelector(),
                   routes: [
                     GoRoute(
-                      path: ':difficulty',
+                      path: 'feet',
                       builder: (context, state) =>
-                          const ExerciseRoutineOverviewView(),
+                          const LevelExerciseSelector(),
+                      routes: [
+                        GoRoute(
+                          path: ':difficulty',
+                          builder: (context, state) =>
+                              const ExerciseRoutineOverviewView(),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            ShellRoute(
-              pageBuilder: (context, state, child) => noneTransitionPage(
-                context: context,
-                state: state,
-                child: TypePhysicalExercise(
-                  title: 'Personalizado',
-                  child: child,
-                  subtitle: DifficultyHelper.getDifficultyText(
-                    state.pathParameters['difficulty'],
+                ShellRoute(
+                  pageBuilder: (context, state, child) => NoTransitionPage(
+                    child: TypePhysicalExercise(
+                      title: 'Personalizado',
+                      child: child,
+                      subtitle: DifficultyHelper.getDifficultyText(
+                        state.pathParameters['difficulty'],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              routes: [
-                GoRoute(
-                  path: 'custom',
-                  builder: (context, state) => const LevelExerciseSelector(),
                   routes: [
                     GoRoute(
-                      path: ':difficulty',
+                      path: 'custom',
                       builder: (context, state) =>
-                          const ExerciseRoutineOverviewView(),
+                          const LevelExerciseSelector(),
+                      routes: [
+                        GoRoute(
+                          path: ':difficulty',
+                          builder: (context, state) =>
+                              const ExerciseRoutineOverviewView(),
+                        ),
+                      ],
                     ),
                   ],
                 ),
