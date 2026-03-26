@@ -21,3 +21,4 @@ export 'type_physical_exercise/type_physical_exercise.dart';
 export 'type_physical_exercise/widgets/index.dart';
 export 'exercise_routine_step/widgets/index.dart';
 export 'widgets/index.dart';
+export 'relaxation/index.dart';

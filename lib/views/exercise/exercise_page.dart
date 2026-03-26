@@ -52,7 +52,8 @@ class ExercisePage extends StatelessWidget {
           ),
           const Gap(16),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () =>
+                context.push(RelaxationRoutes.relaxation),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
