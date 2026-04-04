@@ -62,7 +62,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  CustomButton(
+                  CustomSolidButton(
                     text: 'ENTRAR',
                     onPressed: () async {
                       await viewModel.handleUserLoginButton(context);
@@ -100,10 +100,10 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  CustomButton(
+                  CustomSolidButton(
                     text: 'CADASTRAR',
                     onPressed: () {
-                      context.push(NotLoggedRoutes.signUp);
+                      context.go(NotLoggedRoutes.signUp);
                     },
                     borderRadius: 20,
                     gradientColors: const [

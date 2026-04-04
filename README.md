@@ -29,7 +29,7 @@ This project use `.env` file for communication with APIs. Make sure your `.env` 
 
 This project will follow the concepts of MVC architecture pattern, so the current project use this following organization:
 
-``` bash
+```bash
 lib/
 │
 ├── models/                      # Data models representing the business logic entities
@@ -41,7 +41,7 @@ lib/
 │   └── <view-name>              # View folder
 │       ├── widgets              # Widgets used only on the page
 │       │   └── <widget>.dart
-│       └── <view-name>.dart 
+│       └── <view-name>.dart
 │
 ├── view_models/                 # Business logic controllers
 │   └── <view_model_name>.dart
@@ -56,7 +56,7 @@ lib/
 │   ├── constants.dart           # Application constants
 │   └── utils.dart               # Utility functions
 │
-├── routes/                      # Routes 
+├── routes/                      # Routes
 │   ├── index.dart               # Export all routes
 │   └── <route_name>.routes.dart # Route for each usage
 │
@@ -70,3 +70,10 @@ The bellow information is additional, but can help you to understand how flutter
 - [The architecture of flutter](https://docs.flutter.dev/resources/architectural-overview#building-widgets)
 - [Best practices of flutter](https://www.mindinventory.com/blog/flutter-development-best-practices/)
 - [Widgets design](https://docs.flutter.dev/ui/widgets)
+
+## Go Router navigation
+
+The project use the library [GoRouter](https://pub.dev/packages/go_router) to make the navigation more easy. Below has a description about routing methods:
+
+- `context.go()`: Will push a new page to the page stack. Use this to maintain the page stack.
+- `context.go()`: Replace the page stack with the page using a new page key.

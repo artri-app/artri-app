@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomSolidButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final List<Color>? gradientColors;
@@ -10,8 +10,9 @@ class CustomButton extends StatelessWidget {
   final bool _hasGradient;
   final double? width;
   final Color? textColor;
+  final TextStyle? textStyle;
 
-  const CustomButton({
+  const CustomSolidButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -21,6 +22,7 @@ class CustomButton extends StatelessWidget {
     this.color,
     this.width,
     this.textColor,
+    this.textStyle,
   }) : _hasGradient = gradientColors != null && gradientColors.length >= 2;
 
   @override
@@ -51,11 +53,12 @@ class CustomButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(),
           child: Text(
             text,
-            style: TextStyle(
-              color: textColor ?? Colors.white,
-              fontSize: fontSize,
-              fontWeight: FontWeight.w400,
-            ),
+            style: textStyle ??
+                TextStyle(
+                  color: textColor ?? Colors.white,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
         ),
       ),

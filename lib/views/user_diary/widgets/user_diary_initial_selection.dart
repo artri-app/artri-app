@@ -1,4 +1,5 @@
 import 'package:artriapp/routes/user_diary.routes.dart';
+import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -23,7 +24,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.sentiment_dissatisfied_rounded,
               label: 'Dor',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 UserDiaryRoutes.painSelectionPage,
               ),
             ),
@@ -31,7 +32,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.battery_alert_outlined,
               label: 'Fadiga',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 UserDiaryRoutes.fatigueSelectionPage,
               ),
             ),
@@ -39,7 +40,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.bedtime_outlined,
               label: 'Sono',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 UserDiaryRoutes.sleepSelectionPage,
               ),
             ),
@@ -47,7 +48,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: const Color(0xFF026873),
               icon: Icons.healing,
               label: 'Inchaço',
-              onPressed: () => context.push(
+              onPressed: () => context.go(
                 UserDiaryRoutes.swellingSelectionPage,
               ),
             ),
@@ -57,22 +58,23 @@ class UserDiaryInitialSelection extends StatelessWidget {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            FadeButton(
-              label: 'Medicamentos',
+            CustomOutlinedButton(
+              color: AppColors.darkGreen,
+              text: 'MEDICAMENTOS',
+              borderWidth: 2,
               onPressed: () {
                 // Navigate to Mitos e Verdades page
               },
-              width: width * 0.5,
-              elevation: 6,
             ),
             const Gap(16),
-            FadeButton(
-              label: 'Exercícios',
+            CustomOutlinedButton(
+              color: AppColors.darkGreen,
+              text: 'EXERCÍCIOS',
+              borderWidth: 2,
               onPressed: () {
                 // Navigate to Exercícios page
               },
               width: width * 0.5,
-              elevation: 6,
             ),
           ],
         ),

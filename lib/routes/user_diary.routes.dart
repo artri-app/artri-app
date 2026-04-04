@@ -1,9 +1,8 @@
 import 'package:artriapp/models/index.dart';
-import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
 
-class UserDiaryRoutes implements RoutesSession {
+abstract class UserDiaryRoutes implements RoutesSession {
   static const String diary = '/diary';
   static const String fatigueSelectionPage = '/fatigue-selection';
   static const String sleepSelectionPage = '/sleep-selection';

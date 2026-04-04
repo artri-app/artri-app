@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class AppColors {
+abstract class AppColors {
   static const Color darkGreen = Color(0xff025940);
   static const Color lightGreen = Color(0xff6EFF00);
   static const Color darkBlue = Color(0xff026873);
@@ -8,21 +8,4 @@ class AppColors {
   static const Color neutral = Color(0xffefecea);
   static const Color darkGreenSurface = Color(0xffabd1c6);
   static const Color mediumGreen = Color(0xff04bf8a);
-}
-
-class AppGradients {
-  static const List<Color> greenGradient = [
-    Color(0xFF03A64B),
-    Color(0xFF04BF89),
-  ];
-
-  static const List<Color> redGradient = [
-    Color(0xFFAE263D),
-    Color(0xFFD90B2D),
-  ];
-
-  static const List<Color> greenToNeutral = [
-    Color(0xFF03A64B),
-    Color(0xffefecea),
-  ];
 }

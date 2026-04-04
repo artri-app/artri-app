@@ -58,7 +58,7 @@ class LevelExerciseSelector extends StatelessWidget {
           side: ExerciseButtonSide.left,
           width: screenWidth * 0.65,
         ),
-        CustomButton(
+        CustomSolidButton(
           onPressed: () => showDialog(
             context: context,
             builder: (context) => whichLevelDialog,
