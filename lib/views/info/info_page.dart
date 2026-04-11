@@ -13,7 +13,7 @@ class InfoPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ElevatedButton(
-            onPressed: () => context.push(AppRoutes.artriteInfoPage),
+            onPressed: () => context.go(AppRoutes.artriteInfoPage),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -32,7 +32,7 @@ class InfoPage extends StatelessWidget {
           ),
           const Gap(16),
           ElevatedButton(
-            onPressed: () => context.push(AppRoutes.treatmentsInfoPage),
+            onPressed: () => context.go(AppRoutes.treatmentsInfoPage),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -51,7 +51,7 @@ class InfoPage extends StatelessWidget {
           ),
           const Gap(16),
           ElevatedButton(
-            onPressed: () => context.push(AppRoutes.myPainInfoPage),
+            onPressed: () => context.go(AppRoutes.myPainInfoPage),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -70,7 +70,7 @@ class InfoPage extends StatelessWidget {
           ),
           const Gap(16),
           ElevatedButton(
-            onPressed: () => context.push(AppRoutes.sleepInfoPage),
+            onPressed: () => context.go(AppRoutes.sleepInfoPage),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -89,7 +89,7 @@ class InfoPage extends StatelessWidget {
           ),
           const Gap(16),
           ElevatedButton(
-            onPressed: () => context.push(AppRoutes.foodRoutineInfoPage),
+            onPressed: () => context.go(AppRoutes.foodRoutineInfoPage),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -108,7 +108,7 @@ class InfoPage extends StatelessWidget {
           ),
           const Gap(16),
           ElevatedButton(
-            onPressed: () => context.push(AppRoutes.lawsInfoPage),
+            onPressed: () => context.go(AppRoutes.lawsInfoPage),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

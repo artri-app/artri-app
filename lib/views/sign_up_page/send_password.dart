@@ -73,7 +73,7 @@ class _SendPasswordState extends State<SendPassword> {
               ),
             ),
             const SizedBox(height: 24),
-            CustomButton(
+            CustomSolidButton(
               text: 'ENVIAR',
               onPressed: () {},
               borderRadius: 40,

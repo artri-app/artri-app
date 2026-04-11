@@ -30,7 +30,7 @@ class LoginViewModel extends ChangeNotifier {
           SecurityToken.refreshToken,
         );
 
-        context.go(LoggedRoutes.diary);
+        context.go(BottomNavRoutes.diary);
       }
     } catch (e) {
       log('Error on user login, $e');

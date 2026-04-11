@@ -39,11 +39,11 @@ class InputText extends StatelessWidget {
         TextField(
           controller: controller,
           obscureText: type == InputTextType.password,
-          onChanged: (value) => onValueChanged!(value),
+          onChanged: (value) => onValueChanged?.call(value),
           textAlign: TextAlign.center,
           style: GoogleFonts.jetBrainsMono(fontSize: 20),
           onTapUpOutside: (_) => {
-            onValueChanged!(controller.text),
+            onValueChanged?.call(controller.text),
             FocusManager.instance.primaryFocus?.unfocus(),
           },
           decoration: InputDecoration(

@@ -58,7 +58,7 @@ class UserDiaryPage extends StatelessWidget {
           top: 0,
           child: IconButton(
             onPressed: () => context.go(
-              isSetting ? LoggedRoutes.diary : UserDiaryRoutes.settings,
+              isSetting ? BottomNavRoutes.diary : UserDiaryRoutes.settings,
             ),
             icon: Icon(
               isSetting ? Icons.settings : Icons.settings_outlined,

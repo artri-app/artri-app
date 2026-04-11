@@ -31,7 +31,7 @@ class ChangeEmailPage extends StatelessWidget {
             const SizedBox(height: 16),
             const InputText(placeholder: 'E-mail'),
             const SizedBox(height: 16),
-            CustomButton(
+            CustomSolidButton(
               text: 'Enviar',
               onPressed: () {
                 // Do something

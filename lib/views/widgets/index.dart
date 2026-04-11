@@ -1,6 +1,6 @@
-export 'button.dart';
-export 'button_fade.dart';
-export 'button_rounded.dart';
+export 'custom_solid_button.dart';
+export 'custom_outlined_button.dart';
+export 'rounded_icon_button.dart';
 export 'checkbox_group.dart';
 export 'custom_scale_selector.dart';
 export 'input_text.dart';
