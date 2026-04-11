@@ -1,6 +1,7 @@
 import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/enums/input_text_type.dart';
-import 'package:artriapp/view_models/login_view_model.dart';
+import 'package:artriapp/utils/helpers/index.dart';
+import 'package:artriapp/view_models/login.view_model.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +30,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Consumer<LoginViewModel>(
         builder: (context, viewModel, child) {
-          final Size screenSize = MediaQuery.of(context).size;
+          final Size screenSize = ScreenHelper.getScreenSize(context);
 
           return SingleChildScrollView(
             child: Center(

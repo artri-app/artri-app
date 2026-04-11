@@ -1,4 +1,5 @@
 import 'package:artriapp/routes/user_diary.routes.dart';
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = ScreenHelper.getScreenWidth(context);
 
     return Column(
       mainAxisSize: MainAxisSize.min,

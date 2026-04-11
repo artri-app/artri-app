@@ -1,4 +1,5 @@
 import 'package:artriapp/utils/app_colors.dart';
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:flutter/material.dart';
 
 class HintIndicatorTooltip extends StatelessWidget {
@@ -11,7 +12,7 @@ class HintIndicatorTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
+    final double width = ScreenHelper.getScreenWidth(context);
 
     return Tooltip(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),

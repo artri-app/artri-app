@@ -1,4 +1,5 @@
 import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -42,7 +43,7 @@ class LoggedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).uri;
-    final size = MediaQuery.of(context).size;
+    final size = ScreenHelper.getScreenSize(context);
 
     return Scaffold(
       body: SafeArea(
