@@ -7,6 +7,7 @@ class GlobalProviders {
   final _serviceProviders = <SingleChildWidget>[
     Provider(create: (context) => AuthService()),
     Provider(create: (context) => SecurityTokenService()),
+    Provider(create: (context) => PhysicalExercisesService()),
   ];
 
   final _viewModelProviders = <SingleChildWidget>[
@@ -14,6 +15,11 @@ class GlobalProviders {
       create: (context) => LoginViewModel(
         Provider.of<AuthService>(context, listen: false),
         Provider.of<SecurityTokenService>(context, listen: false),
+      ),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => PhysicalExercisesViewModel(
+        Provider.of<PhysicalExercisesService>(context, listen: false),
       ),
     ),
   ];

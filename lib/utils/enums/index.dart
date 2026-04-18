@@ -4,3 +4,4 @@ export 'exercise_difficulty.dart';
 export 'input_text_type.dart';
 export 'security_tokens.dart';
 export 'exercise_button_enums.dart';
+export 'training_type_enum.dart';

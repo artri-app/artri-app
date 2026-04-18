@@ -1,7 +1,7 @@
 import 'package:artriapp/utils/enums/exercise_difficulty.dart';
 
 class Exercise {
-  final String id;
+  final int id;
   final String name;
   final String description;
   final String link;
@@ -21,17 +21,17 @@ class Exercise {
       'name': name,
       'description': description,
       'tutorial_link': link,
-      'difficulty': difficulty.index,
+      'difficulty': difficulty,
     };
   }
 
-  factory Exercise.fromMap(Map<String, dynamic> map) {
+  factory Exercise.fromJson(Map<String, dynamic> map) {
     return Exercise(
       id: map['id'],
       name: map['name'],
       description: map['description'],
       link: map['tutorial_link'],
-      difficulty: ExerciseDifficulty.values[map['difficulty']],
+      difficulty: map['difficulty'],
     );
   }
 }
