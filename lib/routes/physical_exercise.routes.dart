@@ -33,11 +33,8 @@ class PhysicalExerciseRoutes implements RoutesSession {
                       const PhysicalExerciseRoutineOverview(),
                   routes: [
                     GoRoute(
-                      path: ':id',
-                      builder: (context, state) => ExerciseRoutineStepView(
-                        exerciseId:
-                            int.parse(state.pathParameters['id'] ?? '-1'),
-                      ),
+                      path: 'exercise',
+                      builder: (context, state) => ExerciseRoutineStepView(),
                     ),
                   ],
                 ),

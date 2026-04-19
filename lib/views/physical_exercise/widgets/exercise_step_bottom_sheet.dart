@@ -4,6 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExerciseStepBottomSheet extends StatelessWidget {
+  final bool hasPrevious;
+  final bool hasNext;
+
+  const ExerciseStepBottomSheet({
+    super.key,
+    this.hasPrevious = true,
+    this.hasNext = true,
+  });
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
