@@ -1,3 +1,4 @@
+import 'package:artriapp/models/api_responses/exercise.dart';
 import 'package:go_router/go_router.dart';
 import 'package:artriapp/views/relaxation/breathing_page.dart';
 import 'package:artriapp/views/relaxation/guided_relaxation_page.dart';
@@ -22,8 +23,8 @@ class RelaxationRoutes {
         GoRoute(
           path: audioPage,
           builder: (context, state) {
-            final name = state.extra as String;
-            return RelaxationAudioPage(audioName: name);
+            final exercise = state.extra as Exercise;
+            return RelaxationAudioPage(exercise: exercise);
           },
         ),
       ];

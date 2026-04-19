@@ -1,13 +1,18 @@
+import 'package:artriapp/models/api_responses/exercise.dart';
+import 'package:artriapp/utils/app_colors.dart';
 import 'package:artriapp/views/widgets/clear_scaffold_view.dart';
 import 'package:artriapp/views/widgets/session_title.dart';
+import 'package:artriapp/views/widgets/video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class RelaxationAudioPage extends StatelessWidget {
-  final String audioName;
+  final Exercise exercise;
 
   const RelaxationAudioPage({
     super.key,
-    required this.audioName,
+    required this.exercise,
   });
 
   @override
@@ -18,19 +23,24 @@ class RelaxationAudioPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SessionTitle(
-            title: audioName,
+            title: exercise.name,
             size: 36,
           ),
-          Container(
-            width: 300,
-            height: 300,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Icon(
-              Icons.image,
-              size: 120,
+
+          // 🎬 PLAYER REUTILIZÁVEL
+          VideoPlayerWidget(
+            videoUrl: exercise.link,
+          ),
+
+          Text(
+            exercise.description,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(
+              textStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: AppColors.darkGreen,
+              ),
             ),
           ),
         ],
