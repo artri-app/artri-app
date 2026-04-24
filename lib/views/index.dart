@@ -19,3 +19,5 @@ export 'info/index.dart';
 export 'physical_exercise/index.dart';
 export 'widgets/index.dart';
 export 'relaxation/index.dart';
+export 'evolution/evolution_page.dart';
+export 'remedy/remedy_page.dart';

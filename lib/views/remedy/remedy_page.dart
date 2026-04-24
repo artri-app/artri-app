@@ -47,7 +47,7 @@ class _RemedyPageState extends State<RemedyPage> {
                       onPressed: () {
                         // Navegar para tela de cadastro de remédio
                       },
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -68,7 +68,7 @@ class _RemedyPageState extends State<RemedyPage> {
                     itemCount: model.remedies.length,
                     itemBuilder: (context, index) {
                       final remedy = model.remedies[index];
-                      final isTaken = model.isTaken(remedy.id!);
+                      final isTaken = model.isTaken(remedy.id);
 
                       return Card(
                         elevation: 0,
@@ -101,7 +101,7 @@ class _RemedyPageState extends State<RemedyPage> {
                           trailing: Checkbox(
                             activeColor: AppColors.darkGreen,
                             value: isTaken,
-                            onChanged: (_) => model.toggleTaken(remedy.id!),
+                            onChanged: (_) => model.toggleTaken(remedy.id),
                           ),
                         ),
                       );

@@ -1,3 +1,4 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/routes/user_diary.routes.dart';
 import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
@@ -63,9 +64,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: AppColors.darkGreen,
               text: 'MEDICAMENTOS',
               borderWidth: 2,
-              onPressed: () {
-                // Navigate to Mitos e Verdades page
-              },
+              onPressed: () => context.go(LoggedRoutes.remedy),
             ),
             const Gap(16),
             CustomOutlinedButton(

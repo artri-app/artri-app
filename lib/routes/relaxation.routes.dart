@@ -39,6 +39,6 @@ class RelaxationRoutes {
                   return RelaxationAudioPage(exercise: exercise);
                 },
               ),
-            ]),
+            ],),
       ];
 }
