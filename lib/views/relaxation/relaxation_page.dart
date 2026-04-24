@@ -1,4 +1,5 @@
 //import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/routes/index.dart';
 import 'package:flutter/material.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
@@ -29,12 +30,12 @@ class RelaxationPage extends StatelessWidget {
             ),
           ),
           ExerciseButton(
-            onClick: () => context.go('/relaxation/guided'),
+            onClick: () => context.go(RelaxationRoutes.guidedRelaxation),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Relaxamento guiado',
           ),
           ExerciseButton(
-            onClick: () => context.go('/relaxation/breathing'),
+            onClick: () => context.go(RelaxationRoutes.breathingTechniques),
             gradientColors: AppGradients.greenToNeutral,
             buttonText: 'Técnicas de respiração',
           ),

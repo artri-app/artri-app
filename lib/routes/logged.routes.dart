@@ -7,10 +7,5 @@ abstract class LoggedRoutes implements RoutesSession {
   static List<RouteBase> getGoRoutes() => [
         ...BottomNavRoutes.getGoRoutes(),
         ...PhysicalExerciseRoutes.getGoRoutes(),
-        GoRoute(
-          path: RelaxationRoutes.relaxation,
-          builder: (context, state) => const RelaxationPage(),
-          routes: RelaxationRoutes.getGoRoutes(),
-        ),
       ];
 }

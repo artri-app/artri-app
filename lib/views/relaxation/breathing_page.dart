@@ -1,6 +1,7 @@
 //import 'package:artriapp/routes/relaxation.routes.dart';
 import 'package:artriapp/models/api_responses/exercise.dart';
 import 'package:artriapp/models/api_responses/training.dart';
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/services/training_service.dart';
 import 'package:artriapp/utils/app_colors.dart';
 import 'package:artriapp/views/relaxation/widget/relaxation_tile.dart';
@@ -11,7 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// A page that displays breathing techniques exercises.
-/// 
+///
 /// This stateful widget loads breathing-related exercises from the TrainingService.
 /// It fetches trainings and exercises asynchronously, filters for breathing trainings,
 /// and displays the associated exercises. If no specific breathing training is found,
@@ -141,8 +142,8 @@ class _BreathingTechniquesPageState extends State<BreathingTechniquesPage> {
                       return RelaxationTile(
                         title: exercise.name,
                         videoUrl: exercise.link,
-                        onTap: () => context.push(
-                          '/relaxation/audio',
+                        onTap: () => context.go(
+                          '${RelaxationRoutes.breathingTechniques}/audio',
                           extra: exercise,
                         ),
                       );

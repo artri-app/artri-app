@@ -1,31 +1,44 @@
 import 'package:artriapp/models/api_responses/exercise.dart';
+import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/utils/index.dart';
 import 'package:go_router/go_router.dart';
-import 'package:artriapp/views/relaxation/breathing_page.dart';
-import 'package:artriapp/views/relaxation/guided_relaxation_page.dart';
-import 'package:artriapp/views/relaxation/relaxation_audio_page.dart';
+import 'package:artriapp/views/relaxation/index.dart';
 
 class RelaxationRoutes {
-  static const String relaxation = '/relaxation';
+  static const String _relaxation = ExerciseOptionsRoutes.relaxation;
 
-  static const String breathingTechniques = 'breathing';
-  static const String guidedRelaxation = 'guided';
-  static const String audioPage = 'audio';
+  static const String breathingTechniques = '$_relaxation/breathing';
+  static const String guidedRelaxation = '$_relaxation/guided';
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
-          path: breathingTechniques,
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: 'breathing',
           builder: (context, state) => const BreathingTechniquesPage(),
+          routes: [
+            GoRoute(
+              parentNavigatorKey: RouterKeys.appRoutesKey,
+              path: 'audio',
+              builder: (context, state) {
+                final exercise = state.extra as Exercise;
+                return RelaxationAudioPage(exercise: exercise);
+              },
+            ),
+          ],
         ),
         GoRoute(
-          path: guidedRelaxation,
-          builder: (context, state) => const GuidedRelaxationPage(),
-        ),
-        GoRoute(
-          path: audioPage,
-          builder: (context, state) {
-            final exercise = state.extra as Exercise;
-            return RelaxationAudioPage(exercise: exercise);
-          },
-        ),
+            parentNavigatorKey: RouterKeys.appRoutesKey,
+            path: 'guided',
+            builder: (context, state) => const GuidedRelaxationPage(),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: RouterKeys.appRoutesKey,
+                path: 'audio',
+                builder: (context, state) {
+                  final exercise = state.extra as Exercise;
+                  return RelaxationAudioPage(exercise: exercise);
+                },
+              ),
+            ]),
       ];
 }

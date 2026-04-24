@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 abstract class ExerciseOptionsRoutes implements RoutesSession {
   static const String _base = '/exercise';
   static const physicalExercise = '$_base/physical_exercise';
+  static const relaxation = '$_base/relaxation';
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
@@ -18,6 +19,12 @@ abstract class ExerciseOptionsRoutes implements RoutesSession {
             child: PhysicalExerciseHome(),
           ),
           routes: PhysicalExerciseRoutes.getGoRoutes(),
+        ),
+        GoRoute(
+          path: 'relaxation',
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          builder: (context, state) => const RelaxationPage(),
+          routes: RelaxationRoutes.getGoRoutes(),
         ),
       ];
 }

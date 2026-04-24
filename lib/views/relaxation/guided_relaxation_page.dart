@@ -1,6 +1,7 @@
 //import 'package:artriapp/routes/relaxation.routes.dart';
 import 'package:artriapp/models/api_responses/exercise.dart';
 import 'package:artriapp/models/api_responses/training.dart';
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/services/training_service.dart';
 import 'package:artriapp/utils/app_colors.dart';
 import 'package:artriapp/views/relaxation/widget/relaxation_tile.dart';
@@ -152,8 +153,8 @@ class _GuidedRelaxationPageState extends State<GuidedRelaxationPage> {
                       return RelaxationTile(
                         title: exercise.name,
                         videoUrl: exercise.link,
-                        onTap: () => context.push(
-                          '/relaxation/audio',
+                        onTap: () => context.go(
+                          '${RelaxationRoutes.guidedRelaxation}/audio',
                           extra: exercise,
                         ),
                       );
