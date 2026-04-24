@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             const SizedBox(height: 24),
-            CustomButton(
+            CustomSolidButton(
               text: 'ENVIAR',
               onPressed: () {},
               borderRadius: 40,

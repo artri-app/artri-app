@@ -1,6 +1,7 @@
 import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/enums/input_text_type.dart';
-import 'package:artriapp/view_models/login_view_model.dart';
+import 'package:artriapp/utils/helpers/index.dart';
+import 'package:artriapp/view_models/login.view_model.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +30,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Consumer<LoginViewModel>(
         builder: (context, viewModel, child) {
-          final Size screenSize = MediaQuery.of(context).size;
+          final Size screenSize = ScreenHelper.getScreenSize(context);
 
           return SingleChildScrollView(
             child: Center(
@@ -62,7 +63,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  CustomButton(
+                  CustomSolidButton(
                     text: 'ENTRAR',
                     onPressed: () async {
                       await viewModel.handleUserLoginButton(context);
@@ -100,10 +101,10 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  CustomButton(
+                  CustomSolidButton(
                     text: 'CADASTRAR',
                     onPressed: () {
-                      context.push(NotLoggedRoutes.signUp);
+                      context.go(NotLoggedRoutes.signUp);
                     },
                     borderRadius: 20,
                     gradientColors: const [

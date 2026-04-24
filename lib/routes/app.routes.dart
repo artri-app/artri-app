@@ -2,7 +2,7 @@ import 'package:artriapp/models/index.dart';
 import 'package:artriapp/routes/index.dart';
 import 'package:go_router/go_router.dart';
 
-class AppRoutes implements RoutesSession {
+abstract class AppRoutes implements RoutesSession {
   static const String artriteInfoPage = '/artrite-info';
   static const String treatmentsInfoPage = '/treatments-info';
   static const String myPainInfoPage = '/my-pain-info';

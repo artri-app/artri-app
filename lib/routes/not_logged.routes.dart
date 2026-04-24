@@ -2,7 +2,7 @@ import 'package:artriapp/models/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
 
-class NotLoggedRoutes implements RoutesSession {
+abstract class NotLoggedRoutes implements RoutesSession {
   static const String login = '/login';
   static const String signUp = '/sign-up';
 

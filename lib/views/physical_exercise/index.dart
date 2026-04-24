@@ -1,1 +1,1 @@
-export 'physical_exercise_home_view.dart';
+export 'physical_exercise_view.dart';
