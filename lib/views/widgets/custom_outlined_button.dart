@@ -3,13 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final double fontSize;
   final double borderRadius;
   final Color? color;
   final double? width;
   final TextStyle? textStyle;
   final double borderWidth;
+  final Color? disabledColor;
 
   const CustomOutlinedButton({
     super.key,
@@ -21,6 +22,7 @@ class CustomOutlinedButton extends StatelessWidget {
     this.color,
     this.width,
     this.textStyle,
+    this.disabledColor,
   });
 
   @override
@@ -30,7 +32,9 @@ class CustomOutlinedButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         side: BorderSide(
-          color: color ?? Colors.blue,
+          color: onPressed == null
+              ? disabledColor ?? Colors.grey
+              : color ?? Colors.blue,
           width: borderWidth,
         ),
         shape: RoundedRectangleBorder(
@@ -41,9 +45,15 @@ class CustomOutlinedButton extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Text(
           text.toUpperCase(),
-          style: textStyle?.copyWith(color: color) ??
+          style: textStyle?.copyWith(
+                color: onPressed == null
+                    ? disabledColor ?? Colors.grey
+                    : color ?? Colors.blue,
+              ) ??
               GoogleFonts.montserrat(
-                color: color ?? Colors.blue,
+                color: onPressed == null
+                    ? disabledColor ?? Colors.grey
+                    : color ?? Colors.blue,
                 fontSize: fontSize,
                 fontWeight: FontWeight.w400,
               ),

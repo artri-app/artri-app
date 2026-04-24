@@ -46,3 +46,9 @@ app.*.map.json
 *.env
 macos/Flutter/ephemeral/flutter_export_environment.sh
 macos/Flutter/ephemeral/Flutter-Generated.xcconfig
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugins.cmake
+linux/flutter/ephemeral/.plugin_symlinks/flutter_secure_storage_linux
+linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
+linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux
+macos/Flutter/GeneratedPluginRegistrant.swift

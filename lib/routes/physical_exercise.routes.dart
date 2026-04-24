@@ -4,6 +4,7 @@ import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:artriapp/views/physical_exercise/widgets/index.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class PhysicalExerciseRoutes implements RoutesSession {
@@ -11,8 +12,14 @@ class PhysicalExerciseRoutes implements RoutesSession {
   static String handExercises = '$_base/hand';
   static String feetExercises = '$_base/feet';
   static String customExercises = '$_base/custom';
+  static String congratulations = '$_base/congratulations';
 
   static List<RouteBase> getGoRoutes() => [
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: 'congratulations',
+          builder: (context, state) => CongratulationsView(),
+        ),
         ShellRoute(
           parentNavigatorKey: RouterKeys.appRoutesKey,
           builder: (context, state, child) => PhysicalExerciseView(
@@ -33,10 +40,9 @@ class PhysicalExerciseRoutes implements RoutesSession {
                       const PhysicalExerciseRoutineOverview(),
                   routes: [
                     GoRoute(
-                      path: ':id',
+                      path: ':exerciseId',
                       builder: (context, state) => ExerciseRoutineStepView(
-                        exerciseId:
-                            int.parse(state.pathParameters['id'] ?? '-1'),
+                        key: ValueKey(state.pathParameters['exerciseId']),
                       ),
                     ),
                   ],
@@ -63,6 +69,14 @@ class PhysicalExerciseRoutes implements RoutesSession {
                   path: ':difficulty',
                   builder: (context, state) =>
                       const PhysicalExerciseRoutineOverview(),
+                  routes: [
+                    GoRoute(
+                      path: ':exerciseId',
+                      builder: (context, state) => ExerciseRoutineStepView(
+                        key: ValueKey(state.pathParameters['exerciseId']),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

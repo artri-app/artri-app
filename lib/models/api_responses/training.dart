@@ -1,4 +1,4 @@
-import 'package:artriapp/utils/enums/exercise_difficulty.dart';
+import 'package:artriapp/utils/index.dart';
 
 class Training {
   final int id;
@@ -15,13 +15,23 @@ class Training {
     required this.exercises,
   });
 
-  factory Training.fromMap(Map<String, dynamic> map) {
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'difficulty': difficulty,
+      'exercises': exercises,
+    };
+  }
+
+  factory Training.fromJson(Map<String, dynamic> map) {
     return Training(
       id: map['id'],
-      name: map['name'] ?? '',
-      description: map['description'] ?? '',
-      difficulty: _parseDifficulty(map['difficulty']),
-      exercises: List<int>.from(map['exercises'] ?? []),
+      name: map['name'],
+      description: map['description'],
+      difficulty: ExerciseDifficulty.fromString(map['difficulty']),
+      exercises: List<int>.from(map['exercises']),
     );
   }
 

@@ -15,13 +15,23 @@ class Exercise {
     required this.difficulty,
   });
 
-  factory Exercise.fromMap(Map<String, dynamic> map) {
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'tutorial_link': link,
+      'difficulty': difficulty,
+    };
+  }
+
+  factory Exercise.fromJson(Map<String, dynamic> map) {
     return Exercise(
       id: map['id'],
-      name: map['name'] ?? '',
-      description: map['description'] ?? '',
-      link: map['tutorial_link'] ?? '',
-      difficulty: _parseDifficulty(map['difficulty']),
+      name: map['name'],
+      description: map['description'],
+      link: map['tutorial_link'],
+      difficulty: ExerciseDifficulty.fromString(map['difficulty']),
     );
   }
 

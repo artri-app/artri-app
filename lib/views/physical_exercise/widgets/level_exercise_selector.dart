@@ -1,9 +1,11 @@
 import 'package:artriapp/utils/enums/index.dart';
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LevelExerciseSelector extends StatelessWidget {
   const LevelExerciseSelector({super.key});
@@ -20,55 +22,67 @@ class LevelExerciseSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    String currentPath = GoRouterState.of(context).uri.path;
+    double screenWidth = ScreenHelper.getScreenWidth(context);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      spacing: 40,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          'Escolha um nível de dificuldade para iniciar os exercícios:',
-          style: GoogleFonts.montserrat(
-            textStyle: const TextStyle(
-              fontSize: 24,
-              color: AppColors.darkGreen,
+    return Consumer<PhysicalExercisesViewModel>(
+      builder: (context, viewModel, child) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 40,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Escolha um nível de dificuldade para iniciar os exercícios:',
+              style: GoogleFonts.montserrat(
+                textStyle: const TextStyle(
+                  fontSize: 24,
+                  color: AppColors.darkGreen,
+                ),
+              ),
             ),
-          ),
-        ),
-        ExerciseButton(
-          onClick: () => context.go('$currentPath/easy'),
-          side: ExerciseButtonSide.left,
-          buttonText: 'Iniciante',
-          color: AppColors.neutral,
-          width: screenWidth * 0.65,
-        ),
-        ExerciseButton(
-          onClick: () => context.go('$currentPath/medium'),
-          side: ExerciseButtonSide.left,
-          buttonText: 'Intermediário',
-          color: AppColors.neutral,
-          width: screenWidth * 0.65,
-        ),
-        ExerciseButton(
-          onClick: () => context.go('$currentPath/hard'),
-          buttonText: 'Avançado',
-          color: AppColors.neutral,
-          side: ExerciseButtonSide.left,
-          width: screenWidth * 0.65,
-        ),
-        CustomSolidButton(
-          onPressed: () => showDialog(
-            context: context,
-            builder: (context) => whichLevelDialog,
-          ),
-          text: 'Qual devo escolher?',
-          color: AppColors.lightBrown,
-          width: screenWidth * 0.80,
-          textColor: Colors.black,
-        ),
-      ],
+            ExerciseButton(
+              onClick: () => viewModel.handleDifficultySelection(
+                ExerciseDifficulty.easy,
+                context,
+              ),
+              side: ExerciseButtonSide.left,
+              buttonText: 'Iniciante',
+              color: AppColors.neutral,
+              width: screenWidth * 0.65,
+            ),
+            ExerciseButton(
+              onClick: () => viewModel.handleDifficultySelection(
+                ExerciseDifficulty.medium,
+                context,
+              ),
+              side: ExerciseButtonSide.left,
+              buttonText: 'Intermediário',
+              color: AppColors.neutral,
+              width: screenWidth * 0.65,
+            ),
+            ExerciseButton(
+              onClick: () => viewModel.handleDifficultySelection(
+                ExerciseDifficulty.hard,
+                context,
+              ),
+              buttonText: 'Avançado',
+              color: AppColors.neutral,
+              side: ExerciseButtonSide.left,
+              width: screenWidth * 0.65,
+            ),
+            CustomSolidButton(
+              onPressed: () => showDialog(
+                context: context,
+                builder: (context) => whichLevelDialog,
+              ),
+              text: 'Qual devo escolher?',
+              color: AppColors.lightBrown,
+              width: screenWidth * 0.80,
+              textColor: Colors.black,
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -13,7 +13,7 @@ class TrainingService {
 
     if (response.statusCode == 200) {
       final List data = jsonDecode(response.body);
-      return data.map((e) => Training.fromMap(e)).toList();
+      return data.map((e) => Training.fromJson(e)).toList();
     } else {
       throw Exception('Erro ao buscar trainings');
     }
@@ -26,7 +26,7 @@ class TrainingService {
 
     if (response.statusCode == 200) {
       final List data = jsonDecode(response.body);
-      return data.map((e) => Exercise.fromMap(e)).toList();
+      return data.map((e) => Exercise.fromJson(e)).toList();
     } else {
       throw Exception('Erro ao buscar exercises');
     }
