@@ -1,24 +1,17 @@
 import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/index.dart';
-import 'package:artriapp/views/widgets/index.dart';
-import 'package:flutter/material.dart';
+import 'package:artriapp/views/index.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PhysicalExerciseHomeView extends StatelessWidget {
-  const PhysicalExerciseHomeView({super.key});
-
+class PhysicalExerciseHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ClearScaffoldView(
+    return Container(
       child: Column(
         spacing: 32,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SessionTitle(
-            title: 'EXERCÍCIOS FÍSICOS',
-            size: 36,
-          ),
           Text(
             'Aqui você terá acesso a exercícios específicos e pré-determinados para suas mãos e pés. Clique para escolher o nível de dificuldade:',
             style: GoogleFonts.montserrat(

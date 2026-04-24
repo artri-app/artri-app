@@ -1,5 +1,6 @@
 import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/services/index.dart';
+import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/utils/providers/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -10,9 +11,10 @@ class App extends StatelessWidget {
   App({super.key});
   final _router = GoRouter(
     initialLocation: SecurityTokenService().userLoggedIn()
-        ? LoggedRoutes.diary
+        ? BottomNavRoutes.diary
         : NotLoggedRoutes.login,
     routes: AppRoutes.getGoRoutes(),
+    navigatorKey: RouterKeys.appRoutesKey,
   );
 
   @override

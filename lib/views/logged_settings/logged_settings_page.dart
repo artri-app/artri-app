@@ -20,19 +20,19 @@ class LoggedSettingsPage extends StatelessWidget {
             style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
           ),
           const SizedBox(height: 48),
-          CustomButton(
+          CustomSolidButton(
             text: 'Alterar Email',
             onPressed: () => context.go(SettingsRoutes.changeEmail),
             gradientColors: AppGradients.greenGradient,
           ),
           const SizedBox(height: 16),
-          CustomButton(
+          CustomSolidButton(
             text: 'Alterar Senha',
             onPressed: () => context.go(SettingsRoutes.changePassword),
             gradientColors: AppGradients.greenGradient,
           ),
           const SizedBox(height: 16),
-          CustomButton(
+          CustomSolidButton(
             text: 'Permissões',
             onPressed: () {
               // Do something

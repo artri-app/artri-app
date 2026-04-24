@@ -1,5 +1,6 @@
 import 'package:artriapp/utils/app_colors.dart';
 import 'package:artriapp/utils/enums/index.dart';
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,7 +24,7 @@ class ExerciseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
+    Size screenSize = ScreenHelper.getScreenSize(context);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

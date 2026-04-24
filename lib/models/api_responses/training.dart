@@ -15,23 +15,26 @@ class Training {
     required this.exercises,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'difficulty': difficulty.index,
-      'exercises': exercises,
-    };
-  }
-
-  Training fromMap(Map<String, dynamic> map) {
+  factory Training.fromMap(Map<String, dynamic> map) {
     return Training(
       id: map['id'],
-      name: map['name'],
-      description: map['description'],
-      difficulty: ExerciseDifficulty.values[map['difficulty']],
-      exercises: List<int>.from(map['exercises']),
+      name: map['name'] ?? '',
+      description: map['description'] ?? '',
+      difficulty: _parseDifficulty(map['difficulty']),
+      exercises: List<int>.from(map['exercises'] ?? []),
     );
+  }
+
+  static ExerciseDifficulty _parseDifficulty(String value) {
+    switch (value.toLowerCase()) {
+      case 'easy':
+        return ExerciseDifficulty.easy;
+      case 'medium':
+        return ExerciseDifficulty.medium;
+      case 'hard':
+        return ExerciseDifficulty.hard;
+      default:
+        return ExerciseDifficulty.easy;
+    }
   }
 }
