@@ -16,4 +16,12 @@ class ExerciseQueued extends Exercise {
           link: exercise.link,
           difficulty: exercise.difficulty,
         );
+
+  void markAsCompleted() {
+    isCompleted = true;
+  }
+
+  void markAsIncomplete() {
+    isCompleted = false;
+  }
 }

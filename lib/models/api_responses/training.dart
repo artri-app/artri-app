@@ -30,7 +30,7 @@ class Training {
       id: map['id'],
       name: map['name'],
       description: map['description'],
-      difficulty: map['difficulty'],
+      difficulty: ExerciseDifficulty.fromString(map['difficulty']),
       exercises: List<int>.from(map['exercises']),
     );
   }

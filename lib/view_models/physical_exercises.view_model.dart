@@ -14,8 +14,9 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
   List<ExerciseQueued> _queuedExercises = [];
   int? _currentExerciseIndex;
   List<ExerciseQueued> get exercises => _queuedExercises;
-  ExerciseQueued? get currentExercise =>
-      _queuedExercises[_currentExerciseIndex ?? 0];
+  ExerciseQueued? get currentExercise => _currentExerciseIndex == null
+      ? null
+      : _queuedExercises[_currentExerciseIndex ?? 0];
 
   final PhysicalExercisesService _physicalExercisesService;
 
@@ -72,26 +73,28 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
         )
         .toList();
 
+    _currentExerciseIndex = 0;
+
     return queue;
   }
 
-  void handleNextExercise() {
+  void handleNextExercise(BuildContext context) {
     if (_currentExerciseIndex == null) {
       log('Error: No current exercise');
       return;
     }
 
     if (currentExercise!.isLast) {
-      log('Info: Already at the last exercise');
+      context.go(PhysicalExerciseRoutes.congratulations);
       return;
     }
 
     _currentExerciseIndex = _currentExerciseIndex! + 1;
 
-    notifyListeners();
+    context.go(getExerciseRoute(context));
   }
 
-  void handlePreviousExercise() {
+  void handlePreviousExercise(BuildContext context) {
     if (_currentExerciseIndex == null) {
       log('Error: No current exercise');
       return;
@@ -104,12 +107,36 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
 
     _currentExerciseIndex = _currentExerciseIndex! - 1;
 
-    notifyListeners();
+    context.go(getExerciseRoute(context));
   }
 
   void handleStartExercises(BuildContext context) {
     _currentExerciseIndex = 0;
 
-    context.go('${RouterHelper.getUriFromContext(context)}/exercise');
+    context.go(getExerciseRoute(context));
+  }
+
+  void handleCompleteExercise(BuildContext context) {
+    if (_currentExerciseIndex == null) {
+      log('Error: No current exercise');
+      return;
+    }
+
+    currentExercise!.markAsCompleted();
+    handleNextExercise(context);
+  }
+
+  String getExerciseRoute(BuildContext context) {
+    var currentPath = RouterHelper.getUriFromContext(context);
+    var currentPathSegments = currentPath.pathSegments;
+    var hasCurrentExerciseId = int.tryParse(currentPathSegments.last) != null;
+    var cleanedPath = currentPath.path;
+
+    if (hasCurrentExerciseId) {
+      cleanedPath =
+          '/${currentPathSegments.sublist(0, currentPathSegments.length - 1).join('/')}';
+    }
+
+    return '$cleanedPath/${currentExercise!.id}';
   }
 }

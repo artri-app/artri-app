@@ -14,4 +14,17 @@ enum ExerciseDifficulty {
         return 'hard';
     }
   }
+
+  static ExerciseDifficulty fromString(String difficulty) {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return ExerciseDifficulty.easy;
+      case 'medium':
+        return ExerciseDifficulty.medium;
+      case 'hard':
+        return ExerciseDifficulty.hard;
+      default:
+        throw ArgumentError('Invalid difficulty: $difficulty');
+    }
+  }
 }

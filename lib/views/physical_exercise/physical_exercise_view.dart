@@ -1,3 +1,4 @@
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/physical_exercise/widgets/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
@@ -19,8 +20,10 @@ class PhysicalExerciseView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PhysicalExercisesViewModel>(
       builder: (context, viewModel, _) {
+        var exerciseId =
+            RouterHelper.getPathParameterFromContext(context, 'exerciseId');
         var currentExercise = viewModel.currentExercise;
-        var isExercisePage = currentExercise != null;
+        var isExercisePage = exerciseId != null && currentExercise != null;
 
         return ClearScaffoldView(
           appBarTitle: SessionTitle(
@@ -42,6 +45,7 @@ class PhysicalExerciseView extends StatelessWidget {
               ? ExerciseStepBottomSheet(
                   hasNext: !currentExercise.isLast,
                   hasPrevious: !currentExercise.isFirst,
+                  isCompleted: currentExercise.isCompleted,
                 )
               : null,
         );

@@ -36,7 +36,8 @@ class PhysicalExerciseRoutineOverview extends StatelessWidget {
                       const SizedBox(height: 16),
                   itemCount: exerciseCount,
                   itemBuilder: (context, index) => ExerciseTile(
-                    exerciseName: viewModel.exercises[index].name,
+                    exerciseName:
+                        viewModel.exercises[index].name.split('-').first,
                   ),
                 ),
               ),

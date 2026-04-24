@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseRoutineStepView extends StatelessWidget {
+  const ExerciseRoutineStepView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PhysicalExercisesViewModel>(
@@ -26,7 +28,7 @@ class ExerciseRoutineStepView extends StatelessWidget {
           spacing: 16,
           children: [
             YoutubePlayer(controller: videoController),
-            SessionTitle(title: exercise.name),
+            SessionTitle(title: exercise.name.split('-').first.trim()),
             ExerciseSetProperties(),
             ExerciseSetDetails(),
           ],

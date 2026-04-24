@@ -27,9 +27,13 @@ class ExerciseTile extends StatelessWidget {
             size: width * 0.1,
           ),
         ),
-        Text(
-          exerciseName,
-          style: GoogleFonts.montserrat(fontSize: 32),
+        Flexible(
+          flex: 1,
+          child: Text(
+            exerciseName,
+            style: GoogleFonts.montserrat(fontSize: 32),
+            overflow: TextOverflow.fade,
+          ),
         ),
       ],
     );

@@ -31,7 +31,7 @@ class Exercise {
       name: map['name'],
       description: map['description'],
       link: map['tutorial_link'],
-      difficulty: map['difficulty'],
+      difficulty: ExerciseDifficulty.fromString(map['difficulty']),
     );
   }
 }
