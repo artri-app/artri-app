@@ -32,7 +32,7 @@ abstract class BottomNavRoutes implements RoutesSession {
             ),
             GoRoute(
               path: evolution,
-              builder: (context, state) => const InfoPage(),
+              builder: (context, state) => const EvolutionPage(),
             ),
           ],
         ),

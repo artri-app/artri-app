@@ -34,4 +34,17 @@ class Training {
       exercises: List<int>.from(map['exercises']),
     );
   }
+
+  static ExerciseDifficulty _parseDifficulty(String value) {
+    switch (value.toLowerCase()) {
+      case 'easy':
+        return ExerciseDifficulty.easy;
+      case 'medium':
+        return ExerciseDifficulty.medium;
+      case 'hard':
+        return ExerciseDifficulty.hard;
+      default:
+        return ExerciseDifficulty.easy;
+    }
+  }
 }
