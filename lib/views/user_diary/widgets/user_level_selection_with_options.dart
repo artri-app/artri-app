@@ -80,42 +80,45 @@ class _UserLevelSelectionWithOptionsState
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8,
-            children: [
-              SessionTitle(
-                title: widget.title,
-              ),
-              widget.tooltipMessage != null
-                  ? HintIndicatorTooltip(
-                      tooltipMessage: widget.tooltipMessage!,
-                    )
-                  : Gap(0),
-            ],
-          ),
-          CheckboxGroup(
-            onChanged: (list) => setState(() {
-              onCheckBoxChanged(list);
-            }),
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            itemCount: selectedInfos.keys.length,
-            itemBuilder: (context, idx) => renderUserSelection(context, idx),
-          ),
-          Gap(32),
-          ConfirmationButtons(
-            onButtonClicked: (action) =>
-                action == ConfirmationAction.canceled ? context.pop() : null,
-          ),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
+              children: [
+                SessionTitle(
+                  title: widget.title,
+                ),
+                widget.tooltipMessage != null
+                    ? HintIndicatorTooltip(
+                        tooltipMessage: widget.tooltipMessage!,
+                      )
+                    : Gap(0),
+              ],
+            ),
+            CheckboxGroup(
+              onChanged: (list) => setState(() {
+                onCheckBoxChanged(list);
+              }),
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: selectedInfos.keys.length,
+              itemBuilder: (context, idx) => renderUserSelection(context, idx),
+            ),
+            Gap(32),
+            ConfirmationButtons(
+              onButtonClicked: (action) =>
+                  action == ConfirmationAction.canceled ? context.pop() : null,
+            ),
+          ],
+        ),
       ),
     );
   }

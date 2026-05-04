@@ -18,7 +18,7 @@ class UserDiaryPage extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
@@ -50,7 +50,10 @@ class UserDiaryPage extends StatelessWidget {
               ),
             ),
             const Gap(32),
-            child,
+            Flexible(
+              flex: 1,
+              child: child,
+            ),
           ],
         ),
         Positioned(

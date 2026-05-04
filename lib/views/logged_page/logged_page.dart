@@ -47,16 +47,12 @@ class LoggedPage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          primary: true,
-          child: SizedBox(
-            height: size.height - 66,
-            width: size.width,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: child,
-            ),
+        child: SizedBox(
+          height: size.height - 66,
+          width: size.width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: child,
           ),
         ),
       ),

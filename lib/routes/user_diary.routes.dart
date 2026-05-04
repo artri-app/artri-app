@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 
 abstract class UserDiaryRoutes implements RoutesSession {
   static const String diary = '/diary';
-  static const String fatigueSelectionPage = '/fatigue-selection';
-  static const String sleepSelectionPage = '/sleep-selection';
-  static const String swellingSelectionPage = '/swelling-selection';
-  static const String painSelectionPage = '/pain-selection';
-  static const String settings = '/settings';
+  static const String fatigueSelectionPage = '$diary/fatigue-selection';
+  static const String sleepSelectionPage = '$diary/sleep-selection';
+  static const String swellingSelectionPage = '$diary/swelling-selection';
+  static const String painSelectionPage = '$diary/pain-selection';
+  static const String settings = '$diary/settings';
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(
@@ -16,44 +16,46 @@ abstract class UserDiaryRoutes implements RoutesSession {
           pageBuilder: (context, state) => NoTransitionPage(
             child: UserDiaryInitialSelection(),
           ),
-        ),
-        GoRoute(
-          path: fatigueSelectionPage,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: const UserLevelSelection(
-              title: 'Fadiga',
-              tooltipMessage:
-                  'É um cansaço intenso e constante e falta de energia, que não melhora mesmo após descanso e pode atrapalhar nas atividades do dia a dia',
-              description: 'De 0 a 10, como esta seu nível de fadiga hoje?',
+          routes: [
+            GoRoute(
+              path: 'fatigue-selection',
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: const UserLevelSelection(
+                  title: 'Fadiga',
+                  tooltipMessage:
+                      'É um cansaço intenso e constante e falta de energia, que não melhora mesmo após descanso e pode atrapalhar nas atividades do dia a dia',
+                  description: 'De 0 a 10, como esta seu nível de fadiga hoje?',
+                ),
+              ),
             ),
-          ),
-        ),
-        GoRoute(
-          path: painSelectionPage,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: UserLevelSelectionWithOptions(
-              title: 'Dor',
+            GoRoute(
+              path: 'pain-selection',
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: UserLevelSelectionWithOptions(
+                  title: 'Dor',
+                ),
+              ),
             ),
-          ),
-        ),
-        GoRoute(
-          path: sleepSelectionPage,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: const UserLevelSelection(
-              title: 'Sono',
-              description: 'De 0 a 10, como esta seu nível de sono hoje?',
+            GoRoute(
+              path: 'sleep-selection',
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: const UserLevelSelection(
+                  title: 'Sono',
+                  description: 'De 0 a 10, como esta seu nível de sono hoje?',
+                ),
+              ),
             ),
-          ),
-        ),
-        GoRoute(
-          path: swellingSelectionPage,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: UserLevelSelectionWithOptions(
-              title: 'Inchaço',
-              tooltipMessage:
-                  'Inchaço é quando uma parte do corpo parece maior ou mais “cheia” do que o normal, como se estivesse acumulando líquido ou inflamada. A região inchada pode ficar mais dura, quente, avermelhada ou sensível ao toque.',
+            GoRoute(
+              path: 'swelling-selection',
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: UserLevelSelectionWithOptions(
+                  title: 'Inchaço',
+                  tooltipMessage:
+                      'Inchaço é quando uma parte do corpo parece maior ou mais “cheia” do que o normal, como se estivesse acumulando líquido ou inflamada. A região inchada pode ficar mais dura, quente, avermelhada ou sensível ao toque.',
+                ),
+              ),
             ),
-          ),
+          ],
         ),
         GoRoute(
           path: settings,
