@@ -6,8 +6,34 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class PhysicalExerciseRoutineOverview extends StatelessWidget {
+class PhysicalExerciseRoutineOverview extends StatefulWidget {
   const PhysicalExerciseRoutineOverview({super.key});
+
+  @override
+  State<PhysicalExerciseRoutineOverview> createState() =>
+      _PhysicalExerciseRoutineOverviewState();
+}
+
+class _PhysicalExerciseRoutineOverviewState
+    extends State<PhysicalExerciseRoutineOverview> {
+  bool orientationsOpen = false;
+
+  void handleStartButton(
+    BuildContext context,
+    PhysicalExercisesViewModel viewModel,
+  ) {
+    if (orientationsOpen) {
+      setState(() => orientationsOpen = false);
+      viewModel.handleStartExercises(context);
+      return;
+    }
+
+    setState(() => orientationsOpen = true);
+    showDialog(
+      builder: (context) => OrientationsDialog(),
+      context: context,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +70,7 @@ class PhysicalExerciseRoutineOverview extends StatelessWidget {
             ),
             CustomSolidButton(
               text: 'Começar'.toUpperCase(),
-              onPressed: () => viewModel.handleStartExercises(context),
+              onPressed: () => handleStartButton(context, viewModel),
               gradientColors: AppGradients.greenGradient,
               textStyle: GoogleFonts.montserrat(
                 fontSize: 30,

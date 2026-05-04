@@ -6,3 +6,4 @@ export 'exercise_step_bottom_sheet.dart';
 export 'exercise_routine_step_view.dart';
 export 'exercise_set_details.dart';
 export 'exercise_set_properties.dart';
+export 'orientations_dialog.dart';
