@@ -6,3 +6,4 @@ export 'exercise.routes.dart';
 export 'physical_exercise.routes.dart';
 export 'user_diary.routes.dart';
 export 'relaxation.routes.dart';
+export 'info.routes.dart';

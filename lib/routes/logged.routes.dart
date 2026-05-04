@@ -29,6 +29,7 @@ class LoggedRoutes implements RoutesSession {
             GoRoute(
               path: info,
               builder: (context, state) => const InfoPage(),
+              routes: InfoRoutes.getGoRoutes(),
             ),
             GoRoute(
               path: evolution,

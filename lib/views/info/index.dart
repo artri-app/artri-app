@@ -1,7 +1,10 @@
 export 'info_page.dart';
-export 'widget/alimentacao.dart';
-export 'widget/artrite_reumatoide.dart';
-export 'widget/leis_direitos.dart';
-export 'widget/minha_dor.dart';
-export 'widget/sono.dart';
-export 'widget/tratamentos.dart';
+export 'alimentacao.dart';
+export 'artrite_reumatoide.dart';
+export 'leis_direitos.dart';
+export 'minha_dor.dart';
+export 'sono.dart';
+export 'tratamentos.dart';
+export 'emocional.dart';
+export 'exercicio_fisico.dart';
+export 'mitos_verdades.dart';
