@@ -1,5 +1,4 @@
 import 'package:artriapp/routes/index.dart';
-import 'package:artriapp/routes/user_diary.routes.dart';
 import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';

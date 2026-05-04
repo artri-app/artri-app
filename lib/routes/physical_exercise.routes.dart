@@ -3,7 +3,6 @@ import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/index.dart';
-import 'package:artriapp/views/physical_exercise/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

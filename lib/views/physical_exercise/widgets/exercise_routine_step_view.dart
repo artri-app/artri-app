@@ -1,6 +1,5 @@
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/index.dart';
-import 'package:artriapp/views/physical_exercise/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
