@@ -66,94 +66,90 @@ class _BreathingTechniquesPageState extends State<BreathingTechniquesPage> {
   @override
   Widget build(BuildContext context) {
     return ClearScaffoldView(
-      child: Column(
-        spacing: 32,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SessionTitle(
-            title: 'TÉCNICAS DE RESPIRAÇÃO',
-            size: 36,
-          ),
-          RichText(
-            text: TextSpan(
-              style: GoogleFonts.montserrat(
-                textStyle: const TextStyle(
-                  fontSize: 24,
-                  color: AppColors.darkGreen,
+      child: FutureBuilder<List<Exercise>>(
+        future: _breathingExercisesFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('Erro: ${snapshot.error}'),
+            );
+          }
+
+          final exercises = snapshot.data ?? [];
+
+          return ListView(
+            children: [
+              const SessionTitle(
+                title: 'TÉCNICAS DE RESPIRAÇÃO',
+                size: 36,
+              ),
+              const SizedBox(height: 32),
+              RichText(
+                text: TextSpan(
+                  style: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                      fontSize: 24,
+                      color: AppColors.darkGreen,
+                    ),
+                  ),
+                  children: const [
+                    TextSpan(text: 'As '),
+                    TextSpan(
+                      text: 'técnicas de respiração',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          ' são exercícios simples que ajudam a controlar o ritmo da respiração. Podem ser usadas no dia a dia para aliviar o estresse, melhorar a concentração e reduzir a tensão muscular. Respirar de forma consciente também ajuda no relaxamento físico e mental, sendo útil em momentos de dor, ansiedade ou cansaço.',
+                    ),
+                  ],
                 ),
               ),
-              children: const [
-                TextSpan(text: 'As '),
-                TextSpan(
-                  text: 'técnicas de respiração',
-                  style: TextStyle(
+              const SizedBox(height: 32),
+              Text(
+                'Escolha um vídeo abaixo e experimente!',
+                style: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: AppColors.darkGreen,
                   ),
                 ),
-                TextSpan(
-                  text:
-                      ' são exercícios simples que ajudam a controlar o ritmo da respiração. Podem ser usadas no dia a dia para aliviar o estresse, melhorar a concentração e reduzir a tensão muscular. Respirar de forma consciente também ajuda no relaxamento físico e mental, sendo útil em momentos de dor, ansiedade ou cansaço.',
-                ),
-              ],
-            ),
-          ),
-          Text(
-            'Escolha um vídeo abaixo e experimente!',
-            style: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: AppColors.darkGreen,
               ),
-            ),
-          ),
-          Flexible(
-            fit: FlexFit.tight,
-            child: FutureBuilder<List<Exercise>>(
-              future: _breathingExercisesFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Erro: ${snapshot.error}'),
-                  );
-                }
-
-                final exercises = snapshot.data ?? [];
-
-                if (exercises.isEmpty) {
-                  return const Center(
-                    child: Text('Nenhum vídeo encontrado para esta categoria.'),
-                  );
-                }
-
-                return Scrollbar(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 16),
-                    itemCount: exercises.length,
-                    itemBuilder: (context, index) {
-                      final exercise = exercises[index];
-
-                      // return a list of relaxation tiles with the exercise name and video link
-                      return RelaxationTile(
-                        title: exercise.name,
-                        videoUrl: exercise.tutorialLink,
-                        onTap: () => context.go(
-                          '${RelaxationRoutes.breathingTechniques}/audio',
-                          extra: exercise,
-                        ),
-                      );
-                    },
+              const SizedBox(height: 24),
+              if (exercises.isEmpty)
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 32),
+                    child: Text(
+                      'Nenhum vídeo encontrado para esta categoria.',
+                    ),
                   ),
-                );
-              },
-            ),
-          ),
-        ],
+                ),
+              ...exercises.map(
+                (exercise) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: RelaxationTile(
+                    title: exercise.name,
+                    videoUrl: exercise.tutorialLink,
+                    onTap: () => context.go(
+                      '${RelaxationRoutes.breathingTechniques}/audio',
+                      extra: exercise,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
