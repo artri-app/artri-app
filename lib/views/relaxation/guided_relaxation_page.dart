@@ -77,94 +77,92 @@ class _GuidedRelaxationPageState extends State<GuidedRelaxationPage> {
   @override
   Widget build(BuildContext context) {
     return ClearScaffoldView(
-      child: Column(
-        spacing: 32,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SessionTitle(
-            title: 'RELAXAMENTO GUIADO',
-            size: 36,
-          ),
-          RichText(
-            text: TextSpan(
-              style: GoogleFonts.montserrat(
-                textStyle: const TextStyle(
-                  fontSize: 24,
-                  color: AppColors.darkGreen,
+      child: FutureBuilder<List<Exercise>>(
+        future: _guidedExercisesFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text(
+                'Erro ao carregar os vídeos.',
+              ),
+            );
+          }
+
+          final exercises = snapshot.data ?? [];
+
+          return ListView(
+            children: [
+              const SessionTitle(
+                title: 'RELAXAMENTO GUIADO',
+                size: 36,
+              ),
+              const SizedBox(height: 32),
+              RichText(
+                text: TextSpan(
+                  style: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                      fontSize: 24,
+                      color: AppColors.darkGreen,
+                    ),
+                  ),
+                  children: const [
+                    TextSpan(text: 'O '),
+                    TextSpan(
+                      text: 'relaxamento guiado',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          ' por meio de áudios é uma técnica simples que ajuda a acalmar o corpo e a mente. Pode ajudar a reduzir o estresse, aliviar dores, melhorar o sono e aumentar a sensação de bem-estar.',
+                    ),
+                  ],
                 ),
               ),
-              children: const [
-                TextSpan(text: 'O '),
-                TextSpan(
-                  text: 'relaxamento guiado',
-                  style: TextStyle(
+              const SizedBox(height: 32),
+              Text(
+                'Escolha um vídeo abaixo e experimente!',
+                style: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: AppColors.darkGreen,
                   ),
                 ),
-                TextSpan(
-                  text:
-                      ' por meio de áudios é uma técnica simples que ajuda a acalmar o corpo e a mente. Pode ajudar a reduzir o estresse, aliviar dores, melhorar o sono e aumentar a sensação de bem-estar.',
-                ),
-              ],
-            ),
-          ),
-          Text(
-            'Escolha um vídeo abaixo e experimente!',
-            style: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: AppColors.darkGreen,
               ),
-            ),
-          ),
-          Flexible(
-            fit: FlexFit.tight,
-            child: FutureBuilder<List<Exercise>>(
-              future: _guidedExercisesFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                if (snapshot.hasError) {
-                  return const Center(
-                    child: Text('Erro ao carregar os vídeos.'),
-                  );
-                }
-
-                final exercises = snapshot.data ?? [];
-
-                if (exercises.isEmpty) {
-                  return const Center(
-                    child: Text('Nenhum vídeo encontrado para esta categoria.'),
-                  );
-                }
-
-                return Scrollbar(
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 16),
-                    itemCount: exercises.length,
-                    itemBuilder: (context, index) {
-                      final exercise = exercises[index];
-
-                      // return a list of relaxation tiles with the exercise name and video link
-                      return RelaxationTile(
-                        title: exercise.name,
-                        videoUrl: exercise.tutorialLink,
-                        onTap: () => context.go(
-                          '${RelaxationRoutes.guidedRelaxation}/audio',
-                          extra: exercise,
-                        ),
-                      );
-                    },
+              const SizedBox(height: 24),
+              if (exercises.isEmpty)
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 32),
+                    child: Text(
+                      'Nenhum vídeo encontrado para esta categoria.',
+                    ),
                   ),
-                );
-              },
-            ),
-          ),
-        ],
+                ),
+              ...exercises.map(
+                (exercise) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: RelaxationTile(
+                    title: exercise.name,
+                    videoUrl: exercise.tutorialLink,
+                    onTap: () => context.go(
+                      '${RelaxationRoutes.guidedRelaxation}/audio',
+                      extra: exercise,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
