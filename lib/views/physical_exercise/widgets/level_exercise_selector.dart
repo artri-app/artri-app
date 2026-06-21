@@ -17,61 +17,68 @@ class LevelExerciseSelector extends StatelessWidget {
 
     return Consumer<PhysicalExercisesViewModel>(
       builder: (context, viewModel, child) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 40,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Escolha um nível de dificuldade para iniciar os exercícios:',
-              style: GoogleFonts.montserrat(
-                textStyle: const TextStyle(
-                  fontSize: 24,
-                  color: AppColors.darkGreen,
+        return SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 40,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Escolha um nível de dificuldade para iniciar os exercícios:',
+                style: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
+                    fontSize: 24,
+                    color: AppColors.darkGreen,
+                  ),
                 ),
               ),
-            ),
-            ExerciseButton(
-              onClick: () => viewModel.handleDifficultySelection(
-                ExerciseDifficulty.easy,
-                context,
+              ExerciseButton(
+                onClick: () => viewModel.handleDifficultySelection(
+                  ExerciseDifficulty.easy,
+                  context,
+                ),
+                side: ExerciseButtonSide.left,
+                buttonText: 'Iniciante',
+                color: AppColors.neutral,
+                width: screenWidth * 0.65,
               ),
-              side: ExerciseButtonSide.left,
-              buttonText: 'Iniciante',
-              color: AppColors.neutral,
-              width: screenWidth * 0.65,
-            ),
-            ExerciseButton(
-              onClick: () => viewModel.handleDifficultySelection(
-                ExerciseDifficulty.medium,
-                context,
+              ExerciseButton(
+                onClick: () => viewModel.handleDifficultySelection(
+                  ExerciseDifficulty.medium,
+                  context,
+                ),
+                side: ExerciseButtonSide.left,
+                buttonText: 'Intermediário',
+                color: AppColors.neutral,
+                width: screenWidth * 0.65,
               ),
-              side: ExerciseButtonSide.left,
-              buttonText: 'Intermediário',
-              color: AppColors.neutral,
-              width: screenWidth * 0.65,
-            ),
-            ExerciseButton(
-              onClick: () => viewModel.handleDifficultySelection(
-                ExerciseDifficulty.hard,
-                context,
+              ExerciseButton(
+                onClick: () => viewModel.handleDifficultySelection(
+                  ExerciseDifficulty.hard,
+                  context,
+                ),
+                buttonText: 'Avançado',
+                color: AppColors.neutral,
+                side: ExerciseButtonSide.left,
+                width: screenWidth * 0.65,
               ),
-              buttonText: 'Avançado',
-              color: AppColors.neutral,
-              side: ExerciseButtonSide.left,
-              width: screenWidth * 0.65,
-            ),
-            CustomSolidButton(
-              onPressed: () => showDialog(
-                context: context,
-                builder: (context) => LevelSelectorDialog(),
+              CustomSolidButton(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => LevelSelectorDialog(),
+                ),
+                text: 'Qual devo escolher?',
+                color: AppColors.lightBrown,
+                width: screenWidth * 0.80,
+                textStyle: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
               ),
-              text: 'Qual devo escolher?',
-              color: AppColors.lightBrown,
-              width: screenWidth * 0.80,
-              textColor: Colors.black,
-            ),
-          ],
+            ],
+          ),
         );
       },
     );

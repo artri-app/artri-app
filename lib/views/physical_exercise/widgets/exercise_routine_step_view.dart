@@ -23,18 +23,23 @@ class ExerciseRoutineStepView extends StatelessWidget {
             controlsVisibleAtStart: true,
           ),
         );
-        return Column(
-          spacing: 16,
-          children: [
-            YoutubePlayer(controller: videoController),
-            SessionTitle(title: exercise.name.split('-').first.trim()),
-            ExerciseSetProperties(
-              details: exercise.details,
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 50.0),
+            child: Column(
+              spacing: 16,
+              children: [
+                YoutubePlayer(controller: videoController),
+                SessionTitle(title: exercise.name.split('-').first.trim()),
+                ExerciseSetProperties(
+                  details: exercise.details,
+                ),
+                ExerciseSetDetails(
+                  exerciseDescription: exercise.description,
+                ),
+              ],
             ),
-            ExerciseSetDetails(
-              exerciseDescription: exercise.description,
-            ),
-          ],
+          ),
         );
       },
     );
