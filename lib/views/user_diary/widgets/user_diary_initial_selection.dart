@@ -71,9 +71,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: AppColors.darkGreen,
               text: 'EXERCÍCIOS',
               borderWidth: 2,
-              onPressed: () {
-                // Navigate to Exercícios page
-              },
+              onPressed: () => context.go(BottomNavRoutes.exercise),
               width: width * 0.5,
             ),
           ],

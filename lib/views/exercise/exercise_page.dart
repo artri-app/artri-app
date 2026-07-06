@@ -16,8 +16,9 @@ class ExercisePage extends StatelessWidget {
             onPressed: () => context.go(ExerciseOptionsRoutes.physicalExercise),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              fixedSize: const Size(300, 50),
+              //padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              fixedSize: const Size(300, 56),
+              padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -27,6 +28,7 @@ class ExercisePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
+                height: 1,
               ),
             ),
           ),
@@ -35,8 +37,9 @@ class ExercisePage extends StatelessWidget {
             onPressed: () => context.push(ExerciseOptionsRoutes.relaxation),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              fixedSize: const Size(300, 50),
+              //padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              fixedSize: const Size(300, 56),
+              padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -46,6 +49,7 @@ class ExercisePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
+                height: 1,
               ),
             ),
           ),
@@ -55,8 +59,8 @@ class ExercisePage extends StatelessWidget {
                 context.push(ExerciseOptionsRoutes.infoAtividadeFisica),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              fixedSize: const Size(300, 80),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              fixedSize: const Size(300, 72),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -64,9 +68,12 @@ class ExercisePage extends StatelessWidget {
             child: const Text(
               'Informações sobre atividades físicas',
               textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.visible,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 22,
                 color: Colors.white,
+                height: 1.25,
               ),
             ),
           ),
