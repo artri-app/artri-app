@@ -49,7 +49,7 @@ class _BreathingTechniquesPageState extends State<BreathingTechniquesPage> {
 
     Training? breathingTraining;
     for (final training in trainings) {
-      if (training.name.toLowerCase().contains('relaxamento e alongamento')) {
+      if (training.name.toLowerCase().contains('técnicas de relaxamento')) {
         breathingTraining = training;
         break;
       }
