@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:artriapp/models/index.dart';
 import 'package:artriapp/utils/enums/index.dart';
+import 'package:artriapp/utils/helpers/custom_exercise_category_helper.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:http/http.dart' as http;
 
@@ -33,6 +34,25 @@ class PhysicalExercisesService {
         (training) =>
             training.name.startsWith(type.toString()) &&
             training.difficulty == difficulty,
+      ),
+    );
+
+    return await getExercises().then(
+      (exercises) =>
+          exercises.where((e) => training.exercises.contains(e.id)).toList(),
+    );
+  }
+
+  Future<List<Exercise>> getExercisesForCustomCategory(
+    TrainingType category,
+    ExerciseDifficulty difficulty,
+  ) async {
+    final trainingName =
+        CustomExerciseCategoryHelper.getTrainingName(category, difficulty);
+
+    final training = await getTrainings().then(
+      (trainings) => trainings.firstWhere(
+        (training) => training.name == trainingName,
       ),
     );
 
