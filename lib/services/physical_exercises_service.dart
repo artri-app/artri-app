@@ -12,6 +12,10 @@ class PhysicalExercisesService {
   Future<List<Training>> getTrainings() async {
     final response = await http.get(Uri.parse('$_baseUrl/trainings'));
 
+    if (response.statusCode != 200) {
+      throw Exception('Erro ao buscar trainings');
+    }
+
     return List<Training>.from(
       jsonDecode(response.body).map((training) => Training.fromJson(training)),
     );
@@ -19,6 +23,10 @@ class PhysicalExercisesService {
 
   Future<List<Exercise>> getExercises() async {
     final response = await http.get(Uri.parse('$_baseUrl/exercises'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Erro ao buscar exercises');
+    }
 
     return List<Exercise>.from(
       jsonDecode(response.body).map((exercise) => Exercise.fromJson(exercise)),
@@ -34,6 +42,9 @@ class PhysicalExercisesService {
         (training) =>
             training.name.startsWith(type.toString()) &&
             training.difficulty == difficulty,
+        orElse: () => throw Exception(
+          'Nenhum training encontrado para $type ($difficulty)',
+        ),
       ),
     );
 
@@ -53,6 +64,9 @@ class PhysicalExercisesService {
     final training = await getTrainings().then(
       (trainings) => trainings.firstWhere(
         (training) => training.name == trainingName,
+        orElse: () => throw Exception(
+          'Nenhum training encontrado com o nome "$trainingName"',
+        ),
       ),
     );
 

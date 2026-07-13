@@ -66,6 +66,12 @@ class _CustomExerciseCategorySelectorState
     return FutureBuilder<List<Exercise>>(
       future: _exercisesFuture,
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text('Erro ao carregar os exercícios: ${snapshot.error}'),
+          );
+        }
+
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
