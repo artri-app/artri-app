@@ -15,6 +15,17 @@ enum ExerciseDifficulty {
     }
   }
 
+  String toTitleName() {
+    switch (this) {
+      case ExerciseDifficulty.easy:
+        return 'INICIANTE';
+      case ExerciseDifficulty.medium:
+        return 'INTERMEDIÁRIO';
+      case ExerciseDifficulty.hard:
+        return 'AVANÇADO';
+    }
+  }
+
   static ExerciseDifficulty fromString(String difficulty) {
     switch (difficulty.toLowerCase()) {
       case 'easy':

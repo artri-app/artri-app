@@ -5,12 +5,14 @@ import 'package:go_router/go_router.dart';
 class ClearScaffoldView extends StatelessWidget {
   final Widget? child;
   final Widget? appBarTitle;
+  final PreferredSizeWidget? appBar;
   final Widget? bottomSheet;
 
   const ClearScaffoldView({
     super.key,
     this.child,
     this.appBarTitle,
+    this.appBar,
     this.bottomSheet,
   });
 
@@ -19,7 +21,7 @@ class ClearScaffoldView extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,
-      appBar: AppBar(
+      appBar: appBar ?? AppBar(
         backgroundColor: Colors.transparent,
         title: appBarTitle,
         centerTitle: true,

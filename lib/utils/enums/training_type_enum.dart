@@ -8,6 +8,22 @@ enum TrainingType {
   coreBoost,
   stretching;
 
+
+/*
+Tipos de treino no backend:
+
+- técnicas de relaxamento
+- relaxamento e alongamento
+- MÃOS
+- PÉS
+- MOBILIDADE
+- AQUECIMENTO
+- PERNAS
+- BRAÇOS
+- TRONCO
+- ALONGAMENTO
+*/
+
   @override
   toString() {
     switch (this) {
@@ -16,17 +32,18 @@ enum TrainingType {
       case TrainingType.feet:
         return 'PÉS';
       case TrainingType.aerobic:
-        return 'AERÓBICO';
+        return 'AQUECIMENTO';
       case TrainingType.mobility:
         return 'MOBILIDADE';
       case TrainingType.superiorBoost:
-        return 'FORTALECIMENTO MEMBRO SUPERIOR';
+        return 'BRAÇOS';
       case TrainingType.inferiorBoost:
-        return 'FORTALECIMENTO MEMBRO INFERIOR';
+        return 'PERNAS';
       case TrainingType.coreBoost:
-        return 'FORTALECIMENTO CORE';
+        return 'TRONCO';
       case TrainingType.stretching:
         return 'ALONGAMENTO';
     }
   }
 }
+

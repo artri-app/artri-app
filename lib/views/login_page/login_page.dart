@@ -9,16 +9,28 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
 
   final String title;
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  @override
+  void initState() {
+    context.read<LoginViewModel>().atemptSharedPreferencesLogin(context);
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
         centerTitle: true,
         titleTextStyle: GoogleFonts.montserrat(
           textStyle: const TextStyle(
@@ -31,7 +43,6 @@ class LoginPage extends StatelessWidget {
       body: Consumer<LoginViewModel>(
         builder: (context, viewModel, child) {
           final Size screenSize = ScreenHelper.getScreenSize(context);
-
           return SingleChildScrollView(
             child: Center(
               child: Column(
@@ -110,7 +121,7 @@ class LoginPage extends StatelessWidget {
                         CustomSolidButton(
                           text: 'CADASTRAR',
                           onPressed: () {
-                            context.go(NotLoggedRoutes.signUp);
+                            context.push(NotLoggedRoutes.signUp);
                           },
                           borderRadius: 20,
                           gradientColors: const [

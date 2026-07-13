@@ -4,14 +4,17 @@ import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserLevelSelectionWithOptions extends StatefulWidget {
   final String title;
+  final String subtitle;
   final String? tooltipMessage;
 
   const UserLevelSelectionWithOptions({
     super.key,
     required this.title,
+    required this.subtitle,
     this.tooltipMessage,
   });
 
@@ -85,6 +88,21 @@ class _UserLevelSelectionWithOptionsState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text(
+              'Olá, usuario!',
+              style: GoogleFonts.montserrat(
+                fontSize: 40,
+                color: const Color(0xff026873),
+              ),
+            ),
+            Text(
+              'Como você está hoje?'.toUpperCase(),
+              style: GoogleFonts.montserrat(
+                fontSize: 24,
+                color: Colors.black,
+              ),
+            ),
+            Gap(24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,6 +119,10 @@ class _UserLevelSelectionWithOptionsState
                     : Gap(0),
               ],
             ),
+            if (widget.subtitle.isNotEmpty) ...[
+              Text(widget.subtitle, style: TextStyle(fontSize: 24,),),
+              Gap(24),
+            ],
             CheckboxGroup(
               onChanged: (list) => setState(() {
                 onCheckBoxChanged(list);

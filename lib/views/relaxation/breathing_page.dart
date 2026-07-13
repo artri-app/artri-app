@@ -140,7 +140,7 @@ class _BreathingTechniquesPageState extends State<BreathingTechniquesPage> {
                   child: RelaxationTile(
                     title: exercise.name,
                     videoUrl: exercise.tutorialLink,
-                    onTap: () => context.go(
+                    onTap: () => context.push(
                       '${RelaxationRoutes.breathingTechniques}/audio',
                       extra: exercise,
                     ),

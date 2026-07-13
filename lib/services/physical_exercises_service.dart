@@ -27,11 +27,12 @@ class PhysicalExercisesService {
   Future<List<Exercise>> getExercisesFromTraining(
     TrainingType type,
     ExerciseDifficulty difficulty,
+    {bool? isCustomExercise,}
   ) async {
     final training = await getTrainings().then(
       (trainings) => trainings.firstWhere(
         (training) =>
-            training.name.startsWith(type.toString()) &&
+            ((isCustomExercise ?? false) ? (training.name.contains(type.toString())) : training.name.startsWith(type.toString())) &&
             training.difficulty == difficulty,
       ),
     );

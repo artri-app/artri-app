@@ -18,49 +18,50 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       children: [
         Center(
           child: FractionallySizedBox(
-            widthFactor: 0.5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: AppColors.darkGreen,
-                  ),
-                  child: const Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 110,
-                  ),
+            widthFactor: 0.75,
+            child: Expanded(
+              child: SizedBox(
+                // height: MediaQuery.of(context).size.height * 0.65,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Alterar senha'.toUpperCase(),
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 36,
+                            color: const Color(0xff026873),
+                          ),
+                        ),
+                        const Gap(16),
+                        const InputText(
+                          placeholder: '*******',
+                          label: 'Insira a sua senha antiga:',
+                        ),
+                        const Gap(16),
+                        const InputText(
+                          placeholder: '*******',
+                          label: 'Insira a sua nova senha:',
+                        ),
+                        
+                      ],
+                    ),
+                    const Gap(40),
+                    CustomSolidButton(
+                      text: 'Enviar',
+                      onPressed: () {
+                        // Do something
+                      },
+                      fontSize: 32,
+                      gradientColors: AppGradients.greenGradient,
+                    ),
+                  ],
                 ),
-                const Gap(24),
-                Text(
-                  'Alterar senha'.toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 36,
-                    color: const Color(0xff026873),
-                  ),
-                ),
-                const Gap(42),
-                const InputText(
-                  placeholder: '*******',
-                  label: 'Insira a sua senha antiga:',
-                ),
-                const Gap(42),
-                const InputText(
-                  placeholder: '*******',
-                  label: 'Insira a sua nova senha:',
-                ),
-                const Gap(42),
-                ElevatedButton(
-                  onPressed: () => {},
-                  child: const Text('Enviar'),
-                ),
-              ],
+              ),
             ),
           ),
         ),

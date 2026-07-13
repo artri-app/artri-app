@@ -3,6 +3,7 @@ import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/physical_exercise/widgets/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,27 @@ class _PhysicalExerciseRoutineOverviewState
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 16),
                   itemCount: exerciseCount,
-                  itemBuilder: (context, index) => ExerciseTile(
+                  itemBuilder: (context, index) => (index == 0 ) ? 
+                  Column(children: [
+                    Text((viewModel.currentDifficulty ?? ExerciseDifficulty.easy).toTitleName(),
+                      style: GoogleFonts.montserrat(
+                      fontSize: 30,
+                      color: AppColors.mediumGreen,
+                    ),
+                  ),
+                  Gap(8),
+                    Text('Você levará aproximadamente 30 minutos para realizar os exercícios',
+                      style: GoogleFonts.montserrat(
+                      fontSize: 20,
+                    ),
+                  ),
+                  Gap(16),
+                  ExerciseTile(
+                    exerciseName:
+                        viewModel.exercises[index].name.split('-').first,
+                  ),
+                ]):
+                  ExerciseTile(
                     exerciseName:
                         viewModel.exercises[index].name.split('-').first,
                   ),

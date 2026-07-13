@@ -6,6 +6,7 @@ class CustomSolidButton extends StatelessWidget {
   final List<Color>? gradientColors;
   final double fontSize;
   final double borderRadius;
+  final double horizontalPadding;
   final Color? color;
   final bool _hasGradient;
   final double? width;
@@ -19,6 +20,7 @@ class CustomSolidButton extends StatelessWidget {
     this.gradientColors,
     this.fontSize = 30.0,
     this.borderRadius = 30.0,
+    this.horizontalPadding = 16,
     this.color,
     this.width,
     this.textColor,
@@ -50,7 +52,7 @@ class CustomSolidButton extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Padding(
-          padding: const EdgeInsets.symmetric(),
+          padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 4),
           child: Text(
             text,
             style: textStyle ??

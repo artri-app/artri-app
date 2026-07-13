@@ -40,6 +40,13 @@ class PhysicalExerciseHome extends StatelessWidget {
                 gradientColors: AppGradients.greenToNeutral,
                 buttonText: 'Pés',
               ),
+              ExerciseButton(
+                onClick: () => viewModel.goToCustomTrainingPage(
+                  context,
+                ),
+                gradientColors: AppGradients.greenToNeutral,
+                buttonText: 'Exercicios Personalizados',
+              ),
               // Text(
               //   'Aqui você terá acesso a exercícios personalizados para diferentes partes do corpo. Clique para escolher o nível de dificuldade e personalizar seus exercícios:',
               //   style: GoogleFonts.montserrat(

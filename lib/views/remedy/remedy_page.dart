@@ -1,6 +1,8 @@
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/view_models/remedy_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -24,96 +26,114 @@ class _RemedyPageState extends State<RemedyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        toolbarHeight: 80,
+        leadingWidth: 64,
+        backgroundColor: AppColors.darkGreen,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8,),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(40)),
+              border: Border.all(width: 1, color: AppColors.neutral),
+            ),
+            child: IconButton(
+              onPressed: () => GoRouter.of(context).pop(),
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.neutral,
+              ),
+            ),
+          ),
+        ),
+        actionsPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.add_circle,
+              color: AppColors.neutral,
+              size: 30,
+            ),
+            onPressed: () {
+              // Modal (BottomSheet) implementado ao invés de tela morta
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                builder: (context) {
+                  return Padding(
+                    // Evita que o teclado cubra o modal
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                      top: 24,
+                      left: 24,
+                      right: 24,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Novo Medicamento',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.darkGreen,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 16),
+                        const TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Nome do remédio',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.darkGreen,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                          ),
+                          onPressed: () {
+                            // TODO: Chamar o ViewModel para salvar no banco
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'Salvar',
+                            style: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
+        title: Text(
+          'MEDICAMENTOS',
+          style: GoogleFonts.montserrat(
+            fontSize: 32,
+            color: AppColors.neutral,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      
+      ),
       body: Consumer<RemedyViewModel>(
         builder: (context, model, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 40, left: 24, right: 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'MEDICAMENTOS',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 26,
-                        color: AppColors.darkGreen,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.add_circle,
-                        color: AppColors.darkGreen,
-                        size: 30,
-                      ),
-                      onPressed: () {
-                        // Modal (BottomSheet) implementado ao invés de tela morta
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                          ),
-                          builder: (context) {
-                            return Padding(
-                              // Evita que o teclado cubra o modal
-                              padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context).viewInsets.bottom,
-                                top: 24,
-                                left: 24,
-                                right: 24,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    'Novo Medicamento',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.darkGreen,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(height: 16),
-                                  const TextField(
-                                    decoration: InputDecoration(
-                                      labelText: 'Nome do remédio',
-                                      border: OutlineInputBorder(),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.darkGreen,
-                                      padding: const EdgeInsets.symmetric(vertical: 14),
-                                    ),
-                                    onPressed: () {
-                                      // TODO: Chamar o ViewModel para salvar no banco
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      'Salvar',
-                                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 24),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              Gap(32),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Text('Checklist diário de tratamento'),
+                child: Text('Checklist diário de tratamento', style: TextStyle(fontSize: 28,),),
               ),
               const SizedBox(height: 20),
               if (model.isLoading)
@@ -167,11 +187,17 @@ class _RemedyPageState extends State<RemedyPage> {
                             remedy.name,
                             style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.bold,
+                              fontSize: 24,
                               decoration:
                                   isTaken ? TextDecoration.lineThrough : null,
                             ),
                           ),
-                          subtitle: const Text('Sem detalhes de dose/horário'),
+                          subtitle: Text('Sem detalhes de dose/horário', style: TextStyle(
+                              fontSize: 20,
+                              decoration:
+                                  isTaken ? TextDecoration.lineThrough : null,
+                            ),
+                          ),
                           trailing: Checkbox(
                             activeColor: AppColors.darkGreen,
                             value: isTaken,

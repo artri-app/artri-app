@@ -31,29 +31,12 @@ class UserDiaryPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/images/logo-ArtriApp-v2.svg',
-                  width: min(
-                    180,
-                    screenWidth * 0.50,
-                  ),
+                const CircleAvatar(
+                  radius: 64,
+                  backgroundColor: AppColors.darkGreen,
+                  child: Icon(Icons.person, color: Colors.white, size: 104),
                 ),
                 const Gap(24),
-                Text(
-                  'Olá!',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 28,
-                    color: const Color(0xff026873),
-                  ),
-                ),
-                Text(
-                  'Como você está hoje?'.toUpperCase(),
-                  style: GoogleFonts.montserrat(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                const Gap(32),
                 child,
                 const Gap(24),
               ],
@@ -64,7 +47,7 @@ class UserDiaryPage extends StatelessWidget {
           right: 0,
           top: 0,
           child: IconButton(
-            onPressed: () => context.go(
+            onPressed: () => context.push(
               isSetting ? BottomNavRoutes.diary : UserDiaryRoutes.settings,
             ),
             icon: Icon(
