@@ -8,7 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
-  App({super.key});
+  App({super.key, required this.notificationService});
+
+  final NotificationService notificationService;
   final _router = GoRouter(
     initialLocation: SecurityTokenService().userLoggedIn()
         ? BottomNavRoutes.diary
@@ -22,7 +24,7 @@ class App extends StatelessWidget {
     ThemeData(textTheme: GoogleFonts.jetBrainsMonoTextTheme());
 
     return MultiProvider(
-      providers: GlobalProviders.getProviders(),
+      providers: GlobalProviders.getProviders(notificationService),
       child: MaterialApp.router(
         routerConfig: _router,
         title: 'ArtriApp',

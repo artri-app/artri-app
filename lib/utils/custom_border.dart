@@ -89,6 +89,26 @@ class CustomInputBorder extends InputBorder {
     paint = createPaintForBorder(borderSide);
     if (paint != null) {
       canvas.drawLine(
+        rect.topLeft +
+            Offset(
+              borderRadius.topLeft.x +
+                  (borderRadius.topLeft.y == 0 ? borderSide.width : 0.0),
+              borderSide.width / 2,
+            ),
+        rect.topRight +
+            Offset(
+              -1 *
+                  (borderRadius.topRight.x +
+                      (borderRadius.topRight.y == 0 ? borderSide.width : 0.0)),
+              borderSide.width / 2,
+            ),
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder(borderSide);
+    if (paint != null) {
+      canvas.drawLine(
         rect.topRight +
             Offset(
               -1 * (borderSide.width) / 2,
@@ -134,6 +154,28 @@ class CustomInputBorder extends InputBorder {
         pi / 2 * 1,
         pi / 2,
         false,
+        paint,
+      );
+    }
+
+    paint = createPaintForBorder(borderSide);
+    if (paint != null) {
+      canvas.drawLine(
+        rect.bottomRight +
+            Offset(
+              -1 *
+                  (borderRadius.bottomRight.x +
+                      (borderRadius.bottomRight.y == 0
+                          ? borderSide.width
+                          : 0.0)),
+              -borderSide.width / 2,
+            ),
+        rect.bottomLeft +
+            Offset(
+              borderRadius.bottomLeft.x +
+                  (borderRadius.bottomLeft.y == 0 ? borderSide.width : 0.0),
+              -borderSide.width / 2,
+            ),
         paint,
       );
     }

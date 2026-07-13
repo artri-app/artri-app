@@ -4,6 +4,7 @@ export 'exercise.dart';
 export 'generic_api_response.dart';
 export 'password_token.dart';
 export 'remedy.dart';
+export 'remedy_intake.dart';
 export 'training_report.dart';
 export 'training.dart';
 export 'user_registration.dart';
