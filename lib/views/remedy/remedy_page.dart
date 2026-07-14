@@ -165,7 +165,7 @@ class _RemedyPageState extends State<RemedyPage> {
                             ),
                           ),
                           subtitle: Text(
-                            '${remedy.description.isNotEmpty ? remedy.description : 'Sem dose informada'} • ${remedy.hour} • '
+                            '${remedy.quantity.isNotEmpty ? remedy.quantity : 'Sem dose informada'} • ${remedy.hour} • '
                             '${remedy.daysOfWeek.map((day) => day.shortLabel).join(', ')} • '
                             '${remedy.reminderEnabled ? 'Lembrete ativo' : 'Sem lembrete'}',
                           ),

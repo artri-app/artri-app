@@ -35,7 +35,7 @@ class _AddRemedyPageState extends State<AddRemedyPage> {
     final remedy = widget.remedy;
     if (remedy != null) {
       _nameController.text = remedy.name;
-      _dosageController.text = remedy.description;
+      _dosageController.text = remedy.quantity;
       _selectedTime = _parseHour(remedy.hour);
       _selectedDays = remedy.daysOfWeek.toSet();
       _reminderEnabled = remedy.reminderEnabled;
@@ -90,7 +90,7 @@ class _AddRemedyPageState extends State<AddRemedyPage> {
       viewModel.updateRemedy(
         id: widget.remedy!.id,
         name: name,
-        description: dosage,
+        quantity: dosage,
         hour: hour,
         daysOfWeek: _selectedDays,
         reminderEnabled: _reminderEnabled!,
@@ -98,7 +98,7 @@ class _AddRemedyPageState extends State<AddRemedyPage> {
     } else {
       viewModel.addRemedy(
         name: name,
-        description: dosage,
+        quantity: dosage,
         hour: hour,
         daysOfWeek: _selectedDays,
         reminderEnabled: _reminderEnabled!,

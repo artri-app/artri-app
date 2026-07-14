@@ -68,7 +68,7 @@ class NotificationService {
         id: _notificationId(remedy.id, day),
         title: 'Hora do remédio',
         body:
-            '${remedy.name}${remedy.description.isNotEmpty ? ' • ${remedy.description}' : ''}',
+            '${remedy.name}${remedy.quantity.isNotEmpty ? ' • ${remedy.quantity}' : ''}',
         scheduledDate: _nextInstanceOfDayTime(day, hour, minute),
         notificationDetails: const NotificationDetails(
           android: AndroidNotificationDetails(

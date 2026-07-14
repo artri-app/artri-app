@@ -16,7 +16,7 @@ class Remedy {
   final int id;
   final String name;
   final String description;
-  final int quantity;
+  final String quantity;
   final List<DaysOfWeek> daysOfWeek;
   final String hour;
   final int user;

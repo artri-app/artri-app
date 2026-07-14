@@ -62,7 +62,7 @@ class RemedyViewModel extends ChangeNotifier {
 
   Future<void> addRemedy({
     required String name,
-    required String description,
+    required String quantity,
     required String hour,
     required Set<DaysOfWeek> daysOfWeek,
     required bool reminderEnabled,
@@ -72,10 +72,8 @@ class RemedyViewModel extends ChangeNotifier {
         Remedy(
           id: 0,
           name: name,
-          description: description,
-          // "Dosagem" no form é texto livre (ex: "500mg"), guardado em
-          // description; o backend não usa quantity para nada no app hoje.
-          quantity: 1,
+          description: '',
+          quantity: quantity,
           hour: hour,
           user: 1,
           daysOfWeek: daysOfWeek.toList(),
@@ -95,7 +93,7 @@ class RemedyViewModel extends ChangeNotifier {
   Future<void> updateRemedy({
     required int id,
     required String name,
-    required String description,
+    required String quantity,
     required String hour,
     required Set<DaysOfWeek> daysOfWeek,
     required bool reminderEnabled,
@@ -105,8 +103,8 @@ class RemedyViewModel extends ChangeNotifier {
         Remedy(
           id: id,
           name: name,
-          description: description,
-          quantity: 1,
+          description: '',
+          quantity: quantity,
           hour: hour,
           user: 1,
           daysOfWeek: daysOfWeek.toList(),
