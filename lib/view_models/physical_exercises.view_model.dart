@@ -63,14 +63,26 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
       return;
     }
 
-    var exercises = await _physicalExercisesService.getExercisesFromTraining(
-      _currentTrainingType!,
-      _currentDifficulty!,
-    );
+    try {
+      var exercises = await _physicalExercisesService.getExercisesFromTraining(
+        _currentTrainingType!,
+        _currentDifficulty!,
+      );
 
-    _queuedExercises = _queueExercises(exercises);
+      _queuedExercises = _queueExercises(exercises);
 
-    context.go('$currentPath/${difficulty.toString()}');
+      if (context.mounted) {
+        context.go('$currentPath/${difficulty.toString()}');
+      }
+    } catch (e) {
+      log('Error on getExercisesFromTraining, $e');
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Erro ao carregar os exercícios.')),
+        );
+      }
+    }
   }
 
   List<ExerciseQueued> _queueExercises(List<Exercise> exercises) {
