@@ -2,6 +2,10 @@
 
 Um app para artrite reumatoide.
 
+## Integrantes do grupo
+
+- José Maia de Oliveira
+
 ## Table of contents
 
 - [Getting started](#getting-started)
@@ -24,6 +28,34 @@ samples, guidance on mobile development, and a full API reference.
 ## Setup the environment
 
 This project use `.env` file for communication with APIs. Make sure your `.env` file is set before start the project and following the `.env_example` file.
+
+## Como executar o app
+
+1. Instale o [Flutter SDK](https://docs.flutter.dev/get-started/install) (versão compatível com o SDK `>=3.2.6 <4.0.0` definido em `pubspec.yaml`).
+2. Verifique se o ambiente está corretamente configurado:
+   ```bash
+   flutter doctor
+   ```
+3. Clone o repositório e acesse a pasta do projeto:
+   ```bash
+   cd artri-app
+   ```
+4. Copie o arquivo de exemplo de variáveis de ambiente e preencha com os valores corretos:
+   ```bash
+   cp .env_example .env
+   ```
+5. Instale as dependências do projeto:
+   ```bash
+   flutter pub get
+   ```
+6. Conecte um dispositivo/emulador ou abra um navegador suportado e liste os dispositivos disponíveis:
+   ```bash
+   flutter devices
+   ```
+7. Execute o app:
+   ```bash
+   flutter run
+   ```
 
 # Project architecture
 
