@@ -13,7 +13,7 @@ class ExercisePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ElevatedButton(
-            onPressed: () => context.go(ExerciseOptionsRoutes.physicalExercise),
+            onPressed: () => context.push(ExerciseOptionsRoutes.physicalExercise),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

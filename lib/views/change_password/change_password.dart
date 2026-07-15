@@ -2,6 +2,7 @@ import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -14,57 +15,80 @@ class ChangePasswordPage extends StatefulWidget {
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Center(
-          child: FractionallySizedBox(
-            widthFactor: 0.5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: AppColors.darkGreen,
-                  ),
-                  child: const Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 110,
-                  ),
-                ),
-                const Gap(24),
-                Text(
-                  'Alterar senha'.toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 36,
-                    color: const Color(0xff026873),
-                  ),
-                ),
-                const Gap(42),
-                const InputText(
-                  placeholder: '*******',
-                  label: 'Insira a sua senha antiga:',
-                ),
-                const Gap(42),
-                const InputText(
-                  placeholder: '*******',
-                  label: 'Insira a sua nova senha:',
-                ),
-                const Gap(42),
-                ElevatedButton(
-                  onPressed: () => {},
-                  child: const Text('Enviar'),
-                ),
-              ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton.outlined(
+            onPressed: () => context.pop(),
+            style: ButtonStyle(
+              side: WidgetStatePropertyAll(
+                const BorderSide(color: AppColors.darkGreen, width: 2),
+              ),
+            ),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.darkGreen,
+              size: 24,
             ),
           ),
         ),
-      ],
+      ),
+      body: Stack(
+        children: [
+          Center(
+            child: FractionallySizedBox(
+              widthFactor: 0.5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: AppColors.darkGreen,
+                    ),
+                    child: const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 110,
+                    ),
+                  ),
+                  const Gap(24),
+                  Text(
+                    'Alterar senha'.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 36,
+                      color: const Color(0xff026873),
+                    ),
+                  ),
+                  const Gap(42),
+                  const InputText(
+                    placeholder: '*******',
+                    label: 'Insira a sua senha antiga:',
+                  ),
+                  const Gap(42),
+                  const InputText(
+                    placeholder: '*******',
+                    label: 'Insira a sua nova senha:',
+                  ),
+                  const Gap(42),
+                  ElevatedButton(
+                    onPressed: () => {},
+                    child: const Text('Enviar'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

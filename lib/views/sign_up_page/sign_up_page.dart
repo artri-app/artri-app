@@ -1,3 +1,4 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -29,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton.outlined(
-            onPressed: () => context.pop(context),
+            onPressed: () => context.canPop() ? context.pop() : context.go(NotLoggedRoutes.login),
             iconSize: 24,
             icon: Icon(
               Icons.arrow_back,

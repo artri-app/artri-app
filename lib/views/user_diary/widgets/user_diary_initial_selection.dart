@@ -64,16 +64,14 @@ class UserDiaryInitialSelection extends StatelessWidget {
               color: AppColors.darkGreen,
               text: 'MEDICAMENTOS',
               borderWidth: 2,
-              onPressed: () => context.go(LoggedRoutes.remedy),
+              onPressed: () => context.push(LoggedRoutes.remedy),
             ),
             const Gap(16),
             CustomOutlinedButton(
               color: AppColors.darkGreen,
               text: 'EXERCÍCIOS',
               borderWidth: 2,
-              onPressed: () {
-                // Navigate to Exercícios page
-              },
+              onPressed: () => context.go(BottomNavRoutes.exercise),
               width: width * 0.5,
             ),
           ],
