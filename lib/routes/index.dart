@@ -8,3 +8,4 @@ export 'relaxation.routes.dart';
 export 'bottom_nav.routes.dart';
 export 'exercise_options.routes.dart';
 export 'info.routes.dart';
+export 'remedy.routes.dart';

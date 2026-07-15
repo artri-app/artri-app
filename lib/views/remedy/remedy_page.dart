@@ -97,7 +97,7 @@ class _RemedyPageState extends State<RemedyPage> {
                         size: 30,
                       ),
                       onPressed: () {
-                        context.push(LoggedRoutes.addRemedy);
+                        context.push(RemedyRoutes.addRemedy);
                       },
                     ),
                   ],
@@ -178,7 +178,7 @@ class _RemedyPageState extends State<RemedyPage> {
                                   color: AppColors.darkGreen,
                                 ),
                                 onPressed: () => context.push(
-                                  LoggedRoutes.addRemedy,
+                                  RemedyRoutes.addRemedy,
                                   extra: remedy,
                                 ),
                               ),
