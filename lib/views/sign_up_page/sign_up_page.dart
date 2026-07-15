@@ -29,7 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton.outlined(
-            onPressed: () => context.pop(context),
+            onPressed: () => GoRouter.of(context).pop(),
             iconSize: 24,
             icon: Icon(
               Icons.arrow_back,

@@ -14,6 +14,7 @@ class DiaryViewModel extends ChangeNotifier {
     _httpClient.connectionTimeout = const Duration(seconds: 15);
   }
 
+
   /// Método genérico privado para evitar repetição de código
   Future<bool> _enviarMetrica(String endpoint, Map<String, dynamic> data) async {
     _isLoading = true;

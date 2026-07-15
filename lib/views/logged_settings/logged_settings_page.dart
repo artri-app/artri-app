@@ -16,24 +16,24 @@ class LoggedSettingsPage extends StatelessWidget {
         children: [
           const SizedBox(height: 16),
           const Text(
-            'Configurações',
-            style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
+            'CONFIGURAÇÕES',
+            style: TextStyle(fontSize: 40, color: Color(0xFF217A84)),
           ),
           const SizedBox(height: 48),
           CustomSolidButton(
-            text: 'Alterar Email',
-            onPressed: () => context.go(SettingsRoutes.changeEmail),
+            text: 'ALTERAR SENHA',
+            onPressed: () => context.push(SettingsRoutes.changePassword),
             gradientColors: AppGradients.greenGradient,
           ),
           const SizedBox(height: 16),
           CustomSolidButton(
-            text: 'Alterar Senha',
-            onPressed: () => context.go(SettingsRoutes.changePassword),
+            text: 'ALTERAR EMAIL',
+            onPressed: () => context.push(SettingsRoutes.changeEmail),
             gradientColors: AppGradients.greenGradient,
           ),
           const SizedBox(height: 16),
           CustomSolidButton(
-            text: 'Permissões',
+            text: 'PERMISSÕES',
             onPressed: () {
               // Do something
             },

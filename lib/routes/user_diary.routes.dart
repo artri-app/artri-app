@@ -1,4 +1,6 @@
 import 'package:artriapp/models/index.dart';
+import 'package:artriapp/routes/settings.routes.dart';
+import 'package:artriapp/views/calendar_page/calendar_page.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,8 +11,10 @@ abstract class UserDiaryRoutes implements RoutesSession {
   static const String swellingSelectionPage = '$diary/swelling-selection';
   static const String painSelectionPage = '$diary/pain-selection';
   static const String settings = '$diary/settings';
+  static const String diaryPage = '$diary/diaryPage';
 
   static List<RouteBase> getGoRoutes() => [
+        ...SettingsRoutes.getGoRoutes(),
         GoRoute(
           path: diary,
           pageBuilder: (context, state) => NoTransitionPage(
@@ -33,6 +37,7 @@ abstract class UserDiaryRoutes implements RoutesSession {
               pageBuilder: (context, state) => NoTransitionPage(
                 child: UserLevelSelectionWithOptions(
                   title: 'Dor',
+                  subtitle: 'Local da dor:',
                 ),
               ),
             ),
@@ -50,6 +55,7 @@ abstract class UserDiaryRoutes implements RoutesSession {
               pageBuilder: (context, state) => NoTransitionPage(
                 child: UserLevelSelectionWithOptions(
                   title: 'Inchaço',
+                  subtitle: 'Local:',
                   tooltipMessage:
                       'Inchaço é quando uma parte do corpo parece maior ou mais “cheia” do que o normal, como se estivesse acumulando líquido ou inflamada. A região inchada pode ficar mais dura, quente, avermelhada ou sensível ao toque.',
                 ),
@@ -61,6 +67,12 @@ abstract class UserDiaryRoutes implements RoutesSession {
           path: settings,
           pageBuilder: (context, state) => NoTransitionPage(
             child: LoggedSettingsPage(),
+          ),
+        ),
+        GoRoute(
+          path: diaryPage,
+          pageBuilder: (context, state) => NoTransitionPage(
+            child: CalendarPage(),
           ),
         ),
       ];

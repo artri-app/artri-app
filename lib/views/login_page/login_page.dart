@@ -3,22 +3,51 @@ import 'package:artriapp/utils/enums/input_text_type.dart';
 import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
+import 'package:artriapp/views/widgets/loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
 
   final String title;
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  @override
+  void initState() {
+    LoginViewModel viewModel = context.read<LoginViewModel>();
+
+    viewModel.addListener(() {
+      if (viewModel.isLoading) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => LoadingDialog()
+        );
+      } else {
+        if (Navigator.of(context).canPop()) {
+          Navigator.of(context).pop();
+        }
+      }
+    });
+
+    viewModel.atemptSharedPreferencesLogin(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
         centerTitle: true,
         titleTextStyle: GoogleFonts.montserrat(
           textStyle: const TextStyle(
@@ -31,7 +60,6 @@ class LoginPage extends StatelessWidget {
       body: Consumer<LoginViewModel>(
         builder: (context, viewModel, child) {
           final Size screenSize = ScreenHelper.getScreenSize(context);
-
           return SingleChildScrollView(
             child: Center(
               child: Column(
@@ -110,7 +138,7 @@ class LoginPage extends StatelessWidget {
                         CustomSolidButton(
                           text: 'CADASTRAR',
                           onPressed: () {
-                            context.go(NotLoggedRoutes.signUp);
+                            context.push(NotLoggedRoutes.signUp);
                           },
                           borderRadius: 20,
                           gradientColors: const [

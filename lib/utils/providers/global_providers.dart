@@ -1,4 +1,5 @@
 import 'package:artriapp/services/index.dart';
+import 'package:artriapp/view_models/calendar.view_model.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/view_models/remedy_view_model.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,9 @@ class GlobalProviders {
       ),
     ),
     ChangeNotifierProvider(
+      create: (context) => CalendarViewModel(),
+    ),
+    ChangeNotifierProvider(
       create: (context) => PhysicalExercisesViewModel(
         Provider.of<PhysicalExercisesService>(context, listen: false),
       ),
@@ -27,7 +31,7 @@ class GlobalProviders {
     ChangeNotifierProvider(
       create: (context) => RemedyViewModel(),
     ),
-    ChangeNotifierProvider(create: (_) => DiaryViewModel()),
+    ChangeNotifierProvider(create: (context) => DiaryViewModel()),
   ];
 
   static List<SingleChildWidget> getProviders() {

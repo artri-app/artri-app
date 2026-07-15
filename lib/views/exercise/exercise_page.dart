@@ -1,7 +1,9 @@
 import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/view_models/physical_exercises.view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class ExercisePage extends StatelessWidget {
   const ExercisePage({super.key});
@@ -13,7 +15,9 @@ class ExercisePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ElevatedButton(
-            onPressed: () => context.go(ExerciseOptionsRoutes.physicalExercise),
+            onPressed: () {
+              context.read<PhysicalExercisesViewModel>().resetExerciseList();
+              context.push(ExerciseOptionsRoutes.physicalExercise);},
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

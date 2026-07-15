@@ -24,6 +24,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: GlobalProviders.getProviders(),
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerConfig: _router,
         title: 'ArtriApp',
         theme: ThemeData(

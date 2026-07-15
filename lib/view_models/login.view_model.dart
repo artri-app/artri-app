@@ -5,6 +5,7 @@ import 'package:artriapp/services/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginViewModel extends ChangeNotifier {
   String _email = '';
@@ -14,10 +15,15 @@ class LoginViewModel extends ChangeNotifier {
   final AuthService _authService;
   final SecurityTokenService _securityTokenService;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   LoginViewModel(this._authService, this._securityTokenService);
 
   Future<void> handleUserLoginButton(BuildContext context) async {
     try {
+      _isLoading = true;
+      notifyListeners();
       var response = await _authService.login(email, password);
 
       if (response.refreshToken != '' && response.accessToken != '') {
@@ -29,11 +35,32 @@ class LoginViewModel extends ChangeNotifier {
           response.refreshToken,
           SecurityToken.refreshToken,
         );
-
+        updateSharedPreferences();
         context.go(BottomNavRoutes.diary);
       }
     } catch (e) {
       log('Error on user login, $e');
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> updateSharedPreferences() async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString('login', _email);
+    prefs.setString('password', _password);
+  }
+
+  Future<void> atemptSharedPreferencesLogin(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    _email = prefs.getString('login') ?? '';
+    _password = prefs.getString('password') ?? '';
+
+    if (_email.isNotEmpty && _password.isNotEmpty) {
+      handleUserLoginButton(context);
     }
   }
 
