@@ -19,7 +19,6 @@ class Remedy {
   final String quantity;
   final List<DaysOfWeek> daysOfWeek;
   final String hour;
-  final int user;
   final bool reminderEnabled;
 
   Remedy({
@@ -29,7 +28,6 @@ class Remedy {
     required this.quantity,
     required this.daysOfWeek,
     required this.hour,
-    required this.user,
     required this.reminderEnabled,
   });
 
@@ -42,7 +40,6 @@ class Remedy {
       'days_of_week':
           daysOfWeek.map((day) => daysOfWeekBackendValues[day]).toList(),
       'hour': hour,
-      'user': user,
       'reminder_enabled': reminderEnabled,
     };
   }
@@ -61,7 +58,6 @@ class Remedy {
         ),
       ),
       hour: map['hour'],
-      user: map['user'],
       reminderEnabled: map['reminder_enabled'] ?? true,
     );
   }
