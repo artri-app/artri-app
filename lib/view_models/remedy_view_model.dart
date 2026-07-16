@@ -38,17 +38,29 @@ class RemedyViewModel extends ChangeNotifier {
         _todayIntakes = _todayIntakes
             .where((intake) => intake.remedyId != remedyId)
             .toList();
+        await _restoreTodayReminder(remedyId);
       } else {
         final created = await _remedyService.createIntake(
           remedyId,
           DateTime.now(),
         );
         _todayIntakes = [..._todayIntakes, created];
+        await _notificationService.cancelReminderForDay(remedyId, _today);
       }
       notifyListeners();
     } catch (e) {
       debugPrint('Erro ao atualizar registro de uso: $e');
     }
+  }
+
+  Future<void> _restoreTodayReminder(int remedyId) async {
+    final matches = _allRemedies.where((r) => r.id == remedyId);
+    if (matches.isEmpty) return;
+
+    final remedy = matches.first;
+    if (!remedy.reminderEnabled || !remedy.daysOfWeek.contains(_today)) return;
+
+    await _notificationService.scheduleRemedyReminders(remedy);
   }
 
   Future<void> fetchTodayIntakes() async {

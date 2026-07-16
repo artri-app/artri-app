@@ -38,6 +38,10 @@ class NotificationService {
     return remedyId * 10 + day.index;
   }
 
+  Future<void> cancelReminderForDay(int remedyId, DaysOfWeek day) async {
+    await _plugin.cancel(id: _notificationId(remedyId, day));
+  }
+
   tz.TZDateTime _nextInstanceOfDayTime(DaysOfWeek day, int hour, int minute) {
     final now = tz.TZDateTime.now(tz.local);
     var scheduled =
