@@ -2,12 +2,19 @@ import 'package:artriapp/utils/index.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecurityTokenService {
+  static final SecurityTokenService _instance = SecurityTokenService._();
+
+  factory SecurityTokenService() => _instance;
+
+  SecurityTokenService._();
+
   final _securityStorage = const FlutterSecureStorage();
   String _accessToken = '';
   String _refreshToken = '';
 
-  SecurityTokenService() {
-    _initTokens();
+  Future<void> init() async {
+    _accessToken = (await _securityStorage.read(key: SecurityToken.accessToken.name)) ?? '';
+    _refreshToken = (await _securityStorage.read(key: SecurityToken.refreshToken.name)) ?? '';
   }
 
   Future<void> saveToken(String token, SecurityToken key) async {
@@ -28,10 +35,5 @@ class SecurityTokenService {
 
   bool userLoggedIn() {
     return _accessToken.isNotEmpty && _refreshToken.isNotEmpty;
-  }
-
-  Future<void> _initTokens() async {
-    _accessToken = (await getToken(SecurityToken.accessToken)) ?? '';
-    _refreshToken = (await getToken(SecurityToken.refreshToken)) ?? '';
   }
 }
