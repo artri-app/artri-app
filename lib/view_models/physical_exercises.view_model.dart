@@ -13,10 +13,14 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
   ExerciseDifficulty? _currentDifficulty;
   List<ExerciseQueued> _queuedExercises = [];
   int? _currentExerciseIndex;
+  final Map<TrainingType, List<Exercise>> _customCategorySelections = {};
   List<ExerciseQueued> get exercises => _queuedExercises;
-  ExerciseQueued? get currentExercise => _currentExerciseIndex == null
-      ? null
-      : _queuedExercises[_currentExerciseIndex ?? 0];
+  ExerciseQueued? get currentExercise {
+    if (_currentExerciseIndex == null) return null;
+    if (_currentExerciseIndex! >= _queuedExercises.length) return null;
+
+    return _queuedExercises[_currentExerciseIndex!];
+  }
 
   final PhysicalExercisesService _physicalExercisesService;
 
@@ -34,6 +38,8 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
         return PhysicalExerciseRoutes.handExercises;
       case TrainingType.feet:
         return PhysicalExerciseRoutes.feetExercises;
+      case TrainingType.custom:
+        return PhysicalExerciseRoutes.customExercises;
       default:
         return PhysicalExerciseRoutes.customExercises;
     }
@@ -52,14 +58,31 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
 
     var currentPath = RouterHelper.getUriFromContext(context);
 
-    var exercises = await _physicalExercisesService.getExercisesFromTraining(
-      _currentTrainingType!,
-      _currentDifficulty!,
-    );
+    if (_currentTrainingType == TrainingType.custom) {
+      context.go('$currentPath/${difficulty.toString()}');
+      return;
+    }
 
-    _queuedExercises = _queueExercises(exercises);
+    try {
+      var exercises = await _physicalExercisesService.getExercisesFromTraining(
+        _currentTrainingType!,
+        _currentDifficulty!,
+      );
 
-    context.go('$currentPath/${difficulty.toString()}');
+      _queuedExercises = _queueExercises(exercises);
+
+      if (context.mounted) {
+        context.go('$currentPath/${difficulty.toString()}');
+      }
+    } catch (e) {
+      log('Error on getExercisesFromTraining, $e');
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Erro ao carregar os exercícios.')),
+        );
+      }
+    }
   }
 
   List<ExerciseQueued> _queueExercises(List<Exercise> exercises) {
@@ -116,6 +139,16 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
     context.go(getExerciseRoute(context));
   }
 
+  void startCustomRoutine(BuildContext context) {
+    final selectedExercises = CustomExerciseCategoryHelper.categories
+        .expand((category) => getCustomCategorySelection(category))
+        .toList();
+
+    _queuedExercises = _queueExercises(selectedExercises);
+
+    context.go(getExerciseRoute(context));
+  }
+
   void handleCompleteExercise(BuildContext context) {
     if (_currentExerciseIndex == null) {
       log('Error: No current exercise');
@@ -124,6 +157,28 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
 
     currentExercise!.markAsCompleted();
     handleNextExercise(context);
+  }
+
+  List<Exercise> getCustomCategorySelection(TrainingType category) {
+    return _customCategorySelections[category] ?? [];
+  }
+
+  void setCustomCategorySelection(
+    TrainingType category,
+    List<Exercise> exercises,
+  ) {
+    _customCategorySelections[category] = exercises;
+    notifyListeners();
+  }
+
+  Future<List<Exercise>> getCustomCategoryExercises(
+    TrainingType category,
+    ExerciseDifficulty difficulty,
+  ) {
+    return _physicalExercisesService.getExercisesForCustomCategory(
+      category,
+      difficulty,
+    );
   }
 
   String getExerciseRoute(BuildContext context) {

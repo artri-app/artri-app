@@ -1,4 +1,8 @@
 export 'exercise_tile.dart';
+export 'custom_exercise_category_tile.dart';
+export 'custom_exercise_category_selector.dart';
+export 'custom_exercise_selectable_tile.dart';
+export 'custom_exercise_routine_overview.dart';
 export 'physical_exercise_routine_overview.dart';
 export 'physical_exercise_home.dart';
 export 'level_exercise_selector.dart';
