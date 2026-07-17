@@ -27,36 +27,43 @@ class CustomOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: onPressed,
-      style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        side: BorderSide(
-          color: onPressed == null
-              ? disabledColor ?? Colors.grey
-              : color ?? Colors.blue,
-          width: borderWidth,
+    return SizedBox(
+      width: width,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: BorderSide(
+            color: onPressed == null
+                ? disabledColor ?? Colors.grey
+                : color ?? Colors.blue,
+            width: borderWidth,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          text.toUpperCase(),
-          style: textStyle?.copyWith(
-                color: onPressed == null
-                    ? disabledColor ?? Colors.grey
-                    : color ?? Colors.blue,
-              ) ??
-              GoogleFonts.montserrat(
-                color: onPressed == null
-                    ? disabledColor ?? Colors.grey
-                    : color ?? Colors.blue,
-                fontSize: fontSize,
-                fontWeight: FontWeight.w400,
-              ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 12,
+          ),
+          child: Text(
+            text.toUpperCase(),
+            textAlign: TextAlign.center,
+            style: textStyle?.copyWith(
+                  color: onPressed == null
+                      ? disabledColor ?? Colors.grey
+                      : color ?? Colors.blue,
+                ) ??
+                GoogleFonts.montserrat(
+                  color: onPressed == null
+                      ? disabledColor ?? Colors.grey
+                      : color ?? Colors.blue,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w400,
+                ),
+          ),
         ),
       ),
     );

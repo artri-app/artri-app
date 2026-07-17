@@ -53,3 +53,4 @@ linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux
 linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux
 macos/Flutter/GeneratedPluginRegistrant.swift
 linux/flutter/ephemeral/.plugin_symlinks/jni
+.zed/

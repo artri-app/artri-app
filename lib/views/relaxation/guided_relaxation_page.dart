@@ -54,7 +54,7 @@ class _GuidedRelaxationPageState extends State<GuidedRelaxationPage> {
 
     Training? guidedTraining;
     for (final training in trainings) {
-      if (training.name.toLowerCase().contains('relaxamento')) {
+      if (training.name.toLowerCase().contains('relaxamento e alongamento')) {
         guidedTraining = training;
         break;
       }
