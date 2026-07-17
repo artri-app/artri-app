@@ -6,33 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class PhysicalExerciseRoutineOverview extends StatefulWidget {
+class PhysicalExerciseRoutineOverview extends StatelessWidget {
   const PhysicalExerciseRoutineOverview({super.key});
 
-  @override
-  State<PhysicalExerciseRoutineOverview> createState() =>
-      _PhysicalExerciseRoutineOverviewState();
-}
-
-class _PhysicalExerciseRoutineOverviewState
-    extends State<PhysicalExerciseRoutineOverview> {
-  bool orientationsOpen = false;
-
-  void handleStartButton(
+  Future<void> handleStartButton(
     BuildContext context,
     PhysicalExercisesViewModel viewModel,
-  ) {
-    if (orientationsOpen) {
-      setState(() => orientationsOpen = false);
-      viewModel.handleStartExercises(context);
-      return;
-    }
-
-    setState(() => orientationsOpen = true);
-    showDialog(
+  ) async {
+    bool startExercises = await showDialog(
       builder: (context) => OrientationsDialog(),
       context: context,
     );
+
+    if (startExercises) viewModel.handleStartExercises(context);
   }
 
   @override
@@ -46,6 +32,19 @@ class _PhysicalExerciseRoutineOverviewState
           mainAxisSize: MainAxisSize.min,
           spacing: 16,
           children: [
+            Text(
+              'Resumo da sessão',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.montserrat(
+                fontSize: 24,
+                color: AppColors.darkGreen,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Abaixo está um resumo da sua sessão de exercícios, para iniciar clique no botão abaixo, para ler as instruções antes de iniciar os exercícios.',
+              style: GoogleFonts.montserrat(fontSize: 20),
+            ),
             Flexible(
               fit: FlexFit.tight,
               child: Scrollbar(
@@ -65,7 +64,7 @@ class _PhysicalExerciseRoutineOverviewState
               onPressed: () => handleStartButton(context, viewModel),
               gradientColors: AppGradients.greenGradient,
               textStyle: GoogleFonts.montserrat(
-                fontSize: 30,
+                fontSize: 24,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),

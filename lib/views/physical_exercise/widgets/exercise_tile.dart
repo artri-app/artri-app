@@ -22,8 +22,8 @@ class ExerciseTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
-            Icons.play_arrow,
-            color: Colors.white,
+            Icons.fitness_center,
+            color: AppColors.darkGreen,
             size: width * 0.1,
           ),
         ),
@@ -31,7 +31,7 @@ class ExerciseTile extends StatelessWidget {
           flex: 1,
           child: Text(
             exerciseName,
-            style: GoogleFonts.montserrat(fontSize: 32),
+            style: GoogleFonts.montserrat(fontSize: 22),
             overflow: TextOverflow.fade,
           ),
         ),
