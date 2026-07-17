@@ -1,7 +1,7 @@
 import 'package:artriapp/utils/app_colors.dart';
+import 'package:artriapp/utils/helpers/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class RelaxationTile extends StatelessWidget {
   final String title;
@@ -14,13 +14,6 @@ class RelaxationTile extends StatelessWidget {
     required this.videoUrl,
     this.onTap,
   });
-
-  // Extracts the YouTube video ID from the URL and constructs the thumbnail URL.
-  String _getThumbnail(String url) {
-    final videoId =
-        YoutubePlayerController.convertUrlToId(url) ?? '';
-    return 'https://img.youtube.com/vi/$videoId/0.jpg';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +31,7 @@ class RelaxationTile extends StatelessWidget {
                 left: Radius.circular(16),
               ),
               child: Image.network(
-                _getThumbnail(videoUrl),
+                VideoHelper.getYoutubeVideoThumbnail(videoUrl),
                 width: 120,
                 height: 80,
                 fit: BoxFit.cover,

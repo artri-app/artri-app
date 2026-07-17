@@ -1,7 +1,7 @@
 import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/views/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class LevelSelectorDialog extends StatelessWidget {
   const LevelSelectorDialog({
@@ -10,15 +10,6 @@ class LevelSelectorDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var videoController = YoutubePlayerController(
-      initialVideoId: 'apuX_N3jpw0',
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-        controlsVisibleAtStart: true,
-        disableDragSeek: true,
-      ),
-    );
-
     return Dialog(
       insetPadding: EdgeInsets.fromLTRB(
         16,
@@ -69,7 +60,9 @@ class LevelSelectorDialog extends StatelessWidget {
                         ],
                       ),
                     ),
-                    YoutubePlayer(controller: videoController),
+                    VideoPlayerWidget(
+                      videoUrl: 'https://www.youtube.com/watch?v=apuX_N3jpw0',
+                    ),
                     RichText(
                       text: TextSpan(
                         style: GoogleFonts.montserrat(
