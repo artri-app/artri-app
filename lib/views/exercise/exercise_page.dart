@@ -1,6 +1,5 @@
 import 'package:artriapp/routes/index.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class ExercisePage extends StatelessWidget {
@@ -10,13 +9,13 @@ class ExercisePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        spacing: 16,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ElevatedButton(
             onPressed: () => context.go(ExerciseOptionsRoutes.physicalExercise),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
-              //padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               fixedSize: const Size(300, 56),
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
@@ -32,12 +31,10 @@ class ExercisePage extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(16),
           ElevatedButton(
             onPressed: () => context.push(ExerciseOptionsRoutes.relaxation),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
-              //padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               fixedSize: const Size(300, 56),
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
@@ -53,13 +50,11 @@ class ExercisePage extends StatelessWidget {
               ),
             ),
           ),
-          const Gap(16),
           ElevatedButton(
             onPressed: () =>
                 context.push(ExerciseOptionsRoutes.infoAtividadeFisica),
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFF03A64A),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               fixedSize: const Size(300, 72),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
@@ -71,7 +66,7 @@ class ExercisePage extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.visible,
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 24,
                 color: Colors.white,
                 height: 1.25,
               ),
