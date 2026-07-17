@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class CustomScaleSelectorWidget extends StatefulWidget {
   final int? initialValue;
   final void Function(int selectedLevel)? onChanged;
+  final String minLabel;
+  final String maxLabel;
 
   const CustomScaleSelectorWidget({
     super.key,
     this.initialValue,
     this.onChanged,
+    this.minLabel = '',
+    this.maxLabel = '',
   });
 
   @override
@@ -59,6 +63,29 @@ class _CustomScaleSelectorWidgetState extends State<CustomScaleSelectorWidget> {
                 ),
               ),
             );
+          }),
+        ),
+        Row(
+          children: List.generate(11, (index) {
+            if (index == 0) {
+              return Expanded(
+                child: Text(
+                  widget.minLabel,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }
+
+            if (index == 10) {
+              return Expanded(
+                child: Text(
+                  widget.maxLabel,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }
+
+            return const Expanded(child: SizedBox());
           }),
         ),
       ],
