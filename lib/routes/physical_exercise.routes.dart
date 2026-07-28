@@ -1,5 +1,6 @@
 import 'package:artriapp/models/index.dart';
 import 'package:artriapp/routes/index.dart';
+import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/index.dart';
@@ -98,7 +99,24 @@ class PhysicalExerciseRoutes implements RoutesSession {
                 GoRoute(
                   path: ':difficulty',
                   builder: (context, state) =>
-                      const PhysicalExerciseRoutineOverview(),
+                      const CustomExerciseRoutineOverview(),
+                  routes: [
+                    GoRoute(
+                      path: 'category/:category',
+                      builder: (context, state) =>
+                          CustomExerciseCategorySelector(
+                        category: TrainingType.values.byName(
+                          state.pathParameters['category']!,
+                        ),
+                      ),
+                    ),
+                    GoRoute(
+                      path: ':exerciseId',
+                      builder: (context, state) => ExerciseRoutineStepView(
+                        key: ValueKey(state.pathParameters['exerciseId']),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
