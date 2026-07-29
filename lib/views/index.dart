@@ -21,3 +21,6 @@ export 'widgets/index.dart';
 export 'relaxation/index.dart';
 export 'evolution/evolution_page.dart';
 export 'remedy/remedy_page.dart';
+export 'custom_routine/custom_routine_overview_page.dart';
+export 'custom_routine/category_selection_view.dart';
+export 'custom_routine/custom_routine_advanced_page.dart';

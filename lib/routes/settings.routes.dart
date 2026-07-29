@@ -3,8 +3,8 @@ import 'package:artriapp/views/index.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class SettingsRoutes implements RoutesSession {
-  static const String changeEmail = 'configuration/change-email';
-  static const String changePassword = 'configuration/change-password';
+  static const String changeEmail = '/configuration/change-email';
+  static const String changePassword = '/configuration/change-password';
 
   static List<RouteBase> getGoRoutes() => [
         GoRoute(

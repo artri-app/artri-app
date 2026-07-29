@@ -3,7 +3,7 @@ import 'package:artriapp/utils/enums/input_text_type.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InputText extends StatelessWidget {
+class InputText extends StatefulWidget {
   final String placeholder;
   final String label;
   final String value;
@@ -20,15 +20,40 @@ class InputText extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController controller = TextEditingController(text: value);
+  State<InputText> createState() => _InputTextState();
+}
 
+class _InputTextState extends State<InputText> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.value);
+  }
+
+  @override
+  void didUpdateWidget(InputText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value != _controller.text) {
+      _controller.text = widget.value;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         FractionallySizedBox(
           widthFactor: 0.85,
           child: Text(
-            label,
+            widget.label,
             style: GoogleFonts.jetBrainsMono(
               color: const Color(0xff737373),
               fontSize: 24,
@@ -37,14 +62,14 @@ class InputText extends StatelessWidget {
           ),
         ),
         TextField(
-          controller: controller,
-          obscureText: type == InputTextType.password,
-          onChanged: (value) => onValueChanged?.call(value),
+          controller: _controller,
+          obscureText: widget.type == InputTextType.password,
+          onChanged: (value) => widget.onValueChanged?.call(value),
           textAlign: TextAlign.center,
           style: GoogleFonts.jetBrainsMono(fontSize: 20),
-          onTapUpOutside: (_) => {
-            onValueChanged?.call(controller.text),
-            FocusManager.instance.primaryFocus?.unfocus(),
+          onTapUpOutside: (_) {
+            widget.onValueChanged?.call(_controller.text);
+            FocusManager.instance.primaryFocus?.unfocus();
           },
           decoration: InputDecoration(
             labelStyle: GoogleFonts.jetBrainsMono(
@@ -53,7 +78,7 @@ class InputText extends StatelessWidget {
             ),
             label: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text(placeholder.toUpperCase())],
+              children: [Text(widget.placeholder.toUpperCase())],
             ),
             floatingLabelBehavior: FloatingLabelBehavior.never,
             enabledBorder: const CustomInputBorder(

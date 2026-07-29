@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomSolidButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final List<Color>? gradientColors;
   final double fontSize;
   final double borderRadius;
@@ -15,7 +15,7 @@ class CustomSolidButton extends StatelessWidget {
   const CustomSolidButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.gradientColors,
     this.fontSize = 30.0,
     this.borderRadius = 30.0,
