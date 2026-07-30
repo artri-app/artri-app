@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:provider/provider.dart';
+import 'package:health/health.dart';
 
 import 'package:artriapp/database/app_database.dart';
 import 'package:artriapp/repositories/health_repository.dart';
@@ -130,8 +131,8 @@ class _MockProvider implements IHealthDataProvider {
   Future<void> installHealthConnect() async {}
 
   @override
-  Future<List> fetchData({
-    required List types,
+  Future<List<HealthDataPoint>> fetchData({
+    required List<HealthDataType> types,
     required DateTime startTime,
     required DateTime endTime,
   }) async {
