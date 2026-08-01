@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:artriapp/models/index.dart';
@@ -6,10 +7,13 @@ import 'package:artriapp/utils/index.dart';
 import 'package:http/http.dart' as http;
 
 class PhysicalExercisesService {
+  static const _timeout = Duration(seconds: 15);
   final String _baseUrl = Environment.apiUrl;
 
   Future<List<Training>> getTrainings() async {
-    final response = await http.get(Uri.parse('$_baseUrl/trainings'));
+    final response = await http
+        .get(Uri.parse('$_baseUrl/trainings'))
+        .timeout(_timeout);
 
     return List<Training>.from(
       jsonDecode(response.body).map((training) => Training.fromJson(training)),
@@ -17,7 +21,9 @@ class PhysicalExercisesService {
   }
 
   Future<List<Exercise>> getExercises() async {
-    final response = await http.get(Uri.parse('$_baseUrl/exercises'));
+    final response = await http
+        .get(Uri.parse('$_baseUrl/exercises'))
+        .timeout(_timeout);
 
     return List<Exercise>.from(
       jsonDecode(response.body).map((exercise) => Exercise.fromJson(exercise)),

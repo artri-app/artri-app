@@ -1,44 +1,68 @@
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ChangeEmailPage extends StatelessWidget {
   const ChangeEmailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const CircleAvatar(
-              radius: 64,
-              backgroundColor: AppColors.darkGreen,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton.outlined(
+            onPressed: () => context.pop(),
+            style: ButtonStyle(
+              side: WidgetStatePropertyAll(
+                const BorderSide(color: AppColors.darkGreen, width: 2),
+              ),
             ),
-            const SizedBox(height: 16),
-            const Text(
-              'Alterar E-mail',
-              style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.darkGreen,
+              size: 24,
             ),
-            const SizedBox(height: 48),
-            const Text(
-              'Insira seu novo e-mail de acesso',
-              style: TextStyle(fontSize: 24, color: Colors.grey),
-            ),
-            const SizedBox(height: 16),
-            const InputText(placeholder: 'E-mail'),
-            const SizedBox(height: 16),
-            CustomSolidButton(
-              text: 'Enviar',
-              onPressed: () {
-                // Do something
-              },
-              gradientColors: AppGradients.greenGradient,
-            ),
-          ],
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircleAvatar(
+                radius: 64,
+                backgroundColor: AppColors.darkGreen,
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Alterar E-mail',
+                style: TextStyle(fontSize: 32, color: Color(0xFF217A84)),
+              ),
+              const SizedBox(height: 48),
+              const Text(
+                'Insira seu novo e-mail de acesso',
+                style: TextStyle(fontSize: 24, color: Colors.grey),
+              ),
+              const SizedBox(height: 16),
+              const InputText(placeholder: 'E-mail'),
+              const SizedBox(height: 16),
+              CustomSolidButton(
+                text: 'Enviar',
+                onPressed: () {
+                  // Do something
+                },
+                gradientColors: AppGradients.greenGradient,
+              ),
+            ],
+          ),
         ),
       ),
     );

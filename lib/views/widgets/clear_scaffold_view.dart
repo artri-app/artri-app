@@ -26,7 +26,7 @@ class ClearScaffoldView extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton.outlined(
-            onPressed: () => context.canPop() ? context.pop() : context.go(''),
+            onPressed: () => context.canPop() ? context.pop() : context.go('/exercise'),
             style: ButtonStyle(
               side: WidgetStatePropertyAll(
                 const BorderSide(color: AppColors.darkGreen, width: 2),

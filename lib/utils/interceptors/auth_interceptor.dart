@@ -10,8 +10,8 @@ class AuthInterceptor implements InterceptorContract {
   AuthInterceptor(this._securityTokenService);
 
   @override
-  FutureOr<BaseRequest> interceptRequest({required BaseRequest request}) {
-    var accessToken = _securityTokenService.getToken(SecurityToken.accessToken);
+  FutureOr<BaseRequest> interceptRequest({required BaseRequest request}) async {
+    var accessToken = await _securityTokenService.getToken(SecurityToken.accessToken);
 
     request.headers['Authorization'] = 'Bearer $accessToken';
 

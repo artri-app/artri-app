@@ -3,6 +3,8 @@ export 'env_variables.dart';
 export 'app_colors.dart';
 export 'router_keys.dart';
 export 'app_gradients.dart';
+export 'reminder_scheduler.dart';
+export 'exceptions.dart';
 
 export 'enums/days_of_week.dart';
 export 'enums/exercise_difficulty.dart';
