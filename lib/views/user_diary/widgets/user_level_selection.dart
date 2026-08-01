@@ -13,6 +13,8 @@ class UserLevelSelection extends StatelessWidget {
   final ValueChanged<int>? onLevelSelected;
   final bool showButtons;
   final String? tooltipMessage;
+  final String minLabel;
+  final String maxLabel;
 
   const UserLevelSelection({
     super.key,
@@ -23,6 +25,8 @@ class UserLevelSelection extends StatelessWidget {
     this.onLevelSelected,
     this.hintDescription,
     this.tooltipMessage,
+    this.minLabel = '',
+    this.maxLabel = '',
   });
 
   @override
@@ -64,6 +68,8 @@ class UserLevelSelection extends StatelessWidget {
                 onLevelSelected?.call(value);
               },
               initialValue: selectedLevel,
+              minLabel: minLabel,
+              maxLabel: maxLabel,
             ),
           ],
         ),
