@@ -29,7 +29,6 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         showControls: false,
         showFullscreenButton: false,
         showVideoAnnotations: false,
-        privacyEnhancedMode: true,
         strictRelatedVideos: true,
       ),
     );

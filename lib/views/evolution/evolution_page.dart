@@ -1,7 +1,10 @@
-import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/models/health_metric_type.dart';
+import 'package:artriapp/utils/app_colors.dart';
+import 'package:artriapp/view_models/health_view_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class EvolutionPage extends StatefulWidget {
   const EvolutionPage({super.key});
@@ -11,9 +14,20 @@ class EvolutionPage extends StatefulWidget {
 }
 
 class _EvolutionPageState extends State<EvolutionPage> {
-  // Controle de qual métrica exibir para não poluir o gráfico
   bool showPain = true;
   bool showFatigue = false;
+  bool showSteps = false;
+  bool showSleep = false;
+  bool showHeartRate = false;
+  bool showEnergy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<HealthViewModel>().initialize();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,37 +52,73 @@ class _EvolutionPageState extends State<EvolutionPage> {
             color: Colors.black54,
           ),
         ),
-        const SizedBox(height: 24),
-        
-        // Filtros para o usuário escolher o que ver
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FilterChip(
-              label: const Text('Dor'),
-              selected: showPain,
-              selectedColor: const Color(0xFFAE263D).withOpacity(0.3),
-              checkmarkColor: const Color(0xFFAE263D),
-              onSelected: (val) => setState(() => showPain = val),
-            ),
-            const SizedBox(width: 12),
-            FilterChip(
-              label: const Text('Fadiga'),
-              selected: showFatigue,
-              selectedColor: AppColors.darkGreen.withOpacity(0.3),
-              checkmarkColor: AppColors.darkGreen,
-              onSelected: (val) => setState(() => showFatigue = val),
-            ),
-          ],
+        const SizedBox(height: 16),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
+            children: [
+              FilterChip(
+                label: const Text('Dor'),
+                selected: showPain,
+                selectedColor: const Color(0xFFAE263D).withOpacity(0.3),
+                checkmarkColor: const Color(0xFFAE263D),
+                onSelected: (val) => setState(() => showPain = val),
+              ),
+              const SizedBox(width: 8),
+              FilterChip(
+                label: const Text('Fadiga'),
+                selected: showFatigue,
+                selectedColor: AppColors.darkGreen.withOpacity(0.3),
+                checkmarkColor: AppColors.darkGreen,
+                onSelected: (val) => setState(() => showFatigue = val),
+              ),
+              const SizedBox(width: 8),
+              FilterChip(
+                label: const Text('Passos'),
+                selected: showSteps,
+                selectedColor: AppColors.mediumGreen.withOpacity(0.3),
+                checkmarkColor: AppColors.mediumGreen,
+                onSelected: (val) => setState(() => showSteps = val),
+              ),
+              const SizedBox(width: 8),
+              FilterChip(
+                label: const Text('Sono'),
+                selected: showSleep,
+                selectedColor: const Color(0xFF026873).withOpacity(0.3),
+                checkmarkColor: const Color(0xFF026873),
+                onSelected: (val) => setState(() => showSleep = val),
+              ),
+              const SizedBox(width: 8),
+              FilterChip(
+                label: const Text('Freq. Cardíaca'),
+                selected: showHeartRate,
+                selectedColor: const Color(0xFFAE263D).withOpacity(0.15),
+                checkmarkColor: const Color(0xFFAE263D),
+                onSelected: (val) => setState(() => showHeartRate = val),
+              ),
+              const SizedBox(width: 8),
+              FilterChip(
+                label: const Text('Energia'),
+                selected: showEnergy,
+                selectedColor: AppColors.mediumGreen.withOpacity(0.15),
+                checkmarkColor: AppColors.mediumGreen,
+                onSelected: (val) => setState(() => showEnergy = val),
+              ),
+            ],
+          ),
         ),
-        const SizedBox(height: 32),
-
-        // O Gráfico usando fl_chart
+        const SizedBox(height: 24),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
-            child: LineChart(
-              _mainData(),
+            child: Consumer<HealthViewModel>(
+              builder: (context, vm, _) {
+                if (vm.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return LineChart(mainData(vm));
+              },
             ),
           ),
         ),
@@ -76,12 +126,75 @@ class _EvolutionPageState extends State<EvolutionPage> {
     );
   }
 
-  LineChartData _mainData() {
+  LineChartData mainData(HealthViewModel vm) {
+    final lines = <LineChartBarData>[
+      if (showPain)
+        LineChartBarData(
+          spots: [
+            for (int i = 0; i < 7; i++)
+              FlSpot(i.toDouble(), (8 - i).toDouble()),
+          ],
+          isCurved: true,
+          color: const Color(0xFFAE263D),
+          barWidth: 4,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(show: true),
+          belowBarData: BarAreaData(
+            show: true,
+            color: const Color(0xFFAE263D).withOpacity(0.15),
+          ),
+        ),
+      if (showFatigue)
+        LineChartBarData(
+          spots: [
+            for (int i = 0; i < 7; i++)
+              FlSpot(i.toDouble(), (5 - i % 3).toDouble()),
+          ],
+          isCurved: true,
+          color: AppColors.darkGreen,
+          barWidth: 4,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(show: true),
+          belowBarData: BarAreaData(
+            show: true,
+            color: AppColors.darkGreenSurface.withOpacity(0.3),
+          ),
+        ),
+      if (showSteps)
+        _buildHealthDataLine(
+          vm,
+          HealthMetricType.steps,
+          const Color(0xFF04BF8A),
+          'Passos',
+        ),
+      if (showSleep)
+        _buildHealthDataLine(
+          vm,
+          HealthMetricType.sleep,
+          const Color(0xFF026873),
+          'Sono (h)',
+        ),
+      if (showHeartRate)
+        _buildHealthDataLine(
+          vm,
+          HealthMetricType.heartRate,
+          const Color(0xFFAE263D).withOpacity(0.6),
+          'Freq. Cardíaca (bpm)',
+        ),
+      if (showEnergy)
+        _buildHealthDataLine(
+          vm,
+          HealthMetricType.activeEnergy,
+          const Color(0xFF6EFF00),
+          'Energia (kcal)',
+        ),
+    ];
+
     return LineChartData(
       gridData: FlGridData(
         show: true,
         drawVerticalLine: false,
-        horizontalInterval: 2,
+        horizontalInterval: _calculateInterval(lines),
         getDrawingHorizontalLine: (value) {
           return const FlLine(
             color: AppColors.neutral,
@@ -104,98 +217,100 @@ class _EvolutionPageState extends State<EvolutionPage> {
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            interval: 2,
+            interval: _calculateInterval(lines),
             getTitlesWidget: leftTitleWidgets,
             reservedSize: 42,
           ),
         ),
       ),
-      borderData: FlBorderData(
-        show: false, // Sem bordas ao redor do gráfico para um visual mais limpo
-      ),
+      borderData: FlBorderData(show: false),
       minX: 0,
-      maxX: 6, // 7 dias (0 a 6)
+      maxX: 6,
       minY: 0,
-      maxY: 10, // Escala de 0 a 10 usada no ScaleSelector
-      lineBarsData: [
-        if (showPain)
-          LineChartBarData(
-            spots: const [
-              FlSpot(0, 8), // (Dia, Nível de dor)
-              FlSpot(1, 6),
-              FlSpot(2, 7),
-              FlSpot(3, 5),
-              FlSpot(4, 4),
-              FlSpot(5, 6),
-              FlSpot(6, 3),
-            ],
-            isCurved: true, // Deixa a linha suave
-            color: const Color(0xFFAE263D), // Vermelho para representar dor
-            barWidth: 4,
-            isStrokeCapRound: true,
-            dotData: const FlDotData(show: true),
-            belowBarData: BarAreaData(
-              show: true,
-              color: const Color(0xFFAE263D).withOpacity(0.15),
-            ),
-          ),
-        if (showFatigue)
-          LineChartBarData(
-            spots: const [
-              FlSpot(0, 4),
-              FlSpot(1, 5),
-              FlSpot(2, 5),
-              FlSpot(3, 3),
-              FlSpot(4, 6),
-              FlSpot(5, 8),
-              FlSpot(6, 4),
-            ],
-            isCurved: true,
-            color: AppColors.darkGreen, // Cor do tema para fadiga
-            barWidth: 4,
-            isStrokeCapRound: true,
-            dotData: const FlDotData(show: true),
-            belowBarData: BarAreaData(
-              show: true,
-              color: AppColors.darkGreenSurface.withOpacity(0.3),
-            ),
-          ),
-      ],
+      maxY: _calculateMaxY(lines),
+      lineBarsData: lines,
     );
   }
 
-  // Títulos do Eixo X (Dias)
+  double _calculateMaxY(List<LineChartBarData> lines) {
+    double maxY = 10;
+    for (final line in lines) {
+      for (final spot in line.spots) {
+        if (spot.y > maxY) maxY = spot.y;
+      }
+    }
+    return maxY > 0 ? maxY * 1.1 : 10;
+  }
+
+  double _calculateInterval(List<LineChartBarData> lines) {
+    final maxY = _calculateMaxY(lines);
+    if (maxY <= 10) return 2;
+    if (maxY <= 50) return 10;
+    if (maxY <= 100) return 20;
+    return (maxY / 5).ceilToDouble();
+  }
+
+  LineChartBarData _buildHealthDataLine(
+    HealthViewModel vm,
+    HealthMetricType type,
+    Color color,
+    String label,
+  ) {
+    final dailyAgg = vm.getDailyAggregate(type);
+    final sevenDaysAgo = DateTime.now().subtract(const Duration(days: 6));
+
+    final spots = <FlSpot>[];
+    for (int i = 0; i < 7; i++) {
+      final day = DateTime(
+        sevenDaysAgo.year,
+        sevenDaysAgo.month,
+        sevenDaysAgo.day + i,
+      );
+      final value = dailyAgg[day] ?? 0;
+      spots.add(FlSpot(i.toDouble(), value));
+    }
+
+    return LineChartBarData(
+      spots: spots,
+      isCurved: true,
+      color: color,
+      barWidth: 3,
+      isStrokeCapRound: true,
+      dotData: FlDotData(show: spots.any((s) => s.y > 0)),
+      belowBarData: BarAreaData(
+        show: true,
+        color: color.withOpacity(0.1),
+      ),
+    );
+  }
+
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    var style = GoogleFonts.montserrat(
+    final style = GoogleFonts.montserrat(
       fontWeight: FontWeight.w500,
       fontSize: 12,
       color: Colors.black54,
     );
-    Widget text;
-    switch (value.toInt()) {
-      case 0: text = Text('Seg', style: style); break;
-      case 1: text = Text('Ter', style: style); break;
-      case 2: text = Text('Qua', style: style); break;
-      case 3: text = Text('Qui', style: style); break;
-      case 4: text = Text('Sex', style: style); break;
-      case 5: text = Text('Sáb', style: style); break;
-      case 6: text = Text('Dom', style: style); break;
-      default: text = Text('', style: style); break;
-    }
+    final days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+    final text = value.toInt() >= 0 && value.toInt() < 7
+        ? days[value.toInt()]
+        : '';
 
     return SideTitleWidget(
       meta: meta,
-      child: text,
+      child: Text(text, style: style),
     );
   }
 
-  // Títulos do Eixo Y (Escala 0 a 10)
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    var style = GoogleFonts.montserrat(
+    final style = GoogleFonts.montserrat(
       fontWeight: FontWeight.w500,
       fontSize: 14,
       color: Colors.black54,
     );
-    return Text(value.toInt().toString(), style: style, textAlign: TextAlign.center);
+    return Text(
+      value.toInt().toString(),
+      style: style,
+      textAlign: TextAlign.center,
+    );
   }
 }

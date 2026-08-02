@@ -139,4 +139,10 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
 
     return '$cleanedPath/${currentExercise!.id}';
   }
+
+  void setCustomRoutine(List<Exercise> exercises) {
+    _queuedExercises = _queueExercises(exercises);
+    _currentExerciseIndex = 0;
+    notifyListeners();
+  }
 }

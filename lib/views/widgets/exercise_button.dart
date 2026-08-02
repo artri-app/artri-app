@@ -11,6 +11,7 @@ class ExerciseButton extends StatelessWidget {
   final ExerciseButtonSide side;
   final List<Color>? gradientColors;
   final Color? color;
+  final double? fontSize;
 
   const ExerciseButton({
     super.key,
@@ -20,6 +21,7 @@ class ExerciseButton extends StatelessWidget {
     this.side = ExerciseButtonSide.right,
     this.gradientColors,
     this.color,
+    this.fontSize,
   });
 
   @override
@@ -75,9 +77,7 @@ class ExerciseButton extends StatelessWidget {
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
 
-                      // mantém o estilo original,
-                      // mas reduz um pouco em telas pequenas
-                      fontSize: isSmallScreen ? 22 : 28,
+                      fontSize: fontSize ?? (isSmallScreen ? 22 : 28),
                     ),
                   ),
                 ),
