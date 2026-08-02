@@ -5,7 +5,6 @@ import 'package:artriapp/repositories/health_repository.dart';
 import 'package:artriapp/services/health_sync_service.dart';
 import 'package:artriapp/view_models/health_view_model.dart';
 import 'package:artriapp/views/evolution/evolution_page.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';

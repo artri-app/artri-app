@@ -1,6 +1,5 @@
 import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/index.dart';
-import 'package:artriapp/utils/helpers/index.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:flutter/material.dart';
@@ -52,14 +51,12 @@ class PhysicalExerciseHome extends StatelessWidget {
                 ),
               ),
               ExerciseButton(
-                onClick: () =>
-                    context.push('/custom_routine/level_select'),
+                onClick: () => context.push('/custom_routine/level_select'),
                 gradientColors: AppGradients.greenToNeutral,
                 buttonText: 'Personalizados',
               ),
               ExerciseButton(
-                onClick: () =>
-                    context.push('/custom_routine/advanced'),
+                onClick: () => context.push('/custom_routine/advanced'),
                 gradientColors: AppGradients.greenToNeutral,
                 buttonText: 'Treino Livre',
               ),

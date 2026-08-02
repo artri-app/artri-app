@@ -10,16 +10,8 @@ class ExerciseRoutineStepView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PhysicalExercisesViewModel>(
       builder: (context, viewModel, child) {
-        final exercise = viewModel.currentExercise;
-        if (exercise == null) return const SizedBox.shrink();
+        var exercise = viewModel.currentExercise;
 
-        final videoController = YoutubePlayerController.fromVideoId(
-          videoId: YoutubePlayerController.convertUrlToId(
-                exercise.tutorialLink,
-              ) ??
-              'IxX_QHay02M',
-          autoPlay: false,
-        );
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 50.0),
@@ -27,7 +19,7 @@ class ExerciseRoutineStepView extends StatelessWidget {
               spacing: 16,
               children: [
                 VideoPlayerWidget(
-                  videoUrl: exercise.tutorialLink,
+                  videoUrl: exercise!.tutorialLink,
                 ),
                 SessionTitle(title: exercise.name.split('-').first.trim()),
                 ExerciseSetProperties(

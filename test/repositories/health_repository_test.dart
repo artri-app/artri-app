@@ -1,6 +1,5 @@
 import 'package:artriapp/models/health_metric_type.dart';
 import 'package:artriapp/models/local_health_metrics.dart';
-import 'package:artriapp/repositories/health_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/mock_health_repository.dart';

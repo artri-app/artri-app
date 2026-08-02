@@ -1,6 +1,5 @@
 import 'package:artriapp/models/index.dart';
 import 'package:artriapp/services/physical_exercises_service.dart';
-import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/index.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +28,10 @@ Widget _createTestApp({
     home: Scaffold(
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<CustomRoutineAdvancedViewModel>.value(value: advancedVM),
-          ChangeNotifierProvider<PhysicalExercisesViewModel>.value(value: physicalVM),
+          ChangeNotifierProvider<CustomRoutineAdvancedViewModel>.value(
+              value: advancedVM),
+          ChangeNotifierProvider<PhysicalExercisesViewModel>.value(
+              value: physicalVM),
         ],
         child: child,
       ),
@@ -53,7 +54,8 @@ void main() {
   });
 
   group('CustomRoutineAdvancedPage Tests', () {
-    testWidgets('renders all default components and all exercises initially', (tester) async {
+    testWidgets('renders all default components and all exercises initially',
+        (tester) async {
       await tester.pumpWidget(
         _createTestApp(
           advancedVM: advancedVM,
@@ -81,17 +83,21 @@ void main() {
 
       // Verify some default exercises from different categories are visible
       expect(find.text('Círculos com a perna'), findsOneWidget); // Mobilidade
-      expect(find.text('Polichinelos adaptados'), findsOneWidget); // Aquecimento
-      expect(find.text('Alongamento de posterior de coxa'), findsOneWidget); // Alongamento
+      expect(
+          find.text('Polichinelos adaptados'), findsOneWidget); // Aquecimento
+      expect(find.text('Alongamento de posterior de coxa'),
+          findsOneWidget); // Alongamento
 
       // Start button is disabled initially with count 0
-      final startButtonFinder = find.widgetWithText(CustomSolidButton, 'INICIAR TREINO (0)');
+      final startButtonFinder =
+          find.widgetWithText(CustomSolidButton, 'INICIAR TREINO (0)');
       expect(startButtonFinder, findsOneWidget);
       final startButton = tester.widget<CustomSolidButton>(startButtonFinder);
       expect(startButton.onPressed, isNull);
     });
 
-    testWidgets('filtering exercises by search query text input', (tester) async {
+    testWidgets('filtering exercises by search query text input',
+        (tester) async {
       await tester.pumpWidget(
         _createTestApp(
           advancedVM: advancedVM,
@@ -133,7 +139,9 @@ void main() {
       expect(find.text('Polichinelos adaptados'), findsNothing);
     });
 
-    testWidgets('toggling checkboxes increments selection count and activates button', (tester) async {
+    testWidgets(
+        'toggling checkboxes increments selection count and activates button',
+        (tester) async {
       await tester.pumpWidget(
         _createTestApp(
           advancedVM: advancedVM,
@@ -161,7 +169,8 @@ void main() {
       expect(advancedVM.isExerciseSelected(2001), isTrue);
 
       // Verify button now displays "INICIAR TREINO (2)" and is active
-      final startButtonFinder = find.widgetWithText(CustomSolidButton, 'INICIAR TREINO (2)');
+      final startButtonFinder =
+          find.widgetWithText(CustomSolidButton, 'INICIAR TREINO (2)');
       expect(startButtonFinder, findsOneWidget);
       final startButton = tester.widget<CustomSolidButton>(startButtonFinder);
       expect(startButton.onPressed, isNotNull);

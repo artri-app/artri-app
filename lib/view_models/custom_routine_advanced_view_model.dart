@@ -57,9 +57,11 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
           final catName = _categoryNameMap[cat] ?? cat.toUpperCase();
 
           // Find matching trainings that contain both "PERSONALIDADO" and category name
-          final matchingTrainings = trainings.where((t) =>
-              t.name.toUpperCase().contains('PERSONALIDADO') &&
-              t.name.toUpperCase().contains(catName));
+          final matchingTrainings = trainings.where(
+            (t) =>
+                t.name.toUpperCase().contains('PERSONALIDADO') &&
+                t.name.toUpperCase().contains(catName),
+          );
 
           final categoryExercises = <Exercise>[];
 
@@ -69,8 +71,7 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
                 (e) => e.id == exerciseId,
                 orElse: () => null as dynamic,
               );
-              if (exercise != null &&
-                  !categoryExercises.any((e) => e.id == exercise.id)) {
+              if (!categoryExercises.any((e) => e.id == exercise.id)) {
                 categoryExercises.add(exercise);
               }
             }
@@ -80,7 +81,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
         }
       }
     } catch (e) {
-      debugPrint('[CustomRoutineAdvancedViewModel] Failed to fetch catalog: $e');
+      debugPrint(
+          '[CustomRoutineAdvancedViewModel] Failed to fetch catalog: $e');
     } finally {
       isLoading = false;
       notifyListeners();
@@ -162,7 +164,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 3001,
         name: 'Agachamento com cadeira',
-        description: 'Sente e levante de uma cadeira firme de forma controlada.',
+        description:
+            'Sente e levante de uma cadeira firme de forma controlada.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.easy,
         details: ExerciseDetails(rest: 20, reps: 10, sets: 3, duration: null),
@@ -170,7 +173,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 3002,
         name: 'Afundo apoiado',
-        description: 'Faça o afundo segurando em um apoio firme para equilíbrio.',
+        description:
+            'Faça o afundo segurando em um apoio firme para equilíbrio.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.medium,
         details: ExerciseDetails(rest: 20, reps: 8, sets: 3, duration: null),
@@ -178,7 +182,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 3003,
         name: 'Elevação pélvica',
-        description: 'Deitado de costas, eleve o quadril contraindo os glúteos.',
+        description:
+            'Deitado de costas, eleve o quadril contraindo os glúteos.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.easy,
         details: ExerciseDetails(rest: 15, reps: 12, sets: 3, duration: null),
@@ -189,7 +194,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 4001,
         name: 'Elevação lateral dos braços',
-        description: 'Eleve os braços esticados lateralmente até a altura dos ombros.',
+        description:
+            'Eleve os braços esticados lateralmente até a altura dos ombros.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.easy,
         details: ExerciseDetails(rest: 15, reps: 12, sets: 3, duration: null),
@@ -213,7 +219,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 4004,
         name: 'Rotação do braço para fora',
-        description: 'Com cotovelos a 90 graus junto ao corpo, afaste as mãos rotacionando para fora.',
+        description:
+            'Com cotovelos a 90 graus junto ao corpo, afaste as mãos rotacionando para fora.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.easy,
         details: ExerciseDetails(rest: 15, reps: 12, sets: 3, duration: null),
@@ -240,7 +247,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 5002,
         name: 'Prancha frontal inclinada',
-        description: 'Apoie os cotovelos em uma superfície alta e mantenha o corpo alinhado.',
+        description:
+            'Apoie os cotovelos em uma superfície alta e mantenha o corpo alinhado.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.medium,
         details: ExerciseDetails(rest: 20, reps: null, sets: 3, duration: 20),
@@ -267,7 +275,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 6002,
         name: 'Alongamento de quadríceps',
-        description: 'Fique em um pé só, puxe o outro pé atrás em direção ao glúteo.',
+        description:
+            'Fique em um pé só, puxe o outro pé atrás em direção ao glúteo.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.easy,
         details: ExerciseDetails(rest: 10, reps: null, sets: 2, duration: 20),
@@ -275,7 +284,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
       Exercise(
         id: 6003,
         name: 'Alongamento de peitoral',
-        description: 'Apoie a mão em uma parede e rotacione o tronco no sentido oposto.',
+        description:
+            'Apoie a mão em uma parede e rotacione o tronco no sentido oposto.',
         tutorialLink: 'https://www.youtube.com/watch?v=IxX_QHay02M',
         difficulty: ExerciseDifficulty.easy,
         details: ExerciseDetails(rest: 10, reps: null, sets: 2, duration: 20),
@@ -314,9 +324,8 @@ class CustomRoutineAdvancedViewModel extends ChangeNotifier {
 
   List<Exercise> get filteredExercises {
     final List<Exercise> results = [];
-    final categoriesToSearch = _selectedCategory == null
-        ? categories
-        : [_selectedCategory!];
+    final categoriesToSearch =
+        _selectedCategory == null ? categories : [_selectedCategory!];
 
     for (var cat in categoriesToSearch) {
       final exercises = _categoryExercises[cat] ?? [];

@@ -1,8 +1,6 @@
 import 'package:artriapp/utils/helpers/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
   final String videoUrl;
@@ -17,7 +15,7 @@ class VideoPlayerWidget extends StatefulWidget {
 }
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  late final YoutubePlayerController _controller;
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
@@ -27,25 +25,23 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
     _controller = YoutubePlayerController.fromVideoId(
       videoId: videoId,
-      autoPlay: false,
+      params: const YoutubePlayerParams(
+        showControls: false,
+        showFullscreenButton: false,
+        showVideoAnnotations: false,
+        privacyEnhancedMode: true,
+        strictRelatedVideos: true,
+      ),
     );
-  }
-
-  String _getVideoId(String url) {
-    return YoutubePlayerController.convertUrlToId(url) ?? '';
-  }
-
-  @override
-  void dispose() {
-    _controller.close();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child: YoutubePlayer(controller: _controller),
+      child: YoutubePlayer(
+        controller: _controller,
+      ),
     );
   }
 

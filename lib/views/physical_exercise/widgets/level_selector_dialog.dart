@@ -3,32 +3,10 @@ import 'package:artriapp/views/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LevelSelectorDialog extends StatefulWidget {
+class LevelSelectorDialog extends StatelessWidget {
   const LevelSelectorDialog({
     super.key,
   });
-
-  @override
-  State<LevelSelectorDialog> createState() => _LevelSelectorDialogState();
-}
-
-class _LevelSelectorDialogState extends State<LevelSelectorDialog> {
-  late final YoutubePlayerController _videoController;
-
-  @override
-  void initState() {
-    super.initState();
-    _videoController = YoutubePlayerController.fromVideoId(
-      videoId: 'apuX_N3jpw0',
-      autoPlay: false,
-    );
-  }
-
-  @override
-  void dispose() {
-    _videoController.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +60,9 @@ class _LevelSelectorDialogState extends State<LevelSelectorDialog> {
                         ],
                       ),
                     ),
-                    YoutubePlayer(controller: _videoController),
+                    VideoPlayerWidget(
+                      videoUrl: 'https://www.youtube.com/watch?v=apuX_N3jpw0',
+                    ),
                     RichText(
                       text: TextSpan(
                         style: GoogleFonts.montserrat(

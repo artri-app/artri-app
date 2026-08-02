@@ -108,18 +108,29 @@ class _RemedyPageState extends State<RemedyPage> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text('Dias da semana:',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.w600)),
+                  Text(
+                    'Dias da semana:',
+                    style: GoogleFonts.montserrat(fontWeight: FontWeight.w600),
+                  ),
                   const SizedBox(height: 4),
                   Wrap(
                     spacing: 6,
                     children: DaysOfWeek.values.map((day) {
-                      const labels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+                      const labels = [
+                        'Seg',
+                        'Ter',
+                        'Qua',
+                        'Qui',
+                        'Sex',
+                        'Sáb',
+                        'Dom'
+                      ];
                       final selected = selectedDays.contains(day);
                       return FilterChip(
                         label: Text(labels[day.index]),
                         selected: selected,
-                        selectedColor: AppColors.darkGreen.withValues(alpha: 0.3),
+                        selectedColor:
+                            AppColors.darkGreen.withValues(alpha: 0.3),
                         onSelected: (val) {
                           setSheetState(() {
                             if (val) {
@@ -149,22 +160,24 @@ class _RemedyPageState extends State<RemedyPage> {
                     onPressed: () async {
                       final name = nameController.text.trim();
                       if (name.isEmpty) return;
-                      final qty = int.tryParse(quantityController.text.trim()) ?? 0;
+                      final qty =
+                          int.tryParse(quantityController.text.trim()) ?? 0;
                       final hour =
                           '${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}';
 
                       await context.read<RemedyViewModel>().saveRemedy(
-                        name: name,
-                        description: descController.text.trim(),
-                        quantity: qty,
-                        hour: hour,
-                        daysOfWeek: selectedDays,
-                      );
+                            name: name,
+                            description: descController.text.trim(),
+                            quantity: qty,
+                            hour: hour,
+                            daysOfWeek: selectedDays,
+                          );
                       if (ctx.mounted) Navigator.pop(ctx);
                     },
                     child: Text(
                       'Salvar',
-                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
+                      style: GoogleFonts.montserrat(
+                          color: Colors.white, fontSize: 16),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -196,7 +209,8 @@ class _RemedyPageState extends State<RemedyPage> {
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton.outlined(
-            onPressed: () => context.canPop() ? context.pop() : context.go('/diary'),
+            onPressed: () =>
+                context.canPop() ? context.pop() : context.go('/diary'),
             style: ButtonStyle(
               side: WidgetStatePropertyAll(
                 const BorderSide(color: AppColors.darkGreen, width: 2),
@@ -265,7 +279,8 @@ class _RemedyPageState extends State<RemedyPage> {
                           },
                           child: Text(
                             'Salvar',
-                            style: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white, fontSize: 16),
                           ),
                         ),
                         const SizedBox(height: 24),
