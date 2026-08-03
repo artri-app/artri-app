@@ -244,22 +244,6 @@ class _EvolutionPageState extends State<EvolutionPage> {
     return last7SleepSpots;
   }
 
-  List<FlSpot> getPainSpots(EvolutionViewModel viewModel) {
-    List<int> allPainLevels = viewModel.painLevelsOnlyNumbers;
-    List<FlSpot> last7PainSpots = [];
-    int spotIndex = 0;
-    int levelIndex = allPainLevels.length >= 7 ? allPainLevels.length - 7 : 0;
-
-    for (;
-        levelIndex < allPainLevels.length && spotIndex < 7;
-        levelIndex++, spotIndex++) {
-      last7PainSpots.add(
-          FlSpot(spotIndex.toDouble(), allPainLevels[levelIndex].toDouble()));
-    }
-
-    return last7PainSpots;
-  }
-
   List<FlSpot> getSwellingSpots(EvolutionViewModel viewModel) {
     List<int> allSwellingLevels = viewModel.swellingLevelsOnlyNumbers;
     List<FlSpot> last7SwellingSpots = [];
