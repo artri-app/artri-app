@@ -14,7 +14,7 @@ class ConfirmationButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomSolidButton(
-          text: 'Cancelar',
+          text: 'Voltar',
           onPressed: () => onButtonClicked.call(ConfirmationAction.canceled),
           gradientColors: AppGradients.redGradient,
         ),

@@ -32,6 +32,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
   Widget build(BuildContext context) {
     return GridView.count(
       shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       childAspectRatio: 4,
       children: _items.keys.map((String key) {

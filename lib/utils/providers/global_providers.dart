@@ -3,7 +3,6 @@ import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/view_models/remedy_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:artriapp/view_models/diary_view_model.dart';
 
 class GlobalProviders {
   final _serviceProviders = <SingleChildWidget>[
@@ -27,7 +26,12 @@ class GlobalProviders {
     ChangeNotifierProvider(
       create: (context) => RemedyViewModel(),
     ),
-    ChangeNotifierProvider(create: (_) => DiaryViewModel()),
+    ChangeNotifierProvider(
+      create: (context) => DiaryViewModel(
+        Provider.of<SecurityTokenService>(context, listen: false),
+        Provider.of<AuthService>(context, listen: false),
+      ),
+    ),
   ];
 
   static List<SingleChildWidget> getProviders() {
