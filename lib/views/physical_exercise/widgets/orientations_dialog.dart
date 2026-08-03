@@ -1,4 +1,5 @@
 import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/views/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -81,6 +82,19 @@ class OrientationsDialog extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: CustomSolidButton(
+              text: 'Iniciar exercícios'.toUpperCase(),
+              onPressed: () => Navigator.of(context).pop(true),
+              gradientColors: AppGradients.greenGradient,
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
