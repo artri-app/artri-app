@@ -84,6 +84,14 @@ class _EvolutionPageState extends State<EvolutionPage> {
                   showCheckmark: false,
                   onSelected: (val) => setState(() => showSwelling = val),
                 ),
+                const SizedBox(width: 12),
+                FilterChip(
+                  label: const Text('Inchaço'),
+                  selected: showSwelling,
+                  selectedColor: AppColors.purple.withValues(alpha: 0.3),
+                  showCheckmark: false,
+                  onSelected: (val) => setState(() => showSwelling = val),
+                ),
               ],
             ),
             const SizedBox(height: 32),
@@ -250,6 +258,23 @@ class _EvolutionPageState extends State<EvolutionPage> {
     }
 
     return last7PainSpots;
+  }
+
+  List<FlSpot> getSwellingSpots(EvolutionViewModel viewModel) {
+    List<int> allSwellingLevels = viewModel.swellingLevelsOnlyNumbers;
+    List<FlSpot> last7SwellingSpots = [];
+    int spotIndex = 0;
+    int levelIndex =
+        allSwellingLevels.length >= 7 ? allSwellingLevels.length - 7 : 0;
+
+    for (;
+        levelIndex < allSwellingLevels.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7SwellingSpots.add(FlSpot(
+          spotIndex.toDouble(), allSwellingLevels[levelIndex].toDouble()));
+    }
+
+    return last7SwellingSpots;
   }
 
   // Títulos do Eixo X (Dias)
