@@ -22,35 +22,43 @@ class UserDiaryPage extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              'assets/images/logo-ArtriApp-v2.svg',
-              width: min(180, screenWidth * 0.25),
+        SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
             ),
-            const Gap(24),
-            Text(
-              'Olá!',
-              style: GoogleFonts.montserrat(
-                fontSize: 28,
-                color: const Color(0xff026873),
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/logo-ArtriApp-v2.svg',
+                  width: min(
+                    180,
+                    screenWidth * 0.50,
+                  ),
+                ),
+                const Gap(24),
+                Text(
+                  'Olá!',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 28,
+                    color: const Color(0xff026873),
+                  ),
+                ),
+                Text(
+                  'Como você está hoje?'.toUpperCase(),
+                  style: GoogleFonts.montserrat(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+                const Gap(32),
+                child,
+                const Gap(24),
+              ],
             ),
-            Text(
-              'Como você está hoje?'.toUpperCase(),
-              style: GoogleFonts.montserrat(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-            ),
-            const Gap(32),
-            Flexible(
-              flex: 1,
-              child: child,
-            ),
-          ],
+          ),
         ),
         Positioned(
           right: 0,
