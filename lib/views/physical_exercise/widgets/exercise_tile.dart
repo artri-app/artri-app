@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 class ExerciseTile extends StatelessWidget {
   final String exerciseName;
   final IconData customIcon;
-  const ExerciseTile({super.key, required this.exerciseName, required this.customIcon});
+  const ExerciseTile(
+      {super.key, required this.exerciseName, required this.customIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,8 @@ class ExerciseTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
-            customIcon,
-            color: Colors.white,
+            Icons.fitness_center,
+            color: AppColors.darkGreen,
             size: width * 0.1,
           ),
         ),
@@ -32,7 +33,7 @@ class ExerciseTile extends StatelessWidget {
           flex: 1,
           child: Text(
             exerciseName,
-            style: GoogleFonts.montserrat(fontSize: 16),
+            style: GoogleFonts.montserrat(fontSize: 22),
             overflow: TextOverflow.fade,
           ),
         ),
