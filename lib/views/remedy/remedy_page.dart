@@ -49,7 +49,63 @@ class _RemedyPageState extends State<RemedyPage> {
                         size: 30,
                       ),
                       onPressed: () {
-                        // Navegar para tela de cadastro de remédio
+                        // Modal (BottomSheet) implementado ao invés de tela morta
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                          ),
+                          builder: (context) {
+                            return Padding(
+                              // Evita que o teclado cubra o modal
+                              padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context).viewInsets.bottom,
+                                top: 24,
+                                left: 24,
+                                right: 24,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    'Novo Medicamento',
+                                    style: GoogleFonts.montserrat(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.darkGreen,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  const TextField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Nome do remédio',
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.darkGreen,
+                                      padding: const EdgeInsets.symmetric(vertical: 14),
+                                    ),
+                                    onPressed: () {
+                                      // TODO: Chamar o ViewModel para salvar no banco
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      'Salvar',
+                                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 16),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 24),
+                                ],
+                              ),
+                            );
+                          },
+                        );
                       },
                     ),
                   ],
