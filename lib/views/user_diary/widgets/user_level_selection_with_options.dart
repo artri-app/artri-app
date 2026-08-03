@@ -109,7 +109,6 @@ class _UserLevelSelectionWithOptionsState
   Widget build(BuildContext context) {
     return Consumer<EvolutionViewModel>(
       builder: (context, viewModel, child) {
-
         return Padding(
           padding: const EdgeInsets.only(bottom: 4),
           child: SingleChildScrollView(
@@ -129,8 +128,8 @@ class _UserLevelSelectionWithOptionsState
                     ),
                     widget.tooltipMessage != null
                         ? HintIndicatorTooltip(
-                      tooltipMessage: widget.tooltipMessage!,
-                    )
+                            tooltipMessage: widget.tooltipMessage!,
+                          )
                         : const Gap(0),
                   ],
                 ),
@@ -180,9 +179,12 @@ class _UserLevelSelectionWithOptionsState
                       onButtonClicked: (action) {
                         if (action == ConfirmationAction.confirmed) {
                           if (widget.title == DiaryOptions.pain.toString()) {
-                            viewModel.addPainLevel(_selectedOption, selectedInfos[_selectedOption]);
-                          } else if (widget.title == DiaryOptions.swelling.toString()) {
-                            viewModel.addSwellingLevel(_selectedOption, selectedInfos[_selectedOption]);
+                            viewModel.addPainLevel(_selectedOption,
+                                selectedInfos[_selectedOption]);
+                          } else if (widget.title ==
+                              DiaryOptions.swelling.toString()) {
+                            viewModel.addSwellingLevel(_selectedOption,
+                                selectedInfos[_selectedOption]);
                           }
                         }
                         context.pop();
@@ -194,7 +196,6 @@ class _UserLevelSelectionWithOptionsState
             ),
           ),
         );
-
       },
     );
   }
