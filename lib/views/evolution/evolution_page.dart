@@ -203,6 +203,39 @@ class _EvolutionPageState extends State<EvolutionPage> {
     );
   }
 
+  List<FlSpot> getFatigueSpots(EvolutionViewModel viewModel) {
+    List<int> allFatigueLevels = viewModel.fatigueLevels;
+    List<FlSpot> last7FatigueSpots = [];
+    int spotIndex = 0;
+    int levelIndex =
+        allFatigueLevels.length >= 7 ? allFatigueLevels.length - 7 : 0;
+
+    for (;
+        levelIndex < allFatigueLevels.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7FatigueSpots.add(FlSpot(
+          spotIndex.toDouble(), allFatigueLevels[levelIndex].toDouble()));
+    }
+
+    return last7FatigueSpots;
+  }
+
+  List<FlSpot> getSleepSpots(EvolutionViewModel viewModel) {
+    List<int> allSleepLevels = viewModel.sleepLevels;
+    List<FlSpot> last7SleepSpots = [];
+    int spotIndex = 0;
+    int levelIndex = allSleepLevels.length >= 7 ? allSleepLevels.length - 7 : 0;
+
+    for (;
+        levelIndex < allSleepLevels.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7SleepSpots.add(
+          FlSpot(spotIndex.toDouble(), allSleepLevels[levelIndex].toDouble()));
+    }
+
+    return last7SleepSpots;
+  }
+
   // Títulos do Eixo X (Dias)
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     var style = GoogleFonts.montserrat(
