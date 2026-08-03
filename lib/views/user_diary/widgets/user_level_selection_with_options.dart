@@ -39,6 +39,32 @@ class _UserLevelSelectionWithOptionsState
     });
   }
 
+  String getMinLabel() {
+    switch (widget.title.toLowerCase()) {
+      case 'dor':
+        return 'Nenhuma';
+
+      case 'inchaço':
+        return 'Nenhum';
+
+      default:
+        return '';
+    }
+  }
+
+  String getMaxLabel() {
+    switch (widget.title.toLowerCase()) {
+      case 'dor':
+        return 'Intensa';
+
+      case 'inchaço':
+        return 'Intenso';
+
+      default:
+        return '';
+    }
+  }
+
   Widget renderUserSelection(BuildContext context, int idx) {
     String option = selectedInfos.keys.elementAt(idx);
 
@@ -50,6 +76,8 @@ class _UserLevelSelectionWithOptionsState
         selectedInfos[option] = value;
       }),
       selectedLevel: selectedInfos[option] == -1 ? null : selectedInfos[option],
+      minLabel: getMinLabel(),
+      maxLabel: getMaxLabel(),
     );
   }
 

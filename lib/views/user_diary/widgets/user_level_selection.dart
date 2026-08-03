@@ -15,6 +15,8 @@ class UserLevelSelection extends StatefulWidget {
   final ValueChanged<int>? onLevelSelected;
   final bool showButtons;
   final String? tooltipMessage;
+  final String minLabel;
+  final String maxLabel;
 
   const UserLevelSelection({
     super.key,
@@ -25,6 +27,8 @@ class UserLevelSelection extends StatefulWidget {
     this.onLevelSelected,
     this.hintDescription,
     this.tooltipMessage,
+    this.minLabel = '',
+    this.maxLabel = '',
   });
 
   @override
@@ -44,7 +48,6 @@ class _UserLevelSelection extends State<UserLevelSelection> {
   Widget build(BuildContext context) {
     return Consumer<EvolutionViewModel>(
       builder: (context, viewModel, child) {
-
         return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,19 +56,19 @@ class _UserLevelSelection extends State<UserLevelSelection> {
               children: [
                 widget.title != null
                     ? Row(
-                  spacing: 8,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SessionTitle(title: widget.title!),
-                    widget.tooltipMessage != null
-                        ? HintIndicatorTooltip(
-                      tooltipMessage: widget.tooltipMessage!,
-                    )
-                        : Gap(0),
-                  ],
-                )
+                        spacing: 8,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SessionTitle(title: widget.title!),
+                          widget.tooltipMessage != null
+                              ? HintIndicatorTooltip(
+                                  tooltipMessage: widget.tooltipMessage!,
+                                )
+                              : Gap(0),
+                        ],
+                      )
                     : const Gap(0),
                 SizedBox(height: 16),
                 Text(
@@ -85,6 +88,8 @@ class _UserLevelSelection extends State<UserLevelSelection> {
                     widget.onLevelSelected?.call(value);
                   },
                   initialValue: _currentValue,
+                  minLabel: widget.minLabel,
+                  maxLabel: widget.maxLabel,
                 ),
               ],
             ),
@@ -97,10 +102,13 @@ class _UserLevelSelection extends State<UserLevelSelection> {
                       ConfirmationButtons(
                         isConfirmEnabled: _currentValue != null,
                         onButtonClicked: (action) {
-                          if(action == ConfirmationAction.confirmed && _currentValue != null) {
-                            if (widget.title == DiaryOptions.fatigue.toString()) {
+                          if (action == ConfirmationAction.confirmed &&
+                              _currentValue != null) {
+                            if (widget.title ==
+                                DiaryOptions.fatigue.toString()) {
                               viewModel.addFatigueLevel(_currentValue, null);
-                            } else if (widget.title == DiaryOptions.sleep.toString()) {
+                            } else if (widget.title ==
+                                DiaryOptions.sleep.toString()) {
                               viewModel.addSleepLevel(_currentValue, null);
                             }
                             widget.onLevelSelected?.call(_currentValue!);
@@ -116,7 +124,6 @@ class _UserLevelSelection extends State<UserLevelSelection> {
             ),
           ],
         );
-
       },
     );
   }

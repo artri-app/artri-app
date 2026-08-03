@@ -26,6 +26,8 @@ abstract class UserDiaryRoutes implements RoutesSession {
                   tooltipMessage:
                       'É um cansaço intenso e constante e falta de energia, que não melhora mesmo após descanso e pode atrapalhar nas atividades do dia a dia',
                   description: 'De 0 a 10, como esta seu nível de fadiga hoje?',
+                  minLabel: 'Nenhuma',
+                  maxLabel: 'Intensa',
                 ),
               ),
             ),
@@ -43,6 +45,8 @@ abstract class UserDiaryRoutes implements RoutesSession {
                 child: UserLevelSelection(
                   title: DiaryOptions.sleep.toString(),
                   description: 'De 0 a 10, como esta seu nível de sono hoje?',
+                  minLabel: 'Ruim',
+                  maxLabel: 'Ótimo',
                 ),
               ),
             ),
