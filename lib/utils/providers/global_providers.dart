@@ -30,7 +30,9 @@ class GlobalProviders {
     ChangeNotifierProvider(
       create: (context) => EvolutionViewModel(),
     ),
-    ChangeNotifierProvider(create: (_) => DiaryViewModel()),
+    ChangeNotifierProvider(
+      create: (_) => DiaryViewModel(),
+    ),
   ];
 
   static List<SingleChildWidget> getProviders() {
