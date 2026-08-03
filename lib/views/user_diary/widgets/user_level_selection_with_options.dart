@@ -2,11 +2,9 @@ import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/view_models/evolution_view_model.dart';
 import 'package:artriapp/views/user_diary/widgets/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
-import 'package:artriapp/utils/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class UserLevelSelectionWithOptions extends StatefulWidget {
@@ -26,17 +24,22 @@ class UserLevelSelectionWithOptions extends StatefulWidget {
 
 class _UserLevelSelectionWithOptionsState
     extends State<UserLevelSelectionWithOptions> {
-  Map<String, int?> selectedInfos = <String, int?>{};
-  String? _selectedOption;
+  Map<BodyOptions, int?> selectedInfos = <BodyOptions, int?>{};
 
-  void handleRadioChange(String? value) {
-    setState(() {
-      _selectedOption = value;
-      selectedInfos.clear();
-      if (value != null) {
-        selectedInfos[value] = -1;
-      }
-    });
+  void onCheckBoxChanged(List<BodyOptions> options) {
+    for (BodyOptions option in options) {
+      if (selectedInfos.containsKey(option)) continue;
+
+      selectedInfos[option] = -1;
+    }
+
+    List<BodyOptions> selectedInfosKeys = selectedInfos.keys.toList();
+
+    for (BodyOptions key in selectedInfosKeys) {
+      if (options.contains(key)) continue;
+
+      selectedInfos.remove(key);
+    }
   }
 
   String getMinLabel() {
@@ -66,11 +69,11 @@ class _UserLevelSelectionWithOptionsState
   }
 
   Widget renderUserSelection(BuildContext context, int idx) {
-    String option = selectedInfos.keys.elementAt(idx);
+    BodyOptions option = selectedInfos.keys.elementAt(idx);
 
     return UserLevelSelection(
       key: Key('$option - ${selectedInfos[option]}'),
-      description: getUserSelectionDescription(option),
+      description: getUserSelectionDescription(option.toString()),
       showButtons: false,
       onLevelSelected: (value) => setState(() {
         selectedInfos[option] = value;
@@ -109,7 +112,6 @@ class _UserLevelSelectionWithOptionsState
   Widget build(BuildContext context) {
     return Consumer<EvolutionViewModel>(
       builder: (context, viewModel, child) {
-
         return Padding(
           padding: const EdgeInsets.only(bottom: 4),
           child: SingleChildScrollView(
@@ -129,45 +131,20 @@ class _UserLevelSelectionWithOptionsState
                     ),
                     widget.tooltipMessage != null
                         ? HintIndicatorTooltip(
-                      tooltipMessage: widget.tooltipMessage!,
-                    )
+                            tooltipMessage: widget.tooltipMessage!,
+                          )
                         : const Gap(0),
                   ],
                 ),
                 Column(
                   children: [
-                    GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount: 2,
-                      childAspectRatio: 4,
-                      children: BodyOptions.values.map((option) {
-                        return GestureDetector(
-                          onTap: () => handleRadioChange(option.toString()),
-                          child: Row(
-                            children: [
-                              Radio<String>(
-                                value: option.toString(),
-                                groupValue: _selectedOption,
-                                onChanged: handleRadioChange,
-                                activeColor: Colors.green,
-                              ),
-                              Flexible(
-                                child: Text(
-                                  option.toString(),
-                                  style: GoogleFonts.montserrat(
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
+                    CheckboxBodyOptionsGroup(
+                      onChanged: (list) => setState(() {
+                        onCheckBoxChanged(list);
+                      }),
                     ),
                     ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: selectedInfos.keys.length,
                       itemBuilder: (context, idx) =>
@@ -175,14 +152,25 @@ class _UserLevelSelectionWithOptionsState
                     ),
                     const Gap(32),
                     ConfirmationButtons(
-                      isConfirmEnabled: _selectedOption != null &&
-                          selectedInfos[_selectedOption] != -1,
+                      isConfirmEnabled: selectedInfos.isNotEmpty &&
+                          selectedInfos.values.every((level) => level != -1),
                       onButtonClicked: (action) {
                         if (action == ConfirmationAction.confirmed) {
                           if (widget.title == DiaryOptions.pain.toString()) {
-                            viewModel.addPainLevel(_selectedOption, selectedInfos[_selectedOption]);
-                          } else if (widget.title == DiaryOptions.swelling.toString()) {
-                            viewModel.addSwellingLevel(_selectedOption, selectedInfos[_selectedOption]);
+                            for (var option in selectedInfos.keys) {
+                              viewModel.addPainLevel(
+                                option,
+                                selectedInfos[option],
+                              );
+                            }
+                          } else if (widget.title ==
+                              DiaryOptions.swelling.toString()) {
+                            for (var option in selectedInfos.keys) {
+                              viewModel.addPainLevel(
+                                option,
+                                selectedInfos[option],
+                              );
+                            }
                           }
                         }
                         context.pop();
@@ -194,7 +182,6 @@ class _UserLevelSelectionWithOptionsState
             ),
           ),
         );
-
       },
     );
   }

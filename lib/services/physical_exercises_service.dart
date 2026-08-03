@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:artriapp/models/index.dart';
 import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/index.dart';
@@ -49,18 +47,18 @@ class PhysicalExercisesService {
   }
 
   Future<List<Exercise>> getCustomExercisesFromTraining(
-      TrainingType type,
-      ExerciseDifficulty difficulty,
-      int index,
+    TrainingType type,
+    ExerciseDifficulty difficulty,
+    int index,
   ) async {
     final List<Exercise> exercises = [];
 
     final allCustomTrainings = await getTrainings().then(
-        (trainings) => trainings.where(
-            (training) =>
-              training.name.startsWith(type.toString()) &&
-              training.difficulty == difficulty,
-        ),
+      (trainings) => trainings.where(
+        (training) =>
+            training.name.startsWith(type.toString()) &&
+            training.difficulty == difficulty,
+      ),
     );
 
     final nthCustomTraining = allCustomTrainings.toList().elementAt(index);
@@ -74,11 +72,10 @@ class PhysicalExercisesService {
   }
 
   Future<List<Exercise>> getCustomExercisesFromIdsList(
-      List<int> ids,
+    List<int> ids,
   ) {
     return getExercises().then(
-          (exercises) =>
-          exercises.where((e) => ids.contains(e.id)).toList(),
+      (exercises) => exercises.where((e) => ids.contains(e.id)).toList(),
     );
   }
 }
