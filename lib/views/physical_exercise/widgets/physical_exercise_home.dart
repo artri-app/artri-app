@@ -6,8 +6,6 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../../../utils/helpers/screen_helper.dart';
-
 class PhysicalExerciseHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

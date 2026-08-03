@@ -23,7 +23,6 @@ class _EvolutionPageState extends State<EvolutionPage> {
   Widget build(BuildContext context) {
     return Consumer<EvolutionViewModel>(
       builder: (context, viewModel, child) {
-
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -56,6 +55,7 @@ class _EvolutionPageState extends State<EvolutionPage> {
                   selected: showPain,
                   selectedColor: AppColors.red.withValues(alpha: 0.3),
                   showCheckmark: false,
+                  checkmarkColor: AppColors.red,
                   onSelected: (val) => setState(() => showPain = val),
                 ),
                 const SizedBox(width: 12),
@@ -64,6 +64,7 @@ class _EvolutionPageState extends State<EvolutionPage> {
                   selected: showFatigue,
                   selectedColor: AppColors.darkGreen.withValues(alpha: 0.3),
                   showCheckmark: false,
+                  checkmarkColor: AppColors.darkGreen,
                   onSelected: (val) => setState(() => showFatigue = val),
                 ),
                 const SizedBox(width: 12),
@@ -73,6 +74,7 @@ class _EvolutionPageState extends State<EvolutionPage> {
                   selectedColor: AppColors.yellow.withValues(alpha: 0.3),
                   showCheckmark: false,
                   onSelected: (val) => setState(() => showSleep = val),
+                  checkmarkColor: AppColors.yellow,
                 ),
                 const SizedBox(width: 12),
                 FilterChip(
@@ -89,7 +91,8 @@ class _EvolutionPageState extends State<EvolutionPage> {
             // O Gráfico usando fl_chart
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
+                padding:
+                    const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
                 child: LineChart(
                   _mainData(viewModel),
                 ),
@@ -97,7 +100,6 @@ class _EvolutionPageState extends State<EvolutionPage> {
             ),
           ],
         );
-
       },
     );
   }
@@ -117,7 +119,8 @@ class _EvolutionPageState extends State<EvolutionPage> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles:
+            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -209,14 +212,30 @@ class _EvolutionPageState extends State<EvolutionPage> {
     );
     Widget text;
     switch (value.toInt()) {
-      case 0: text = Text('Seg', style: style); break;
-      case 1: text = Text('Ter', style: style); break;
-      case 2: text = Text('Qua', style: style); break;
-      case 3: text = Text('Qui', style: style); break;
-      case 4: text = Text('Sex', style: style); break;
-      case 5: text = Text('Sáb', style: style); break;
-      case 6: text = Text('Dom', style: style); break;
-      default: text = Text('', style: style); break;
+      case 0:
+        text = Text('Seg', style: style);
+        break;
+      case 1:
+        text = Text('Ter', style: style);
+        break;
+      case 2:
+        text = Text('Qua', style: style);
+        break;
+      case 3:
+        text = Text('Qui', style: style);
+        break;
+      case 4:
+        text = Text('Sex', style: style);
+        break;
+      case 5:
+        text = Text('Sáb', style: style);
+        break;
+      case 6:
+        text = Text('Dom', style: style);
+        break;
+      default:
+        text = Text('', style: style);
+        break;
     }
 
     return SideTitleWidget(
@@ -232,6 +251,7 @@ class _EvolutionPageState extends State<EvolutionPage> {
       fontSize: 14,
       color: Colors.black54,
     );
-    return Text(value.toInt().toString(), style: style, textAlign: TextAlign.center);
+    return Text(value.toInt().toString(),
+        style: style, textAlign: TextAlign.center);
   }
 }
