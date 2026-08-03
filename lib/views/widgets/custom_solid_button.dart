@@ -43,8 +43,8 @@ class CustomSolidButton extends StatelessWidget {
             : null,
         borderRadius: BorderRadius.circular(borderRadius),
         color: !isEnabled
-          ? AppColors.grey // Cinza apenas se estiver desabilitado
-          : (_hasGradient ? null : (color ?? AppColors.darkBlue)),
+            ? AppColors.grey // Cinza apenas se estiver desabilitado
+            : (_hasGradient ? null : (color ?? AppColors.darkBlue)),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

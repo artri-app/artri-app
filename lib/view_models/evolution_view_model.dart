@@ -80,7 +80,8 @@ class EvolutionViewModel extends ChangeNotifier {
 
   Future<void> addPainLevel(String? bodyOption, int? newLevel) async {
     try {
-      bool bodyOptionExists = BodyOptions.values.any((value) => value.toString() == bodyOption);
+      bool bodyOptionExists =
+          BodyOptions.values.any((value) => value.toString() == bodyOption);
       if (bodyOption == null || newLevel == null || !bodyOptionExists) return;
       await _diaryService.addPainLevel(bodyOption, newLevel);
       _painLevelsOnlyNumbers.add(newLevel);
@@ -116,7 +117,8 @@ class EvolutionViewModel extends ChangeNotifier {
 
   Future<void> addSwellingLevel(String? bodyOption, int? newLevel) async {
     try {
-      bool bodyOptionExists = BodyOptions.values.any((value) => value.toString() == bodyOption);
+      bool bodyOptionExists =
+          BodyOptions.values.any((value) => value.toString() == bodyOption);
       if (bodyOption == null || newLevel == null || !bodyOptionExists) return;
       await _diaryService.addSwellingLevel(bodyOption, newLevel);
       _swellingLevelsOnlyNumbers.add(newLevel);
@@ -129,10 +131,15 @@ class EvolutionViewModel extends ChangeNotifier {
   List<FlSpot> getLast7PainLevels() {
     List<FlSpot> last7PainSpots = [];
     int spotIndex = 0;
-    int levelIndex = _painLevelsOnlyNumbers.length >= 7 ? _painLevelsOnlyNumbers.length - 7 : 0;
+    int levelIndex = _painLevelsOnlyNumbers.length >= 7
+        ? _painLevelsOnlyNumbers.length - 7
+        : 0;
 
-    for (; levelIndex < _painLevelsOnlyNumbers.length && spotIndex < 7; levelIndex++, spotIndex++) {
-      last7PainSpots.add(FlSpot(spotIndex.toDouble(), _painLevelsOnlyNumbers[levelIndex].toDouble()));
+    for (;
+        levelIndex < _painLevelsOnlyNumbers.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7PainSpots.add(FlSpot(
+          spotIndex.toDouble(), _painLevelsOnlyNumbers[levelIndex].toDouble()));
     }
 
     return last7PainSpots;
@@ -143,8 +150,11 @@ class EvolutionViewModel extends ChangeNotifier {
     int spotIndex = 0;
     int levelIndex = _fatigueLevels.length >= 7 ? _fatigueLevels.length - 7 : 0;
 
-    for (; levelIndex < _fatigueLevels.length && spotIndex < 7; levelIndex++, spotIndex++) {
-      last7FatigueSpots.add(FlSpot(spotIndex.toDouble(), _fatigueLevels[levelIndex].toDouble()));
+    for (;
+        levelIndex < _fatigueLevels.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7FatigueSpots.add(
+          FlSpot(spotIndex.toDouble(), _fatigueLevels[levelIndex].toDouble()));
     }
 
     return last7FatigueSpots;
@@ -155,8 +165,11 @@ class EvolutionViewModel extends ChangeNotifier {
     int spotIndex = 0;
     int levelIndex = _sleepLevels.length >= 7 ? _sleepLevels.length - 7 : 0;
 
-    for (; levelIndex < _sleepLevels.length && spotIndex < 7; levelIndex++, spotIndex++) {
-      last7SleepSpots.add(FlSpot(spotIndex.toDouble(), _sleepLevels[levelIndex].toDouble()));
+    for (;
+        levelIndex < _sleepLevels.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7SleepSpots.add(
+          FlSpot(spotIndex.toDouble(), _sleepLevels[levelIndex].toDouble()));
     }
 
     return last7SleepSpots;
@@ -165,10 +178,15 @@ class EvolutionViewModel extends ChangeNotifier {
   List<FlSpot> getLast7SwellingLevels() {
     List<FlSpot> last7SwellingSpots = [];
     int spotIndex = 0;
-    int levelIndex = _swellingLevelsOnlyNumbers.length >= 7 ? _swellingLevelsOnlyNumbers.length - 7 : 0;
+    int levelIndex = _swellingLevelsOnlyNumbers.length >= 7
+        ? _swellingLevelsOnlyNumbers.length - 7
+        : 0;
 
-    for (; levelIndex < _swellingLevelsOnlyNumbers.length && spotIndex < 7; levelIndex++, spotIndex++) {
-      last7SwellingSpots.add(FlSpot(spotIndex.toDouble(), _swellingLevelsOnlyNumbers[levelIndex].toDouble()));
+    for (;
+        levelIndex < _swellingLevelsOnlyNumbers.length && spotIndex < 7;
+        levelIndex++, spotIndex++) {
+      last7SwellingSpots.add(FlSpot(spotIndex.toDouble(),
+          _swellingLevelsOnlyNumbers[levelIndex].toDouble()));
     }
 
     return last7SwellingSpots;
