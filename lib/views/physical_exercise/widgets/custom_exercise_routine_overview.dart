@@ -1,32 +1,33 @@
 import 'package:artriapp/utils/index.dart';
-import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/physical_exercise/widgets/index.dart';
 import 'package:artriapp/views/widgets/index.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 
-class PhysicalExerciseRoutineOverview extends StatelessWidget {
-  const PhysicalExerciseRoutineOverview({super.key});
+class CustomExerciseRoutineOverview extends StatefulWidget {
+  const CustomExerciseRoutineOverview({super.key});
 
-  Future<void> handleStartButton(
-    BuildContext context,
-    PhysicalExercisesViewModel viewModel,
-  ) async {
-    bool startExercises = await showDialog(
-      builder: (context) => OrientationsDialog(),
-      context: context,
-    );
+  @override
+  State<CustomExerciseRoutineOverview> createState() =>
+      _CustomExerciseRoutineOverviewState();
+}
 
-    if (startExercises) viewModel.handleStartExercises(context);
+class _CustomExerciseRoutineOverviewState
+    extends State<CustomExerciseRoutineOverview> {
+  void handleStartButton(
+      BuildContext context,
+      PhysicalExercisesViewModel viewModel,
+  ) {
+    viewModel.handleStartCustomExercisesSelection(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<PhysicalExercisesViewModel>(
       builder: (context, viewModel, child) {
-        int exerciseCount = viewModel.exercises.length;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,17 +35,13 @@ class PhysicalExerciseRoutineOverview extends StatelessWidget {
           spacing: 16,
           children: [
             Text(
-              'Resumo da sessão',
-              textAlign: TextAlign.center,
+              'Vamos começar a montar sua rotina de exercícios personalizada de hoje! Clique para escolher os exercícios indicados abaixo:',
               style: GoogleFonts.montserrat(
-                fontSize: 24,
-                color: AppColors.darkGreen,
-                fontWeight: FontWeight.bold,
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  color: AppColors.darkGreen,
+                ),
               ),
-            ),
-            Text(
-              'Abaixo está um resumo da sua sessão de exercícios, para iniciar clique no botão abaixo, para ler as instruções antes de iniciar os exercícios.',
-              style: GoogleFonts.montserrat(fontSize: 20),
             ),
             Flexible(
               fit: FlexFit.tight,
@@ -52,11 +49,10 @@ class PhysicalExerciseRoutineOverview extends StatelessWidget {
                 child: ListView.separated(
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 16),
-                  itemCount: exerciseCount,
+                  itemCount: viewModel.categoriesCount,
                   itemBuilder: (context, index) => ExerciseTile(
-                    exerciseName:
-                        viewModel.exercises[index].name.split('-').first,
-                    customIcon: CupertinoIcons.play_arrow_solid,
+                    exerciseName: 'Escolha ${viewModel.selectionNumbers[viewModel.currentDifficulty]![index]} ${viewModel.selectionNumbers[viewModel.currentDifficulty]![index] == 1 ? 'exercício' : 'exercícios'} ${CustomType.values.elementAt(index) == CustomType.legs ? 'para as' : CustomType.values.elementAt(index) == CustomType.arms ? 'para os' : CustomType.values.elementAt(index) == CustomType.core ? 'para o' : 'de'} ${CustomType.values.elementAt(index).toString().toLowerCase()}',
+                    customIcon: CupertinoIcons.create,
                   ),
                 ),
               ),
@@ -66,7 +62,7 @@ class PhysicalExerciseRoutineOverview extends StatelessWidget {
               onPressed: () => handleStartButton(context, viewModel),
               gradientColors: AppGradients.greenGradient,
               textStyle: GoogleFonts.montserrat(
-                fontSize: 24,
+                fontSize: 30,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),

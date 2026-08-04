@@ -29,6 +29,7 @@ class UserDiaryInitialSelection extends StatelessWidget {
               onPressed: () => context.go(
                 UserDiaryRoutes.painSelectionPage,
               ),
+
             ),
             RoundedButton(
               color: const Color(0xFF026873),

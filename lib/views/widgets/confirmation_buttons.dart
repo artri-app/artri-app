@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class ConfirmationButtons extends StatelessWidget {
   final ValueChanged<ConfirmationAction> onButtonClicked;
+  final bool isConfirmEnabled;
 
-  const ConfirmationButtons({super.key, required this.onButtonClicked});
+  const ConfirmationButtons({super.key, required this.onButtonClicked, this.isConfirmEnabled = true});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,9 @@ class ConfirmationButtons extends StatelessWidget {
         ),
         CustomSolidButton(
           text: 'Salvar',
-          onPressed: () => onButtonClicked.call(ConfirmationAction.confirmed),
+          onPressed: isConfirmEnabled
+              ? () => onButtonClicked.call(ConfirmationAction.confirmed)
+              : null,
           gradientColors: AppGradients.greenGradient,
         ),
       ],

@@ -13,13 +13,13 @@ class PhysicalExerciseHome extends StatelessWidget {
       builder: (context, viewModel, child) {
         return Container(
           child: Column(
-            spacing: 32,
+            // spacing: 32,
             children: [
               Text(
                 'Aqui você terá acesso a exercícios específicos e pré-determinados para suas mãos e pés. Clique para escolher o nível de dificuldade:',
                 style: GoogleFonts.montserrat(
                   textStyle: const TextStyle(
-                    fontSize: 24,
+                    // fontSize: 24,
                     color: AppColors.darkGreen,
                   ),
                 ),
@@ -40,22 +40,26 @@ class PhysicalExerciseHome extends StatelessWidget {
                 gradientColors: AppGradients.greenToNeutral,
                 buttonText: 'Pés',
               ),
-              // Text(
-              //   'Aqui você terá acesso a exercícios personalizados para diferentes partes do corpo. Clique para escolher o nível de dificuldade e personalizar seus exercícios:',
-              //   style: GoogleFonts.montserrat(
-              //     textStyle: const TextStyle(
-              //       fontSize: 24,
-              //       color: AppColors.darkGreen,
-              //     ),
-              //   ),
-              // ),
-              // ExerciseButton(
-              //   onClick: () =>
-              //       context.go(PhysicalExerciseRoutes.customExercises),
-              //   gradientColors: AppGradients.greenToNeutral,
-              //   buttonText: 'Personalizados',
-              //   width: ScreenHelper.getScreenWidth(context) * 0.65,
-              // ),
+              Text(
+                'Aqui você terá acesso a exercícios personalizados para diferentes partes do corpo. Clique para escolher o nível de dificuldade e personalizar seus exercícios:',
+                style: GoogleFonts.montserrat(
+                  textStyle: const TextStyle(
+                    // fontSize: 24,
+                    color: AppColors.darkGreen,
+                  ),
+                ),
+              ),
+              ExerciseButton(
+                // onClick: () =>
+                //     context.go(PhysicalExerciseRoutes.customExercises),
+                onClick: () => viewModel.handleTrainingTypeSelection(
+                  TrainingType.custom,
+                  context,
+                ),
+                gradientColors: AppGradients.greenToNeutral,
+                buttonText: 'Personalizados',
+                // width: ScreenHelper.getScreenWidth(context) * 0.65,
+              ),
             ],
           ),
         );

@@ -1,41 +1,44 @@
+import 'package:artriapp/utils/enums/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CheckboxGroup extends StatefulWidget {
-  final Function(List<String>) onChanged;
+class CheckboxBodyOptionsGroup extends StatefulWidget {
+  final Function(List<BodyOptions>) onChanged;
 
-  const CheckboxGroup({super.key, required this.onChanged});
+  const CheckboxBodyOptionsGroup({super.key, required this.onChanged});
 
   @override
-  _CheckboxGroupState createState() => _CheckboxGroupState();
+  _CheckboxBodyOptionsGroupState createState() =>
+      _CheckboxBodyOptionsGroupState();
 }
 
-class _CheckboxGroupState extends State<CheckboxGroup> {
-  final Map<String, bool> _items = {
-    'Mãos': false,
-    'Braço': false,
-    'Ombro': false,
-    'Coluna': false,
-    'Quadril': false,
-    'Joelho': false,
-    'Tornozelo': false,
-    'Pés': false,
+class _CheckboxBodyOptionsGroupState extends State<CheckboxBodyOptionsGroup> {
+  final Map<BodyOptions, bool> _items = {
+    BodyOptions.hands: false,
+    BodyOptions.arm: false,
+    BodyOptions.shoulder: false,
+    BodyOptions.column: false,
+    BodyOptions.hip: false,
+    BodyOptions.knee: false,
+    BodyOptions.ankle: false,
+    BodyOptions.feet: false,
   };
 
   void _updateSelection() {
-    List<String> selecionados =
+    List<BodyOptions> selecionados =
         _items.entries.where((e) => e.value).map((e) => e.key).toList();
+
     widget.onChanged(selecionados);
   }
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       crossAxisCount: 2,
       childAspectRatio: 4,
-      children: _items.keys.map((String key) {
+      children: _items.keys.map((BodyOptions key) {
         return GestureDetector(
           onTap: () {
             setState(() {
@@ -60,7 +63,7 @@ class _CheckboxGroupState extends State<CheckboxGroup> {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
               Text(
-                key,
+                key.toString(),
                 style: GoogleFonts.montserrat(
                   color: Colors.black,
                   fontWeight: FontWeight.w400,

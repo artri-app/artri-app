@@ -27,6 +27,9 @@ class GlobalProviders {
       create: (context) => RemedyViewModel(),
     ),
     ChangeNotifierProvider(
+      create: (context) => EvolutionViewModel(),
+    ),
+    ChangeNotifierProvider(
       create: (context) => DiaryViewModel(
         Provider.of<SecurityTokenService>(context, listen: false),
         Provider.of<AuthService>(context, listen: false),

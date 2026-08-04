@@ -31,11 +31,12 @@ class DiaryViewModel extends ChangeNotifier {
   /// Envia um registro de Dor ou Inchaço para cada região marcada.
   Future<bool> enviarRelatorioPorRegiao({
     required DiaryMetric metrica,
-    required Map<String, int> niveisPorRegiao,
+    required Map<BodyOptions, int> niveisPorRegiao,
   }) async {
     List<Map<String, dynamic>> registros = niveisPorRegiao.entries
         .map(
-          (regiao) => _montarCorpo(metrica, regiao.value, regiao: regiao.key),
+          (regiao) => _montarCorpo(metrica, regiao.value,
+              regiao: regiao.key.toString()),
         )
         .toList();
 

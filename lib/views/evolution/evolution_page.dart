@@ -1,7 +1,9 @@
 import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class EvolutionPage extends StatefulWidget {
   const EvolutionPage({super.key});
@@ -14,69 +16,93 @@ class _EvolutionPageState extends State<EvolutionPage> {
   // Controle de qual métrica exibir para não poluir o gráfico
   bool showPain = true;
   bool showFatigue = false;
+  bool showSleep = false;
+  bool showSwelling = false;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(height: 16),
-        Text(
-          'SUA EVOLUÇÃO',
-          style: GoogleFonts.montserrat(
-            fontSize: 28,
-            color: AppColors.darkGreen,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Acompanhe seus sintomas dos últimos 7 dias',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.montserrat(
-            fontSize: 16,
-            color: Colors.black54,
-          ),
-        ),
-        const SizedBox(height: 24),
-        
-        // Filtros para o usuário escolher o que ver
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Consumer<EvolutionViewModel>(
+      builder: (context, viewModel, child) {
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FilterChip(
-              label: const Text('Dor'),
-              selected: showPain,
-              selectedColor: const Color(0xFFAE263D).withOpacity(0.3),
-              checkmarkColor: const Color(0xFFAE263D),
-              onSelected: (val) => setState(() => showPain = val),
+            const SizedBox(height: 16),
+            Text(
+              'SUA EVOLUÇÃO',
+              style: GoogleFonts.montserrat(
+                fontSize: 24,
+                color: AppColors.darkGreen,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(width: 12),
-            FilterChip(
-              label: const Text('Fadiga'),
-              selected: showFatigue,
-              selectedColor: AppColors.darkGreen.withOpacity(0.3),
-              checkmarkColor: AppColors.darkGreen,
-              onSelected: (val) => setState(() => showFatigue = val),
+            const SizedBox(height: 8),
+            Text(
+              'Acompanhe seus sintomas dos últimos 7 dias',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.montserrat(
+                fontSize: 12,
+                color: Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Filtros para o usuário escolher o que ver
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FilterChip(
+                  label: const Text('Dor'),
+                  selected: showPain,
+                  selectedColor: AppColors.red.withValues(alpha: 0.3),
+                  showCheckmark: false,
+                  onSelected: (val) => setState(() => showPain = val),
+                ),
+                const SizedBox(width: 12),
+                FilterChip(
+                  label: const Text('Fadiga'),
+                  selected: showFatigue,
+                  selectedColor: AppColors.darkGreen.withValues(alpha: 0.3),
+                  showCheckmark: false,
+                  onSelected: (val) => setState(() => showFatigue = val),
+                ),
+                const SizedBox(width: 12),
+                FilterChip(
+                  label: const Text('Sono'),
+                  selected: showSleep,
+                  selectedColor: AppColors.yellow.withValues(alpha: 0.3),
+                  showCheckmark: false,
+                  onSelected: (val) => setState(() => showSleep = val),
+                ),
+                const SizedBox(width: 12),
+                FilterChip(
+                  label: const Text('Inchaço'),
+                  selected: showSwelling,
+                  selectedColor: AppColors.purple.withValues(alpha: 0.3),
+                  showCheckmark: false,
+                  onSelected: (val) => setState(() => showSwelling = val),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+
+            // O Gráfico usando fl_chart
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
+                child: LineChart(
+                  _mainData(viewModel),
+                ),
+              ),
             ),
           ],
-        ),
-        const SizedBox(height: 32),
+        );
 
-        // O Gráfico usando fl_chart
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
-            child: LineChart(
-              _mainData(),
-            ),
-          ),
-        ),
-      ],
+      },
     );
   }
 
-  LineChartData _mainData() {
+  LineChartData _mainData(EvolutionViewModel viewModel) {
     return LineChartData(
       gridData: FlGridData(
         show: true,
@@ -120,36 +146,20 @@ class _EvolutionPageState extends State<EvolutionPage> {
       lineBarsData: [
         if (showPain)
           LineChartBarData(
-            spots: const [
-              FlSpot(0, 8), // (Dia, Nível de dor)
-              FlSpot(1, 6),
-              FlSpot(2, 7),
-              FlSpot(3, 5),
-              FlSpot(4, 4),
-              FlSpot(5, 6),
-              FlSpot(6, 3),
-            ],
+            spots: viewModel.getLast7PainLevels(),
             isCurved: true, // Deixa a linha suave
-            color: const Color(0xFFAE263D), // Vermelho para representar dor
+            color: AppColors.red, // Vermelho para representar dor
             barWidth: 4,
             isStrokeCapRound: true,
             dotData: const FlDotData(show: true),
             belowBarData: BarAreaData(
               show: true,
-              color: const Color(0xFFAE263D).withOpacity(0.15),
+              color: AppColors.red.withValues(alpha: 0.15),
             ),
           ),
         if (showFatigue)
           LineChartBarData(
-            spots: const [
-              FlSpot(0, 4),
-              FlSpot(1, 5),
-              FlSpot(2, 5),
-              FlSpot(3, 3),
-              FlSpot(4, 6),
-              FlSpot(5, 8),
-              FlSpot(6, 4),
-            ],
+            spots: viewModel.getLast7FatigueLevels(),
             isCurved: true,
             color: AppColors.darkGreen, // Cor do tema para fadiga
             barWidth: 4,
@@ -157,7 +167,33 @@ class _EvolutionPageState extends State<EvolutionPage> {
             dotData: const FlDotData(show: true),
             belowBarData: BarAreaData(
               show: true,
-              color: AppColors.darkGreenSurface.withOpacity(0.3),
+              color: AppColors.darkGreenSurface.withValues(alpha: 0.3),
+            ),
+          ),
+        if (showSleep)
+          LineChartBarData(
+            spots: viewModel.getLast7SleepLevels(),
+            isCurved: true, // Deixa a linha suave
+            color: AppColors.yellow, // Vermelho para representar dor
+            barWidth: 4,
+            isStrokeCapRound: true,
+            dotData: const FlDotData(show: true),
+            belowBarData: BarAreaData(
+              show: true,
+              color: AppColors.yellow.withValues(alpha: 0.15),
+            ),
+          ),
+        if (showSwelling)
+          LineChartBarData(
+            spots: viewModel.getLast7SwellingLevels(),
+            isCurved: true, // Deixa a linha suave
+            color: AppColors.purple, // Vermelho para representar dor
+            barWidth: 4,
+            isStrokeCapRound: true,
+            dotData: const FlDotData(show: true),
+            belowBarData: BarAreaData(
+              show: true,
+              color: AppColors.purple.withValues(alpha: 0.15),
             ),
           ),
       ],

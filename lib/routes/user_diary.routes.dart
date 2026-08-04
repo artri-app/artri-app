@@ -21,8 +21,8 @@ abstract class UserDiaryRoutes implements RoutesSession {
             GoRoute(
               path: 'fatigue-selection',
               pageBuilder: (context, state) => NoTransitionPage(
-                child: const UserLevelSelection(
-                  title: 'Fadiga',
+                child: UserLevelSelection(
+                  title: DiaryOptions.fatigue.toString(),
                   metric: DiaryMetric.fatigue,
                   tooltipTitle: 'O que é fadiga?',
                   tooltipMessage:
@@ -37,7 +37,7 @@ abstract class UserDiaryRoutes implements RoutesSession {
               path: 'pain-selection',
               pageBuilder: (context, state) => NoTransitionPage(
                 child: UserLevelSelectionWithOptions(
-                  title: 'Dor',
+                  title: DiaryOptions.pain.toString(),
                   metric: DiaryMetric.pain,
                   tooltipTitle: 'O que é dor?',
                   tooltipMessage:
@@ -48,8 +48,8 @@ abstract class UserDiaryRoutes implements RoutesSession {
             GoRoute(
               path: 'sleep-selection',
               pageBuilder: (context, state) => NoTransitionPage(
-                child: const UserLevelSelection(
-                  title: 'Sono',
+                child: UserLevelSelection(
+                  title: DiaryOptions.sleep.toString(),
                   metric: DiaryMetric.sleep,
                   tooltipTitle: 'Como avaliar o seu sono?',
                   tooltipMessage:
@@ -64,7 +64,7 @@ abstract class UserDiaryRoutes implements RoutesSession {
               path: 'swelling-selection',
               pageBuilder: (context, state) => NoTransitionPage(
                 child: UserLevelSelectionWithOptions(
-                  title: 'Inchaço',
+                  title: DiaryOptions.swelling.toString(),
                   metric: DiaryMetric.swelling,
                   tooltipTitle: 'O que é inchaço?',
                   tooltipMessage:

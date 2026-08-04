@@ -2,11 +2,11 @@ import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/user_diary/widgets/index.dart';
-import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:artriapp/views/widgets/index.dart';
 
 class UserLevelSelectionWithOptions extends StatefulWidget {
   final String title;
@@ -29,19 +29,19 @@ class UserLevelSelectionWithOptions extends StatefulWidget {
 
 class _UserLevelSelectionWithOptionsState
     extends State<UserLevelSelectionWithOptions> {
-  Map<String, int?> selectedInfos = <String, int?>{};
+  Map<BodyOptions, int?> selectedInfos = <BodyOptions, int?>{};
   bool isSaving = false;
 
-  void onCheckBoxChanged(List<String> options) {
-    for (String option in options) {
+  void onCheckBoxChanged(List<BodyOptions> options) {
+    for (BodyOptions option in options) {
       if (selectedInfos.containsKey(option)) continue;
 
       selectedInfos[option] = -1;
     }
 
-    List<String> selectedInfosKeys = selectedInfos.keys.toList();
+    List<BodyOptions> selectedInfosKeys = selectedInfos.keys.toList();
 
-    for (String key in selectedInfosKeys) {
+    for (BodyOptions key in selectedInfosKeys) {
       if (options.contains(key)) continue;
 
       selectedInfos.remove(key);
@@ -75,13 +75,15 @@ class _UserLevelSelectionWithOptionsState
   }
 
   Widget renderUserSelection(BuildContext context, int idx) {
-    String option = selectedInfos.keys.elementAt(idx);
+    BodyOptions option = selectedInfos.keys.elementAt(idx);
 
     return UserLevelSelection(
       key: Key('$option - ${selectedInfos[option]}'),
-      description: getUserSelectionDescription(option),
+      description: getUserSelectionDescription(option.toString()),
       showButtons: false,
-      onLevelSelected: (value) => selectedInfos[option] = value,
+      onLevelSelected: (value) => setState(() {
+        selectedInfos[option] = value;
+      }),
       selectedLevel: selectedInfos[option] == -1 ? null : selectedInfos[option],
       minLabel: getMinLabel(),
       maxLabel: getMaxLabel(),
@@ -91,9 +93,9 @@ class _UserLevelSelectionWithOptionsState
   String getUserSelectionDescription(String option) {
     switch (widget.title.toLowerCase()) {
       case 'inchaço':
-        return 'De 0 a 10, qual nível de ${widget.title} ${getStringArticle(option)} $option';
+        return 'De 0 a 10, qual o nível de ${widget.title} ${getStringArticle(option)} $option?';
       case 'dor':
-        return 'De 0 a 10, qual nível da sua ${widget.title} ${getStringArticle(option)} $option';
+        return 'De 0 a 10, qual o nível da sua ${widget.title} ${getStringArticle(option)} $option?';
       default:
         return 'Option not defined';
     }
@@ -123,7 +125,7 @@ class _UserLevelSelectionWithOptionsState
       return;
     }
 
-    List<String> missingLevels = selectedInfos.entries
+    List<BodyOptions> missingLevels = selectedInfos.entries
         .where((info) => info.value == null || info.value == -1)
         .map((info) => info.key)
         .toList();
@@ -139,8 +141,8 @@ class _UserLevelSelectionWithOptionsState
 
     setState(() => isSaving = true);
 
-    Map<String, int> levelsByRegion = {
-      for (MapEntry<String, int?> info in selectedInfos.entries)
+    Map<BodyOptions, int> levelsByRegion = {
+      for (MapEntry<BodyOptions, int?> info in selectedInfos.entries)
         info.key: info.value!,
     };
 
@@ -201,7 +203,7 @@ class _UserLevelSelectionWithOptionsState
                   : Gap(0),
             ],
           ),
-          CheckboxGroup(
+          CheckboxBodyOptionsGroup(
             onChanged: (list) => setState(() {
               onCheckBoxChanged(list);
             }),
@@ -216,6 +218,8 @@ class _UserLevelSelectionWithOptionsState
           Gap(32),
           ConfirmationButtons(
             onButtonClicked: onConfirmationAction,
+            isConfirmEnabled: selectedInfos.isNotEmpty &&
+                selectedInfos.values.every((v) => v != -1),
           ),
         ],
       ),

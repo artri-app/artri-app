@@ -40,18 +40,12 @@ class UserLevelSelection extends StatefulWidget {
         );
 
   @override
-  State<UserLevelSelection> createState() => _UserLevelSelectionState();
+  State<UserLevelSelection> createState() => _UserLevelSelection();
 }
 
-class _UserLevelSelectionState extends State<UserLevelSelection> {
+class _UserLevelSelection extends State<UserLevelSelection> {
   int? selectedLevel;
   bool isSaving = false;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedLevel = widget.selectedLevel;
-  }
 
   void handleLevelSelected(int level) {
     selectedLevel = level;
@@ -106,66 +100,95 @@ class _UserLevelSelectionState extends State<UserLevelSelection> {
     context.go(UserDiaryRoutes.diary);
   }
 
+  int? _currentValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentValue = widget.selectedLevel;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
+    return Consumer<EvolutionViewModel>(
+      builder: (context, viewModel, child) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            widget.title != null
-                ? Row(
-                    spacing: 8,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SessionTitle(title: widget.title!),
-                      widget.tooltipMessage != null
-                          ? HintIndicatorTooltip(
-                              tooltipMessage: widget.tooltipMessage!,
-                              tooltipTitle: widget.tooltipTitle,
-                            )
-                          : Gap(0),
-                    ],
-                  )
-                : const Gap(0),
-            SizedBox(height: 16),
-            Text(
-              widget.description.toUpperCase(),
-              textAlign: TextAlign.center,
-              style: GoogleFonts.montserrat(
-                fontSize: 18,
-                height: 1.25,
-                color: Colors.black,
-              ),
+            Column(
+              children: [
+                widget.title != null
+                    ? Row(
+                        spacing: 8,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SessionTitle(title: widget.title!),
+                          widget.tooltipMessage != null
+                              ? HintIndicatorTooltip(
+                                  tooltipMessage: widget.tooltipMessage!,
+                                )
+                              : Gap(0),
+                        ],
+                      )
+                    : const Gap(0),
+                SizedBox(height: 16),
+                Text(
+                  widget.description.toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 4),
+                CustomScaleSelectorWidget(
+                  onChanged: (value) {
+                    setState(() {
+                      _currentValue = value;
+                    });
+                    widget.onLevelSelected?.call(value);
+                  },
+                  initialValue: _currentValue,
+                  minLabel: widget.minLabel,
+                  maxLabel: widget.maxLabel,
+                ),
+              ],
             ),
-            SizedBox(height: 4),
-            CustomScaleSelectorWidget(
-              onChanged: handleLevelSelected,
-              initialValue: selectedLevel,
-              minLabel: widget.minLabel,
-              maxLabel: widget.maxLabel,
+            Builder(
+              builder: (context) {
+                if (widget.showButtons) {
+                  return Column(
+                    children: [
+                      Gap(32),
+                      ConfirmationButtons(
+                        isConfirmEnabled: _currentValue != null,
+                        onButtonClicked: (action) {
+                          if (action == ConfirmationAction.confirmed &&
+                              _currentValue != null) {
+                            if (widget.title ==
+                                DiaryOptions.fatigue.toString()) {
+                              viewModel.addFatigueLevel(_currentValue, null);
+                            } else if (widget.title ==
+                                DiaryOptions.sleep.toString()) {
+                              viewModel.addSleepLevel(_currentValue, null);
+                            }
+                            widget.onLevelSelected?.call(_currentValue!);
+                          }
+                          context.pop();
+                        },
+                      ),
+                    ],
+                  );
+                }
+                return Gap(0);
+              },
             ),
           ],
-        ),
-        Builder(
-          builder: (context) {
-            if (widget.showButtons) {
-              return Column(
-                children: [
-                  Gap(32),
-                  ConfirmationButtons(
-                    onButtonClicked: onConfirmationAction,
-                  ),
-                ],
-              );
-            }
-            return Gap(0);
-          },
-        ),
-      ],
+        );
+      },
     );
   }
 }
