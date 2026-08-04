@@ -1,6 +1,7 @@
+import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/enums/index.dart';
-import 'package:artriapp/views/widgets/index.dart';
 import 'package:artriapp/view_models/index.dart';
+import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -15,8 +16,10 @@ class UserLevelSelection extends StatefulWidget {
   final ValueChanged<int>? onLevelSelected;
   final bool showButtons;
   final String? tooltipMessage;
+  final String? tooltipTitle;
   final String minLabel;
   final String maxLabel;
+  final DiaryMetric? metric;
 
   const UserLevelSelection({
     super.key,
@@ -27,15 +30,76 @@ class UserLevelSelection extends StatefulWidget {
     this.onLevelSelected,
     this.hintDescription,
     this.tooltipMessage,
+    this.tooltipTitle,
     this.minLabel = '',
     this.maxLabel = '',
-  });
+    this.metric,
+  }) : assert(
+          !showButtons || metric != null,
+          'Informe a métrica para poder salvar o registro.',
+        );
 
   @override
   State<UserLevelSelection> createState() => _UserLevelSelection();
 }
 
 class _UserLevelSelection extends State<UserLevelSelection> {
+  int? selectedLevel;
+  bool isSaving = false;
+
+  void handleLevelSelected(int level) {
+    selectedLevel = level;
+    widget.onLevelSelected?.call(level);
+  }
+
+  Future<void> onConfirmationAction(ConfirmationAction action) async {
+    if (action == ConfirmationAction.canceled) {
+      closeSelection();
+      return;
+    }
+
+    if (selectedLevel == null) {
+      showMessage('Escolha um número de 0 a 10 antes de salvar.');
+      return;
+    }
+
+    if (isSaving) return;
+
+    setState(() => isSaving = true);
+
+    bool saved = await context.read<DiaryViewModel>().enviarRelatorio(
+          metrica: widget.metric!,
+          nivel: selectedLevel!,
+        );
+
+    if (!mounted) return;
+
+    setState(() => isSaving = false);
+
+    if (!saved) {
+      showMessage('Não foi possível salvar agora. Tente novamente.');
+      return;
+    }
+
+    showMessage('Registro de ${widget.title} salvo!');
+    closeSelection();
+  }
+
+  void showMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
+  void closeSelection() {
+    if (context.canPop()) {
+      context.pop();
+      return;
+    }
+
+    context.go(UserDiaryRoutes.diary);
+  }
+
   int? _currentValue;
 
   @override

@@ -1,46 +1,75 @@
 import 'package:artriapp/utils/app_colors.dart';
-import 'package:artriapp/utils/helpers/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HintIndicatorTooltip extends StatelessWidget {
   final String tooltipMessage;
+  final String? tooltipTitle;
 
   const HintIndicatorTooltip({
     super.key,
     required this.tooltipMessage,
+    this.tooltipTitle,
   });
+
+  void showHint(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: AppColors.lightBrown,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        title: tooltipTitle != null
+            ? Text(
+                tooltipTitle!,
+                style: GoogleFonts.montserrat(
+                  fontSize: 22,
+                  height: 1.25,
+                  color: AppColors.darkGreen,
+                  fontWeight: FontWeight.w600,
+                ),
+              )
+            : null,
+        content: SingleChildScrollView(
+          child: Text(
+            tooltipMessage,
+            style: GoogleFonts.montserrat(
+              fontSize: 20,
+              height: 1.4,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(
+              'Entendi',
+              style: GoogleFonts.montserrat(
+                fontSize: 20,
+                color: AppColors.darkGreen,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final double width = ScreenHelper.getScreenWidth(context);
-
-    return Tooltip(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      message: tooltipMessage,
-      enableTapToDismiss: true,
-      constraints: BoxConstraints(maxWidth: 0.8 * width),
-      decoration: BoxDecoration(
-        color: AppColors.lightBrown,
-        borderRadius: BorderRadius.all(
-          Radius.circular(8),
-        ),
-      ),
-      textStyle: TextStyle(
-        color: Colors.black,
-        fontSize: 22,
-      ),
-      child: Container(
-        width: 24,
-        height: 24,
-        child: IconButton.outlined(
-          padding: EdgeInsets.all(0),
-          iconSize: 16,
-          icon: Icon(
-            Icons.question_mark,
-          ),
-          color: AppColors.darkGreen,
-          onPressed: () => {},
-        ),
+    return SizedBox(
+      width: 28,
+      height: 28,
+      child: IconButton.outlined(
+        padding: EdgeInsets.zero,
+        iconSize: 18,
+        tooltip: tooltipTitle ?? 'Ver explicação',
+        color: AppColors.darkGreen,
+        onPressed: () => showHint(context),
+        icon: const Icon(Icons.question_mark),
       ),
     );
   }

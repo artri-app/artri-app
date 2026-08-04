@@ -30,9 +30,11 @@ class TratamentosInfoPage extends StatelessWidget {
 
         Row(
           children: const [
-            Text(
-              'Medicamentos Modificadores do Curso da Doença',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Flexible(
+              child: Text(
+                'Medicamentos Modificadores do Curso da Doença',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             SizedBox(width: 6),
             HintIndicatorTooltip(

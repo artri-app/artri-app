@@ -8,9 +8,10 @@ class AuthTokenResponse {
   });
 
   factory AuthTokenResponse.fromJson(Map<String, dynamic> json) {
+    // A rota de refresh devolve apenas o token de acesso.
     return AuthTokenResponse(
-      accessToken: json['access'] as String,
-      refreshToken: json['refresh'] as String,
+      accessToken: json['access'] as String? ?? '',
+      refreshToken: json['refresh'] as String? ?? '',
     );
   }
 }

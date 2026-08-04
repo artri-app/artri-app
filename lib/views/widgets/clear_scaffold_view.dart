@@ -16,11 +16,14 @@ class ClearScaffoldView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool hasAppBarTitle = appBarTitle != null;
+
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: !hasAppBarTitle,
       extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        toolbarHeight: hasAppBarTitle ? 104 : kToolbarHeight,
         title: appBarTitle,
         centerTitle: true,
         leading: Padding(
