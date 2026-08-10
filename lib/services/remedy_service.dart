@@ -4,6 +4,7 @@ import 'package:artriapp/models/api_responses/remedy.dart';
 import 'package:artriapp/services/auth_service.dart';
 import 'package:artriapp/services/security_token_service.dart';
 import 'package:artriapp/utils/index.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class RemedyService {
@@ -127,10 +128,11 @@ class RemedyService {
 
   // DELETE
   Future<void> deleteRemedy(int id) async {
+    final uri = Uri.parse('$baseUrl/remedies/$id');
     var headers = await _authHeaders();
     var response = await http
         .delete(
-          Uri.parse('$baseUrl/remedies/$id/'),
+          uri,
           headers: headers,
         )
         .timeout(_timeout);
@@ -140,13 +142,16 @@ class RemedyService {
       headers = await _authHeaders();
       response = await http
           .delete(
-            Uri.parse('$baseUrl/remedies/$id/'),
+            uri,
             headers: headers,
           )
           .timeout(_timeout);
     }
 
     if (response.statusCode != 204 && response.statusCode != 200) {
+      debugPrint(
+        '[RemedyService] DELETE $uri => ${response.statusCode}: ${response.body}',
+      );
       throw Exception('Falha ao deletar medicamento: ${response.statusCode}');
     }
   }

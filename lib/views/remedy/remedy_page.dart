@@ -1,4 +1,5 @@
 import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/models/api_responses/remedy.dart';
 import 'package:artriapp/view_models/remedy_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -123,7 +124,7 @@ class _RemedyPageState extends State<RemedyPage> {
                         'Qui',
                         'Sex',
                         'Sáb',
-                        'Dom'
+                        'Dom',
                       ];
                       final selected = selectedDays.contains(day);
                       return FilterChip(
@@ -177,7 +178,9 @@ class _RemedyPageState extends State<RemedyPage> {
                     child: Text(
                       'Salvar',
                       style: GoogleFonts.montserrat(
-                          color: Colors.white, fontSize: 16),
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -188,6 +191,39 @@ class _RemedyPageState extends State<RemedyPage> {
         );
       },
     );
+  }
+
+  Future<void> _confirmDeleteRemedy(
+    BuildContext context,
+    Remedy remedy,
+  ) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Excluir medicamento'),
+          content: Text(
+            'Deseja realmente excluir o medicamento "${remedy.name}"?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: const Text('Excluir'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (confirmed != true || !context.mounted) {
+      return;
+    }
+
+    await context.read<RemedyViewModel>().deleteRemedy(remedy.id);
   }
 
   @override
@@ -280,7 +316,9 @@ class _RemedyPageState extends State<RemedyPage> {
                           child: Text(
                             'Salvar',
                             style: GoogleFonts.montserrat(
-                                color: Colors.white, fontSize: 16),
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -386,10 +424,26 @@ class _RemedyPageState extends State<RemedyPage> {
                           subtitle: Text(
                             '${remedy.hour} - ${_formatDays(remedy.daysOfWeek)}',
                           ),
-                          trailing: Checkbox(
-                            activeColor: AppColors.darkGreen,
-                            value: isTaken,
-                            onChanged: (_) => model.toggleTaken(remedy.id),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Checkbox(
+                                activeColor: AppColors.darkGreen,
+                                value: isTaken,
+                                onChanged: (_) => model.toggleTaken(remedy.id),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.delete_outline,
+                                  color: Colors.red,
+                                ),
+                                tooltip: 'Excluir medicamento',
+                                onPressed: () => _confirmDeleteRemedy(
+                                  context,
+                                  remedy,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );
