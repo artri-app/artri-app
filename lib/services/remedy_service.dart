@@ -128,7 +128,7 @@ class RemedyService {
 
   // DELETE
   Future<void> deleteRemedy(int id) async {
-    final uri = Uri.parse('$baseUrl/remedies/$id');
+    final uri = Uri.parse('$baseUrl/remedies/$id/');
     var headers = await _authHeaders();
     var response = await http
         .delete(
