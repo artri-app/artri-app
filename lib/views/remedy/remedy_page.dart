@@ -258,7 +258,7 @@ class _RemedyPageState extends State<RemedyPage> {
               size: 24,
             ),
           ),
-        ),
+        ), /*
         actions: [
           IconButton(
             icon: const Icon(
@@ -330,7 +330,7 @@ class _RemedyPageState extends State<RemedyPage> {
             },
           ),
           const SizedBox(width: 16),
-        ],
+        ],*/
       ),
       body: Consumer<RemedyViewModel>(
         builder: (context, model, child) {
@@ -343,7 +343,7 @@ class _RemedyPageState extends State<RemedyPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'MEDICAMENTOS',
+                      'NOVO MEDICAMENTO',
                       style: GoogleFonts.montserrat(
                         fontSize: 26,
                         color: AppColors.darkGreen,
