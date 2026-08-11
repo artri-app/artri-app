@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:artriapp/models/index.dart';
 import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/index.dart';
@@ -30,6 +29,11 @@ class PhysicalExercisesService {
     );
   }
 
+  Future<Exercise> getExerciseById(int id) async {
+    final response = await http.get(Uri.parse('$_baseUrl/exercise/$id'));
+    return Exercise.fromJson(jsonDecode(response.body));
+  }
+
   Future<List<Exercise>> getExercisesFromTraining(
     TrainingType type,
     ExerciseDifficulty difficulty,
@@ -45,6 +49,39 @@ class PhysicalExercisesService {
     return await getExercises().then(
       (exercises) =>
           exercises.where((e) => training.exercises.contains(e.id)).toList(),
+    );
+  }
+
+  Future<List<Exercise>> getCustomExercisesFromTraining(
+    TrainingType type,
+    ExerciseDifficulty difficulty,
+    int index,
+  ) async {
+    final List<Exercise> exercises = [];
+
+    final allCustomTrainings = await getTrainings().then(
+      (trainings) => trainings.where(
+        (training) =>
+            training.name.startsWith(type.toString()) &&
+            training.difficulty == difficulty,
+      ),
+    );
+
+    final nthCustomTraining = allCustomTrainings.toList().elementAt(index);
+
+    for (var exerciseId in nthCustomTraining.exercises) {
+      final exercise = await getExerciseById(exerciseId);
+      exercises.add(exercise);
+    }
+
+    return exercises;
+  }
+
+  Future<List<Exercise>> getCustomExercisesFromIdsList(
+    List<int> ids,
+  ) {
+    return getExercises().then(
+      (exercises) => exercises.where((e) => ids.contains(e.id)).toList(),
     );
   }
 }

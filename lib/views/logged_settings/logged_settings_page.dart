@@ -1,6 +1,6 @@
 import 'package:artriapp/routes/index.dart';
 import 'package:artriapp/utils/index.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:artriapp/views/widgets/index.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +18,7 @@ class _LoggedSettingsPageState extends State<LoggedSettingsPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HealthViewModel>().initialize();
+      context.read<EvolutionViewModel>().initialize();
     });
   }
 
@@ -47,7 +47,7 @@ class _LoggedSettingsPageState extends State<LoggedSettingsPage> {
             gradientColors: AppGradients.greenGradient,
           ),
           const SizedBox(height: 16),
-          Consumer<HealthViewModel>(
+          Consumer<EvolutionViewModel>(
             builder: (context, vm, _) {
               if (vm.isLoading) {
                 return const Padding(
@@ -62,10 +62,16 @@ class _LoggedSettingsPageState extends State<LoggedSettingsPage> {
                       ? 'Desconectar Smartwatch'
                       : 'Conectar Smartwatch / Health Connect');
               final VoidCallback? onPressed = !vm.isAvailable
-                  ? () { vm.installHealthConnect(); }
+                  ? () {
+                      vm.installHealthConnect();
+                    }
                   : (vm.isConnected
-                      ? () { vm.disconnectHealth(); }
-                      : () { vm.connectHealth(); });
+                      ? () {
+                          vm.disconnectHealth();
+                        }
+                      : () {
+                          vm.connectHealth();
+                        });
 
               return Column(
                 children: [
@@ -92,12 +98,11 @@ class _LoggedSettingsPageState extends State<LoggedSettingsPage> {
             },
           ),
           const SizedBox(height: 16),
-          Consumer<HealthViewModel>(
+          Consumer<EvolutionViewModel>(
             builder: (context, vm, _) {
               return CustomSolidButton(
                 text: 'Simular Dados de Smartwatch',
-                onPressed:
-                    vm.isLoading ? null : () => vm.simulateData(),
+                onPressed: vm.isLoading ? null : () => vm.simulateData(),
                 gradientColors: [Colors.grey.shade400, Colors.grey.shade600],
                 fontSize: 18,
               );

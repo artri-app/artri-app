@@ -1,3 +1,4 @@
+import 'package:artriapp/view_models/evolution_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -8,7 +9,6 @@ import 'package:artriapp/database/app_database.dart';
 import 'package:artriapp/repositories/health_repository.dart';
 import 'package:artriapp/services/health_sync_service.dart';
 import 'package:artriapp/services/interfaces/health_data_provider.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
 import 'package:artriapp/views/logged_settings/logged_settings_page.dart';
 import 'package:artriapp/views/evolution/evolution_page.dart';
 
@@ -22,13 +22,13 @@ Widget _createSettingsApp() {
     dataProvider: dataProvider,
     repository: repository,
   );
-  final viewModel = HealthViewModel(syncService: syncService);
+  final viewModel = EvolutionViewModel(syncService: syncService);
 
   return MaterialApp(
     home: Scaffold(
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+          ChangeNotifierProvider<EvolutionViewModel>.value(value: viewModel),
         ],
         child: const LoggedSettingsPage(),
       ),
@@ -46,13 +46,13 @@ Widget _createEvolutionApp() {
     dataProvider: dataProvider,
     repository: repository,
   );
-  final viewModel = HealthViewModel(syncService: syncService);
+  final viewModel = EvolutionViewModel(syncService: syncService);
 
   return MaterialApp(
     home: Scaffold(
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+          ChangeNotifierProvider<EvolutionViewModel>.value(value: viewModel),
         ],
         child: const EvolutionPage(),
       ),

@@ -1,6 +1,7 @@
 import 'package:artriapp/models/health_metric_type.dart';
 import 'package:artriapp/utils/app_colors.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
+import 'package:artriapp/utils/index.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,12 +21,13 @@ class _EvolutionPageState extends State<EvolutionPage> {
   bool showSleep = false;
   bool showHeartRate = false;
   bool showEnergy = false;
+  bool showSwelling = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HealthViewModel>().initialize();
+      context.read<EvolutionViewModel>().initialize();
     });
   }
 
@@ -73,6 +75,14 @@ class _EvolutionPageState extends State<EvolutionPage> {
                 checkmarkColor: AppColors.darkGreen,
                 onSelected: (val) => setState(() => showFatigue = val),
               ),
+              const SizedBox(width: 12),
+              FilterChip(
+                label: const Text('Inchaço'),
+                selected: showSwelling,
+                selectedColor: AppColors.purple.withValues(alpha: 0.3),
+                showCheckmark: false,
+                onSelected: (val) => setState(() => showSwelling = val),
+              ),
               const SizedBox(width: 8),
               FilterChip(
                 label: const Text('Passos'),
@@ -111,8 +121,9 @@ class _EvolutionPageState extends State<EvolutionPage> {
         const SizedBox(height: 24),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
-            child: Consumer<HealthViewModel>(
+            padding:
+                const EdgeInsets.only(right: 24.0, left: 8.0, bottom: 24.0),
+            child: Consumer<EvolutionViewModel>(
               builder: (context, vm, _) {
                 if (vm.isLoading) {
                   return const Center(child: CircularProgressIndicator());
@@ -126,7 +137,7 @@ class _EvolutionPageState extends State<EvolutionPage> {
     );
   }
 
-  LineChartData mainData(HealthViewModel vm) {
+  LineChartData mainData(EvolutionViewModel vm) {
     final lines = <LineChartBarData>[
       if (showPain)
         LineChartBarData(
@@ -158,6 +169,19 @@ class _EvolutionPageState extends State<EvolutionPage> {
           belowBarData: BarAreaData(
             show: true,
             color: AppColors.darkGreenSurface.withOpacity(0.3),
+          ),
+        ),
+      if (showSwelling)
+        LineChartBarData(
+          spots: vm.getLast7SwellingLevels(),
+          isCurved: true, // Deixa a linha suave
+          color: AppColors.purple, // Vermelho para representar dor
+          barWidth: 4,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(show: true),
+          belowBarData: BarAreaData(
+            show: true,
+            color: AppColors.purple.withValues(alpha: 0.15),
           ),
         ),
       if (showSteps)
@@ -204,7 +228,8 @@ class _EvolutionPageState extends State<EvolutionPage> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles:
+            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -251,7 +276,7 @@ class _EvolutionPageState extends State<EvolutionPage> {
   }
 
   LineChartBarData _buildHealthDataLine(
-    HealthViewModel vm,
+    EvolutionViewModel vm,
     HealthMetricType type,
     Color color,
     String label,
@@ -291,9 +316,8 @@ class _EvolutionPageState extends State<EvolutionPage> {
       color: Colors.black54,
     );
     final days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
-    final text = value.toInt() >= 0 && value.toInt() < 7
-        ? days[value.toInt()]
-        : '';
+    final text =
+        value.toInt() >= 0 && value.toInt() < 7 ? days[value.toInt()] : '';
 
     return SideTitleWidget(
       meta: meta,

@@ -3,7 +3,7 @@ import 'package:artriapp/models/health_metric_type.dart';
 import 'package:artriapp/models/local_health_metrics.dart';
 import 'package:artriapp/repositories/health_repository.dart';
 import 'package:artriapp/services/health_sync_service.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/evolution/evolution_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -27,7 +27,7 @@ Widget _createTestApp({
     dataProvider: dataProvider,
     repository: repository,
   );
-  final viewModel = HealthViewModel(syncService: syncService);
+  final viewModel = EvolutionViewModel(syncService: syncService);
 
   if (withData) {
     repository.insertMetrics([
@@ -50,7 +50,7 @@ Widget _createTestApp({
     home: Scaffold(
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+          ChangeNotifierProvider<EvolutionViewModel>.value(value: viewModel),
         ],
         child: const EvolutionPage(),
       ),
@@ -108,7 +108,7 @@ void main() {
       dataProvider: dataProvider,
       repository: repository,
     );
-    final viewModel = HealthViewModel(syncService: syncService);
+    final viewModel = EvolutionViewModel(syncService: syncService);
     viewModel.initialize();
 
     await tester.pumpWidget(
@@ -116,7 +116,8 @@ void main() {
         home: Scaffold(
           body: MultiProvider(
             providers: [
-              ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+              ChangeNotifierProvider<EvolutionViewModel>.value(
+                  value: viewModel),
             ],
             child: const EvolutionPage(),
           ),

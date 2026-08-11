@@ -6,3 +6,4 @@ export 'security_token_service.dart';
 export 'training_service.dart';
 export 'health_sync_service.dart';
 export 'interfaces/health_data_provider.dart';
+export 'user_diary_service.dart';

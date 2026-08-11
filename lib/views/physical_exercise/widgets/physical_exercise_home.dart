@@ -5,7 +5,6 @@ import 'package:artriapp/views/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:go_router/go_router.dart';
 
 class PhysicalExerciseHome extends StatelessWidget {
   @override
@@ -14,13 +13,13 @@ class PhysicalExerciseHome extends StatelessWidget {
       builder: (context, viewModel, child) {
         return SingleChildScrollView(
           child: Column(
-            spacing: 32,
+            // spacing: 32,
             children: [
               Text(
                 'Aqui você terá acesso a exercícios específicos e pré-determinados para suas mãos e pés. Clique para escolher o nível de dificuldade:',
                 style: GoogleFonts.montserrat(
                   textStyle: const TextStyle(
-                    fontSize: 24,
+                    // fontSize: 24,
                     color: AppColors.darkGreen,
                   ),
                 ),
@@ -42,7 +41,7 @@ class PhysicalExerciseHome extends StatelessWidget {
                 buttonText: 'Pés',
               ),
               Text(
-                'Aqui você terá acesso a exercícios personalizados para diferentes partes do corpo. Clique para personalizar seus exercícios:',
+                'Aqui você terá acesso a exercícios personalizados para diferentes partes do corpo. Clique para escolher o nível de dificuldade e personalizar seus exercícios:',
                 style: GoogleFonts.montserrat(
                   textStyle: const TextStyle(
                     fontSize: 24,
@@ -51,14 +50,12 @@ class PhysicalExerciseHome extends StatelessWidget {
                 ),
               ),
               ExerciseButton(
-                onClick: () => context.push('/custom_routine/level_select'),
+                onClick: () => viewModel.handleTrainingTypeSelection(
+                  TrainingType.custom,
+                  context,
+                ),
                 gradientColors: AppGradients.greenToNeutral,
                 buttonText: 'Personalizados',
-              ),
-              ExerciseButton(
-                onClick: () => context.push('/custom_routine/advanced'),
-                gradientColors: AppGradients.greenToNeutral,
-                buttonText: 'Treino Livre',
               ),
             ],
           ),

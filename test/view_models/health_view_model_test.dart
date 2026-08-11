@@ -1,6 +1,6 @@
 import 'package:artriapp/models/health_metric_type.dart';
 import 'package:artriapp/models/local_health_metrics.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/mock_health_data_provider.dart';
@@ -10,7 +10,7 @@ import '../helpers/mock_health_sync_service.dart';
 void main() {
   late MockHealthSyncService syncService;
   late MockHealthRepository repository;
-  late HealthViewModel viewModel;
+  late EvolutionViewModel viewModel;
 
   setUp(() {
     repository = MockHealthRepository();
@@ -18,7 +18,7 @@ void main() {
       dataProvider: MockHealthDataProvider(),
       repository: repository,
     );
-    viewModel = HealthViewModel(syncService: syncService);
+    viewModel = EvolutionViewModel(syncService: syncService);
   });
 
   group('HealthViewModel', () {
@@ -33,7 +33,8 @@ void main() {
       expect(viewModel.installNeeded, isFalse);
     });
 
-    test('initialize() sets installNeeded=true when HC is unavailable', () async {
+    test('initialize() sets installNeeded=true when HC is unavailable',
+        () async {
       syncService.setAvailable(false);
 
       await viewModel.initialize();
@@ -42,7 +43,8 @@ void main() {
       expect(viewModel.isAvailable, isFalse);
     });
 
-    test('initialize() sets isAvailable=false when HC is unavailable', () async {
+    test('initialize() sets isAvailable=false when HC is unavailable',
+        () async {
       syncService.setAvailable(false);
 
       await viewModel.initialize();
@@ -54,12 +56,12 @@ void main() {
 
     test('initialize() sets isConnected=true when permissions already granted',
         () async {
-          syncService.setAvailable(true);
-          syncService.setPermissionsGranted(true);
+      syncService.setAvailable(true);
+      syncService.setPermissionsGranted(true);
 
-          await viewModel.initialize();
+      await viewModel.initialize();
 
-          expect(viewModel.isConnected, isTrue);
+      expect(viewModel.isConnected, isTrue);
     });
 
     test('connectHealth() returns true and sets isConnected on success',
@@ -176,7 +178,8 @@ void main() {
       final connected = await viewModel.connectHealth();
       expect(connected, isTrue);
 
-      final aggregated = viewModel.getDailyAggregate(HealthMetricType.heartRate);
+      final aggregated =
+          viewModel.getDailyAggregate(HealthMetricType.heartRate);
       final today = DateTime(now.year, now.month, now.day);
       expect(aggregated[today], 75.0);
     });

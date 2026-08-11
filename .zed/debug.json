@@ -1,0 +1,9 @@
+[
+  {
+    "adapter": "flutter",
+    "label": "Launch SmallPhone",
+    "request": "launch",
+    "program": "lib/main.dart",
+    "deviceId": "emulator-5554",
+  },
+]

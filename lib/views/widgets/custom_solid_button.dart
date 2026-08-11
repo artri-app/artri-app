@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:artriapp/utils/index.dart';
+
 class CustomSolidButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -27,10 +29,12 @@ class CustomSolidButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isEnabled = onPressed != null;
+
     return Container(
       width: width,
       decoration: BoxDecoration(
-        gradient: _hasGradient
+        gradient: _hasGradient && isEnabled
             ? LinearGradient(
                 colors: gradientColors!,
                 begin: Alignment.topLeft,
@@ -38,7 +42,9 @@ class CustomSolidButton extends StatelessWidget {
               )
             : null,
         borderRadius: BorderRadius.circular(borderRadius),
-        color: !_hasGradient ? color ?? Colors.blue : null,
+        color: !isEnabled
+          ? AppColors.grey // Cinza apenas se estiver desabilitado
+          : (_hasGradient ? null : (color ?? AppColors.darkBlue)),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -55,7 +61,7 @@ class CustomSolidButton extends StatelessWidget {
             text,
             style: textStyle ??
                 TextStyle(
-                  color: textColor ?? Colors.white,
+                  color: textColor ?? AppColors.neutral,
                   fontSize: fontSize,
                   fontWeight: FontWeight.w400,
                 ),

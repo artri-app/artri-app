@@ -20,8 +20,11 @@ class SessionTitle extends StatelessWidget {
         Text(
           title.toUpperCase(),
           textAlign: TextAlign.center,
+          softWrap: true,
+          overflow: TextOverflow.visible,
           style: GoogleFonts.montserrat(
             fontSize: size,
+            height: 1.25,
             color: AppColors.darkGreen,
           ),
         ),
@@ -29,8 +32,11 @@ class SessionTitle extends StatelessWidget {
           Text(
             subtitle!.toUpperCase(),
             textAlign: TextAlign.center,
+            softWrap: true,
+            overflow: TextOverflow.visible,
             style: GoogleFonts.montserrat(
               fontSize: size! * 0.70,
+              height: 1.25,
               color: AppColors.mediumGreen,
             ),
           ),

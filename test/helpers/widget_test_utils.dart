@@ -1,7 +1,7 @@
 import 'package:artriapp/database/app_database.dart';
 import 'package:artriapp/repositories/health_repository.dart';
 import 'package:artriapp/services/health_sync_service.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -25,13 +25,13 @@ Widget createTestApp({
     dataProvider: dataProvider,
     repository: repository,
   );
-  final viewModel = HealthViewModel(syncService: syncService);
+  final viewModel = EvolutionViewModel(syncService: syncService);
 
   return MaterialApp(
     home: Scaffold(
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+          ChangeNotifierProvider<EvolutionViewModel>.value(value: viewModel),
         ],
         child: Material(child: child),
       ),

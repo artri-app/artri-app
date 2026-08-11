@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class ConfirmationButtons extends StatelessWidget {
   final ValueChanged<ConfirmationAction> onButtonClicked;
+  final bool isConfirmEnabled;
 
-  const ConfirmationButtons({super.key, required this.onButtonClicked});
+  const ConfirmationButtons({super.key, required this.onButtonClicked, this.isConfirmEnabled = true});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,15 @@ class ConfirmationButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomSolidButton(
-          text: 'Cancelar',
+          text: 'Voltar',
           onPressed: () => onButtonClicked.call(ConfirmationAction.canceled),
           gradientColors: AppGradients.redGradient,
         ),
         CustomSolidButton(
           text: 'Salvar',
-          onPressed: () => onButtonClicked.call(ConfirmationAction.confirmed),
+          onPressed: isConfirmEnabled
+              ? () => onButtonClicked.call(ConfirmationAction.confirmed)
+              : null,
           gradientColors: AppGradients.greenGradient,
         ),
       ],

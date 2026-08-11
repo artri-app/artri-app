@@ -44,13 +44,13 @@ class GlobalProviders {
     ),
     ChangeNotifierProvider(
       create: (context) => RemedyViewModel(
-        notificationService: Provider.of<NotificationService>(context, listen: false),
+        notificationService:
+            Provider.of<NotificationService>(context, listen: false),
         remedyService: Provider.of<RemedyService>(context, listen: false),
       ),
     ),
-    ChangeNotifierProvider(create: (_) => DiaryViewModel()),
     ChangeNotifierProvider(
-      create: (context) => HealthViewModel(
+      create: (context) => EvolutionViewModel(
         syncService: Provider.of<HealthSyncService>(context, listen: false),
       ),
     ),
@@ -62,6 +62,17 @@ class GlobalProviders {
     ChangeNotifierProvider(
       create: (context) => CustomRoutineAdvancedViewModel(
         Provider.of<PhysicalExercisesService>(context, listen: false),
+      ),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => EvolutionViewModel(
+        syncService: Provider.of<HealthSyncService>(context, listen: false),
+      ),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => DiaryViewModel(
+        Provider.of<SecurityTokenService>(context, listen: false),
+        Provider.of<AuthService>(context, listen: false),
       ),
     ),
   ];

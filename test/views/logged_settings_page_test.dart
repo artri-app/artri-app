@@ -1,7 +1,7 @@
 import 'package:artriapp/database/app_database.dart';
 import 'package:artriapp/repositories/health_repository.dart';
 import 'package:artriapp/services/health_sync_service.dart';
-import 'package:artriapp/view_models/health_view_model.dart';
+import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/logged_settings/logged_settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,13 +23,13 @@ Widget _createTestApp() {
     dataProvider: dataProvider,
     repository: repository,
   );
-  final viewModel = HealthViewModel(syncService: syncService);
+  final viewModel = EvolutionViewModel(syncService: syncService);
 
   return MaterialApp(
     home: Scaffold(
       body: MultiProvider(
         providers: [
-          ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+          ChangeNotifierProvider<EvolutionViewModel>.value(value: viewModel),
         ],
         child: const LoggedSettingsPage(),
       ),
@@ -55,7 +55,8 @@ void main() {
     expect(find.text('Conectar Smartwatch / Health Connect'), findsOneWidget);
   });
 
-  testWidgets('shows install button when health connect not available', (tester) async {
+  testWidgets('shows install button when health connect not available',
+      (tester) async {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
 
@@ -68,7 +69,7 @@ void main() {
       dataProvider: dataProvider,
       repository: repository,
     );
-    final viewModel = HealthViewModel(syncService: syncService);
+    final viewModel = EvolutionViewModel(syncService: syncService);
 
     // Set error directly on viewModel before building widget
     viewModel.initialize();
@@ -77,7 +78,8 @@ void main() {
         home: Scaffold(
           body: MultiProvider(
             providers: [
-              ChangeNotifierProvider<HealthViewModel>.value(value: viewModel),
+              ChangeNotifierProvider<EvolutionViewModel>.value(
+                  value: viewModel),
             ],
             child: const LoggedSettingsPage(),
           ),

@@ -29,7 +29,7 @@ class PhysicalExerciseView extends StatelessWidget {
           appBarTitle: SessionTitle(
             title: title,
             subtitle: subtitle,
-            size: 36,
+            size: 28,
           ),
           child: Column(
             spacing: 32,
