@@ -16,5 +16,11 @@ abstract class LoggedRoutes implements RoutesSession {
           path: remedy,
           builder: (context, state) => const RemedyPage(),
         ),
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: '/configuration',
+          redirect: (context, state) => BottomNavRoutes.diary,
+          routes: SettingsRoutes.getGoRoutes(),
+        ),
       ];
 }

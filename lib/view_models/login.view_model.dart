@@ -30,7 +30,9 @@ class LoginViewModel extends ChangeNotifier {
           SecurityToken.refreshToken,
         );
 
-        context.go(BottomNavRoutes.diary);
+        if (context.mounted) {
+          context.go(BottomNavRoutes.diary);
+        }
       }
     } catch (e) {
       log('Error on user login, $e');
@@ -39,9 +41,11 @@ class LoginViewModel extends ChangeNotifier {
 
   void setEmail(String email) {
     _email = email;
+    notifyListeners();
   }
 
   void setPassword(String password) {
     _password = password;
+    notifyListeners();
   }
 }

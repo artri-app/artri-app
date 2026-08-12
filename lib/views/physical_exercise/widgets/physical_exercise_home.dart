@@ -2,7 +2,7 @@ import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:artriapp/views/index.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +11,7 @@ class PhysicalExerciseHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PhysicalExercisesViewModel>(
       builder: (context, viewModel, child) {
-        return Container(
+        return SingleChildScrollView(
           child: Column(
             // spacing: 32,
             children: [
@@ -44,21 +44,18 @@ class PhysicalExerciseHome extends StatelessWidget {
                 'Aqui você terá acesso a exercícios personalizados para diferentes partes do corpo. Clique para escolher o nível de dificuldade e personalizar seus exercícios:',
                 style: GoogleFonts.montserrat(
                   textStyle: const TextStyle(
-                    // fontSize: 24,
+                    fontSize: 24,
                     color: AppColors.darkGreen,
                   ),
                 ),
               ),
               ExerciseButton(
-                // onClick: () =>
-                //     context.go(PhysicalExerciseRoutes.customExercises),
                 onClick: () => viewModel.handleTrainingTypeSelection(
                   TrainingType.custom,
                   context,
                 ),
                 gradientColors: AppGradients.greenToNeutral,
                 buttonText: 'Personalizados',
-                // width: ScreenHelper.getScreenWidth(context) * 0.65,
               ),
             ],
           ),

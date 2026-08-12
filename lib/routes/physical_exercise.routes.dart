@@ -19,76 +19,159 @@ class PhysicalExerciseRoutes implements RoutesSession {
           path: 'congratulations',
           builder: (context, state) => CongratulationsView(),
         ),
-        ShellRoute(
+        // Mãos
+        GoRoute(
           parentNavigatorKey: RouterKeys.appRoutesKey,
-          builder: (context, state, child) => PhysicalExerciseView(
+          path: 'hand',
+          builder: (context, state) => PhysicalExerciseView(
             title: 'Mãos',
-            child: child,
+            child: const LevelExerciseSelector(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: 'hand/:difficulty',
+          builder: (context, state) => PhysicalExerciseView(
+            title: 'Mãos',
             subtitle: DifficultyHelper.getDifficultyText(
               state.pathParameters['difficulty'],
             ),
+            child: const PhysicalExerciseRoutineOverview(),
           ),
-          routes: [
-            GoRoute(
-              path: 'hand',
-              builder: (context, state) => const LevelExerciseSelector(),
-              routes: [
-                GoRoute(
-                  path: ':difficulty',
-                  builder: (context, state) =>
-                      const PhysicalExerciseRoutineOverview(),
-                  routes: [
-                    GoRoute(
-                      path: ':exerciseId',
-                      builder: (context, state) => ExerciseRoutineStepView(
-                        key: ValueKey(state.pathParameters['exerciseId']),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
         ),
-        ShellRoute(
+        GoRoute(
           parentNavigatorKey: RouterKeys.appRoutesKey,
-          builder: (context, state, child) => PhysicalExerciseView(
+          path: 'hand/:difficulty/:exerciseId',
+          builder: (context, state) => PhysicalExerciseView(
+            title: 'Mãos',
+            subtitle: DifficultyHelper.getDifficultyText(
+              state.pathParameters['difficulty'],
+            ),
+            child: ExerciseRoutineStepView(
+              key: ValueKey(state.pathParameters['exerciseId']),
+            ),
+          ),
+        ),
+        // Pés
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: 'feet',
+          builder: (context, state) => PhysicalExerciseView(
             title: 'Pés',
-            child: child,
+            child: const LevelExerciseSelector(),
+          ),
+        ),
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: 'feet/:difficulty',
+          builder: (context, state) => PhysicalExerciseView(
+            title: 'Pés',
             subtitle: DifficultyHelper.getDifficultyText(
               state.pathParameters['difficulty'],
             ),
+            child: const PhysicalExerciseRoutineOverview(),
           ),
+        ),
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: 'feet/:difficulty/:exerciseId',
+          builder: (context, state) => PhysicalExerciseView(
+            title: 'Pés',
+            subtitle: DifficultyHelper.getDifficultyText(
+              state.pathParameters['difficulty'],
+            ),
+            child: ExerciseRoutineStepView(
+              key: ValueKey(state.pathParameters['exerciseId']),
+            ),
+          ),
+        ),
+        // Personalizado (Custom Routine)
+        ShellRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          builder: (context, state, child) {
+            String? subtitle;
+            final path = state.uri.path;
+            if (path.startsWith('/custom_routine/advanced')) {
+              subtitle = 'Treino Livre';
+            } else if (state.pathParameters['level'] != null) {
+              final level = state.pathParameters['level'];
+              if (level == 'iniciante') {
+                subtitle = 'Iniciante';
+              } else if (level == 'intermediario') {
+                subtitle = 'Intermediário';
+              } else if (level == 'avancado') {
+                subtitle = 'Avançado';
+              }
+            }
+            return PhysicalExerciseView(
+              title: 'Personalizado',
+              child: child,
+              subtitle: subtitle,
+            );
+          },
           routes: [
             GoRoute(
-              path: 'feet',
-              builder: (context, state) => const LevelExerciseSelector(),
+              path: '/custom_routine/level_select',
+              builder: (context, state) => const CustomRoutineLevelSelectPage(),
+            ),
+            GoRoute(
+              path: '/custom_routine/overview/:level',
+              builder: (context, state) => CustomRoutineOverviewPage(
+                level: state.pathParameters['level'] ?? 'iniciante',
+              ),
               routes: [
                 GoRoute(
-                  path: ':difficulty',
-                  builder: (context, state) =>
-                      const PhysicalExerciseRoutineOverview(),
-                  routes: [
-                    GoRoute(
-                      path: ':exerciseId',
-                      builder: (context, state) => ExerciseRoutineStepView(
-                        key: ValueKey(state.pathParameters['exerciseId']),
-                      ),
-                    ),
-                  ],
+                  path: ':exerciseId',
+                  builder: (context, state) => ExerciseRoutineStepView(
+                    key: ValueKey(state.pathParameters['exerciseId']),
+                  ),
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/custom_routine/select',
+              builder: (context, state) {
+                final extra = state.extra as Map<String, dynamic>;
+                return CategorySelectionView(
+                  categoryTitle: extra['title'] as String,
+                  categoryKey: extra['key'] as String,
+                );
+              },
+            ),
+            GoRoute(
+              path: '/custom_routine/advanced',
+              builder: (context, state) => const CustomRoutineAdvancedPage(),
+              routes: [
+                GoRoute(
+                  path: ':exerciseId',
+                  builder: (context, state) => ExerciseRoutineStepView(
+                    key: ValueKey(state.pathParameters['exerciseId']),
+                  ),
                 ),
               ],
             ),
           ],
         ),
-        ShellRoute(
+        GoRoute(
           parentNavigatorKey: RouterKeys.appRoutesKey,
-          builder: (context, state, child) => PhysicalExerciseView(
+          path: '/custom_routine/select',
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
+            return PhysicalExerciseView(
+              title: 'Personalizado',
+              child: CategorySelectionView(
+                categoryTitle: extra['title'] as String,
+                categoryKey: extra['key'] as String,
+              ),
+            );
+          },
+        ),
+        GoRoute(
+          parentNavigatorKey: RouterKeys.appRoutesKey,
+          path: '/custom_routine/advanced',
+          builder: (context, state) => const PhysicalExerciseView(
             title: 'Personalizado',
-            child: child,
-            subtitle: DifficultyHelper.getDifficultyText(
-              state.pathParameters['difficulty'],
-            ),
+            child: CustomRoutineAdvancedPage(),
           ),
           routes: [
             GoRoute(

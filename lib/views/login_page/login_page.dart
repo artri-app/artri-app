@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
                         CustomSolidButton(
                           text: 'CADASTRAR',
                           onPressed: () {
-                            context.go(NotLoggedRoutes.signUp);
+                            context.push(NotLoggedRoutes.signUp);
                           },
                           borderRadius: 20,
                           gradientColors: const [

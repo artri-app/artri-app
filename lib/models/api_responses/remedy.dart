@@ -21,13 +21,11 @@ class Remedy {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'description': description,
       'quantity': quantity,
-      'days_of_week': daysOfWeek.map((day) => day.index).toList(),
+      'days_of_week': daysOfWeek.map((day) => day.apiValue).toList(),
       'hour': hour,
-      'user': user,
     };
   }
 
@@ -37,11 +35,23 @@ class Remedy {
       name: map['name'],
       description: map['description'],
       quantity: map['quantity'],
-      daysOfWeek: List<DaysOfWeek>.from(
-        (map['days_of_week'] as List).map((day) => DaysOfWeek.values[day]),
-      ),
+      daysOfWeek: _parseDaysOfWeek(map['days_of_week']),
       hour: map['hour'],
       user: map['user'],
     );
+  }
+
+  static List<DaysOfWeek> _parseDaysOfWeek(dynamic value) {
+    if (value == null) return [];
+    if (value is List) {
+      return value.map((e) => DaysOfWeek.fromApiValue(e.toString())).toList();
+    }
+    if (value is String) {
+      if (value.contains(',')) {
+        return value.split(',').map((s) => DaysOfWeek.fromApiValue(s.trim())).toList();
+      }
+      return [DaysOfWeek.fromApiValue(value)];
+    }
+    return [];
   }
 }

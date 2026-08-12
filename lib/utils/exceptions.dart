@@ -1,0 +1,1 @@
+class AuthExpiredException implements Exception {}
