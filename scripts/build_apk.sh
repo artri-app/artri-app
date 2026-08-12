@@ -54,11 +54,30 @@ else
   exit 3
 fi
 
+# Commit automático da alteração de versão (pubspec.yaml)
+
+pushd "$ROOT_DIR" > /dev/null
+
+echo "\nComitando alteração em pubspec.yaml..."
+git add pubspec.yaml
+if git commit -m "Bump version to $VERSION" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"; then
+  echo "Commit criado para pubspec.yaml"
+else
+  echo "Nenhuma alteração para commitar ou o commit falhou." >&2
+fi
+
+read -r -p "Deseja dar push para o remote atual? (y/N): " PUSH_ANS
+PUSH_ANS=${PUSH_ANS:-N}
+if [[ "$PUSH_ANS" =~ ^[Yy]$ ]]; then
+  git push
+fi
+
+popd > /dev/null
+
 cat <<EOF
 
 Próximos passos:
-1) Revise e commit/branch/push a alteração em pubspec.yaml (se desejar):
-   git add pubspec.yaml && git commit -m "Bump version to $VERSION" && git push
+1) (Opcional) Confirme no GitHub que o commit e o push foram feitos.
 
 2) Criar uma release no GitHub:
    - Tag: v$VERSION
