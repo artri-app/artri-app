@@ -24,7 +24,7 @@ if [[ "$MODE" != "release" && "$MODE" != "debug" ]]; then
   exit 1
 fi
 
-echo "\nAtualizando version em $PUBSPEC -> $VERSION"
+echo "Atualizando version em $PUBSPEC -> $VERSION"
 if [[ ! -f "$PUBSPEC" ]]; then
   echo "Arquivo pubspec.yaml não encontrado em: $PUBSPEC" >&2
   exit 2
@@ -43,11 +43,11 @@ echo "Executando: flutter build apk --$MODE"
 flutter build apk --$MODE
 
 SRC="$ROOT_DIR/build/app/outputs/flutter-apk/app-$MODE.apk"
-DEST="$ROOT_DIR/artriapp-v${VERSION}-${MODE}.apk"
+DEST="$ROOT_DIR/build/app/outputs/flutter-apk/artriapp-v${VERSION}-${MODE}.apk"
 
 if [[ -f "$SRC" ]]; then
   mv -f "$SRC" "$DEST"
-  echo "APK movido e renomeado: $DEST"
+  echo "APK renomeado: $DEST"
 else
   echo "Arquivo gerado não encontrado: $SRC" >&2
   echo "Verifique se o build do Flutter teve sucesso." >&2
@@ -58,7 +58,7 @@ fi
 
 pushd "$ROOT_DIR" > /dev/null
 
-echo "\nComitando alteração em pubspec.yaml..."
+echo "Comitando alteração em pubspec.yaml..."
 git add pubspec.yaml
 if git commit -m "Bump version to $VERSION" -m "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"; then
   echo "Commit criado para pubspec.yaml"

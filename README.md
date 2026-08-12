@@ -77,3 +77,18 @@ The project use the library [GoRouter](https://pub.dev/packages/go_router) to ma
 
 - `context.go()`: Will push a new page to the page stack. Use this to maintain the page stack.
 - `context.go()`: Replace the page stack with the page using a new page key.
+
+## 📦 Building APK for Release
+
+To generate an APK for Android, follow the **mandatory instructions** in [`.github/RELEASE_APK.md`](.github/RELEASE_APK.md).
+
+**Quick start:**
+```bash
+./scripts/build_apk.sh
+```
+
+Or read the [full documentation](.github/RELEASE_APK.md) for manual steps.
+
+## 🤝 Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.

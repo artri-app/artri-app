@@ -1,0 +1,25 @@
+title: "📦 Gerar APK da aplicação"
+labels: ["build"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 📦 Gerar APK
+        
+        ## ⚠️ Instruções obrigatórias
+        
+        Para gerar o APK da aplicação, **você DEVE seguir as instruções no arquivo [`RELEASE_APK.md`](.github/RELEASE_APK.md)**.
+        
+        Resumo rápido:
+        - Versão desejada (ex: `1.2.3+1`)
+        - Modo: `release` ou `debug`
+        - Atualizar `pubspec.yaml`
+        - Executar `flutter build apk --{modo}`
+        - Renomear APK e criar release no GitHub
+        
+        **Ou use o script helper:**
+        ```bash
+        ./scripts/build_apk.sh
+        ```
+        
+        📖 **Leia a documentação completa:** [.github/RELEASE_APK.md](.github/RELEASE_APK.md)
