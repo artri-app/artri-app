@@ -1,7 +1,7 @@
 import 'package:artriapp/database/app_database.dart';
 import 'package:artriapp/repositories/health_repository.dart';
 import 'package:artriapp/services/index.dart';
-import 'package:artriapp/view_models/diary_view_model.dart';
+import 'package:artriapp/view_models/calendar_view_model.dart';
 import 'package:artriapp/view_models/index.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -74,6 +74,9 @@ class GlobalProviders {
         Provider.of<SecurityTokenService>(context, listen: false),
         Provider.of<AuthService>(context, listen: false),
       ),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => CalendarViewModel(),
     ),
   ];
 
