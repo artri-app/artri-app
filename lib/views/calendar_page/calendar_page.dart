@@ -1,3 +1,4 @@
+import 'package:artriapp/routes/logged.routes.dart';
 import 'package:artriapp/utils/app_colors.dart';
 import 'package:artriapp/view_models/calendar_view_model.dart';
 import 'package:artriapp/views/widgets/add_reminder_dialog.dart';
@@ -92,9 +93,10 @@ class _CalendarPageState extends State<CalendarPage> {
                       backgroundColor: AppColors.mediumGreen,
                       child: Icon(Icons.add_outlined, color: AppColors.neutral, size: 40,),
                       onPressed: () {
-                        showDialog(
-                          context: (context),
-                          builder: (context) => AddReminderDialog());
+                        context.push(LoggedRoutes.novoLembrete);
+                        // showDialog(
+                        //   context: (context),
+                        //   builder: (context) => AddReminderDialog());
                         // viewModel.saveReminderListLocally();
                   }),)
                 ],
