@@ -17,7 +17,7 @@ class CustomOutlinedButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     required this.borderWidth,
-    this.fontSize = 30.0,
+    this.fontSize = 24.0,
     this.borderRadius = 30.0,
     this.color,
     this.width,

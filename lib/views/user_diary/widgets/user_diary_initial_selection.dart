@@ -66,13 +66,6 @@ class UserDiaryInitialSelection extends StatelessWidget {
               text: 'MEDICAMENTOS',
               borderWidth: 2,
               onPressed: () => context.push(LoggedRoutes.remedy),
-            ),
-            const Gap(16),
-            CustomOutlinedButton(
-              color: AppColors.darkGreen,
-              text: 'EXERCÍCIOS',
-              borderWidth: 2,
-              onPressed: () => context.go(BottomNavRoutes.exercise),
               width: width * 0.8,
             ),
             const Gap(16),
