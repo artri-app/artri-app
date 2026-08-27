@@ -15,3 +15,4 @@ export 'clear_scaffold_view.dart';
 export 'custom_simple_dialog_action.dart';
 export 'custom_simple_dialog.dart';
 export 'video_player.dart';
+export 'outdoor_exercise_map_page.dart';

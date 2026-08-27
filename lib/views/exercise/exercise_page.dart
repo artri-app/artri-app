@@ -51,6 +51,24 @@ class ExercisePage extends StatelessWidget {
             ),
           ),
           ElevatedButton(
+            onPressed: () => context.push(ExerciseOptionsRoutes.outdoor),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF03A64A),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              fixedSize: const Size(300, 50),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            child: const Text(
+              'Ao ar livre',
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          ElevatedButton(
             onPressed: () =>
                 context.push(ExerciseOptionsRoutes.infoAtividadeFisica),
             style: ElevatedButton.styleFrom(
