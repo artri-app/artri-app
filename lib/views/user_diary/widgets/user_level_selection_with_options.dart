@@ -156,7 +156,9 @@ class _UserLevelSelectionWithOptionsState
     setState(() => isSaving = false);
 
     if (!saved) {
-      showMessage('Não foi possível salvar agora. Tente novamente.');
+      showMessage(
+        'Não foi possível salvar agora. Verifique sua conexão e tente novamente.',
+      );
       return;
     }
 
@@ -218,7 +220,9 @@ class _UserLevelSelectionWithOptionsState
           Gap(32),
           ConfirmationButtons(
             onButtonClicked: onConfirmationAction,
-            isConfirmEnabled: selectedInfos.isNotEmpty &&
+            confirmText: isSaving ? 'Salvando...' : 'Salvar',
+            isConfirmEnabled: !isSaving &&
+                selectedInfos.isNotEmpty &&
                 selectedInfos.values.every((v) => v != -1),
           ),
         ],
