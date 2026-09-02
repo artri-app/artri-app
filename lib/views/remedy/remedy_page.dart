@@ -339,31 +339,61 @@ class _RemedyPageState extends State<RemedyPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 24, right: 24),
+                child: ElevatedButton(
+                  onPressed: () => _showAddRemedySheet(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.darkGreen,
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
+                    fixedSize: const Size(300, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: Text(
+                    'NOVO MEDICAMENTO',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  top: 18,
+                  bottom: 8,
+                ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'NOVO MEDICAMENTO',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 26,
+                    Container(
+                      width: 6,
+                      height: 22,
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
                         color: AppColors.darkGreen,
-                        fontWeight: FontWeight.bold,
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.add_circle,
-                        color: AppColors.darkGreen,
-                        size: 30,
+                    Expanded(
+                      child: Text(
+                        'Checklist diário de tratamento',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.darkGreen,
+                          letterSpacing: 0.3,
+                        ),
                       ),
-                      onPressed: () => _showAddRemedySheet(context),
                     ),
                   ],
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                child: Text('Checklist diário de tratamento'),
               ),
               const SizedBox(height: 20),
               if (model.isLoading)
