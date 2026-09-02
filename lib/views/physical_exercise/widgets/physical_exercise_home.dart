@@ -19,7 +19,7 @@ class PhysicalExerciseHome extends StatelessWidget {
                 'Aqui você terá acesso a exercícios específicos e pré-determinados para suas mãos e pés. Clique para escolher o nível de dificuldade:',
                 style: GoogleFonts.montserrat(
                   textStyle: const TextStyle(
-                    // fontSize: 24,
+                    fontSize: 24,
                     color: AppColors.darkGreen,
                   ),
                 ),
