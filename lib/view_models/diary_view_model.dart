@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DiaryViewModel extends ChangeNotifier {
+  static const _timeout = Duration(seconds: 15);
+
   final SecurityTokenService _securityTokenService;
   final AuthService _authService;
 
@@ -103,7 +105,7 @@ class DiaryViewModel extends ChangeNotifier {
       url,
       headers: cabecalhos,
       body: jsonEncode(registro),
-    );
+    ).timeout(_timeout);
   }
 
   Future<bool> _renovarTokenDeAcesso() async {
