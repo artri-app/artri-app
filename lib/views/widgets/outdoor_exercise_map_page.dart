@@ -144,7 +144,7 @@ class _OutdoorExerciseMapPageState extends State<OutdoorExerciseMapPage> {
   Widget build(BuildContext context) {
     return ClearScaffoldView(
       appBarTitle: Text(
-          'AGENDA',
+          'AO AR LIVRE',
           style: GoogleFonts.montserrat(
             fontSize: 28,
             height: 1.25,
