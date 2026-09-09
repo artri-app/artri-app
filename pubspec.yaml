@@ -55,6 +55,8 @@ dependencies:
   flutter_local_notifications: ^18.0.1
   timezone: ^0.10.1
   shared_preferences: ^2.5.5
+  geolocator: ^14.0.3
+  google_maps_flutter: ^2.18.0
 
 dev_dependencies:
   flutter_test:

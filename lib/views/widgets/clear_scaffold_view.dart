@@ -23,7 +23,7 @@ class ClearScaffoldView extends StatelessWidget {
       extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        toolbarHeight: hasAppBarTitle ? 104 : kToolbarHeight,
+        toolbarHeight: hasAppBarTitle ? 56 : kToolbarHeight,
         title: appBarTitle,
         centerTitle: true,
         leading: Padding(
