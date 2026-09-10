@@ -1,6 +1,7 @@
 import 'package:artriapp/utils/index.dart';
 import 'package:artriapp/models/api_responses/remedy.dart';
 import 'package:artriapp/view_models/remedy_view_model.dart';
+import 'package:artriapp/views/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -339,27 +340,11 @@ class _RemedyPageState extends State<RemedyPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 24, right: 24),
-                child: ElevatedButton(
+                child: GreenActionButton(
+                  text: 'NOVO MEDICAMENTO',
                   onPressed: () => _showAddRemedySheet(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.darkGreen,
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 12,
-                    ),
-                    fixedSize: const Size(300, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: Text(
-                    'NOVO MEDICAMENTO',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
+                  width: 300,
+                  height: 50,
                 ),
               ),
               Padding(

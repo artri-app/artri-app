@@ -3,6 +3,7 @@ import 'package:artriapp/routes/info.routes.dart';
 import 'package:flutter/material.dart';
 import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/models/index.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class MythTruthCard extends StatelessWidget {
@@ -146,6 +147,8 @@ class MythTruthCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool useDefaultLeadingIcon = leadingIcon == Icons.help_outline;
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -155,32 +158,78 @@ class MythTruthCard extends StatelessWidget {
         ),
       ),
       elevation: 4,
-      color: Colors.white, // Background color
+      color: Colors.white,
       child: InkWell(
         onTap: () {},
         borderRadius: BorderRadius.circular(20),
         child: Container(
           constraints: const BoxConstraints(
             minHeight: 100,
-            maxWidth: 400, // Adjust based on your needs
+            maxWidth: 400,
           ),
           padding: const EdgeInsets.all(16),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Leading icon
-              Icon(
-                leadingIcon,
-                size: 32,
-                color: Colors.blueGrey[700],
+              SizedBox(
+                width: 70,
+                child: Center(
+                  child: useDefaultLeadingIcon
+                      ? Image.asset(
+                          'assets/images/mito.png',
+                          width: 64,
+                          height: 88,
+                          fit: BoxFit.contain,
+                          semanticLabel: 'Ícone de mito ou verdade',
+                        )
+                      : Icon(
+                          leadingIcon,
+                          size: 32,
+                          color: Colors.blueGrey[700],
+                        ),
+                ),
               ),
               const SizedBox(width: 16),
-
-              // Question and Answer
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          height: 1.2,
+                        ),
+                        children: [
+                          const TextSpan(
+                            text: 'Mito',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                          const TextSpan(
+                            text: ' ou ',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                          const TextSpan(
+                            text: 'Verdade',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          const TextSpan(
+                            text: '?',
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8),
                     Text(
                       myth.question,
                       style: TextStyle(
@@ -191,8 +240,8 @@ class MythTruthCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
                           icon: Icon(

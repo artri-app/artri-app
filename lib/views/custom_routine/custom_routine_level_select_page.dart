@@ -37,7 +37,8 @@ class CustomRoutineLevelSelectPage extends StatelessWidget {
             width: screenWidth * 0.65,
           ),
           ExerciseButton(
-            onClick: () => context.push('/custom_routine/overview/intermediario'),
+            onClick: () =>
+                context.push('/custom_routine/overview/intermediario'),
             side: ExerciseButtonSide.left,
             buttonText: 'Intermediário',
             color: AppColors.neutral,
@@ -50,19 +51,19 @@ class CustomRoutineLevelSelectPage extends StatelessWidget {
             side: ExerciseButtonSide.left,
             width: screenWidth * 0.65,
           ),
-          CustomSolidButton(
+          GreenActionButton(
             onPressed: () => showDialog(
               context: context,
               builder: (context) => const LevelSelectorDialog(),
             ),
-            text: 'Qual devo escolher?',
-            color: AppColors.lightBrown,
-            width: screenWidth * 0.80,
+            text: 'QUAL DEVO ESCOLHER?',
+            width: screenWidth * 0.60,
+            height: 46,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             textStyle: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
+              fontSize: 16,
+              color: Colors.white,
             ),
           ),
         ],
