@@ -166,12 +166,14 @@ class PhysicalExerciseRoutes implements RoutesSession {
             );
           },
         ),
-        GoRoute(
+        ShellRoute(
           parentNavigatorKey: RouterKeys.appRoutesKey,
-          path: '/custom_routine/advanced',
-          builder: (context, state) => const PhysicalExerciseView(
+          builder: (context, state, child) => PhysicalExerciseView(
             title: 'Personalizado',
-            child: CustomRoutineAdvancedPage(),
+            child: child,
+            subtitle: DifficultyHelper.getDifficultyText(
+              state.pathParameters['difficulty'],
+            ),
           ),
           routes: [
             GoRoute(

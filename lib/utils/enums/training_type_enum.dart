@@ -29,7 +29,7 @@ enum TrainingType {
       case TrainingType.stretching:
         return 'ALONGAMENTO';
       case TrainingType.custom:
-        return 'PERSONALIZADO';
+        return 'EXERCÍCIO PERSONALIDADO';
     }
   }
 }

@@ -68,13 +68,17 @@ class PhysicalExercisesService {
     );
 
     final nthCustomTraining = allCustomTrainings.toList().elementAt(index);
+    return await getExercises().then(
+      (exercises) =>
+          exercises.where((e) => nthCustomTraining.exercises.contains(e.id)).toList(),
+    );
 
-    for (var exerciseId in nthCustomTraining.exercises) {
-      final exercise = await getExerciseById(exerciseId);
-      exercises.add(exercise);
-    }
+    // for (var exerciseId in nthCustomTraining.exercises) {
+    //   final exercise = await getExerciseById(exerciseId);
+    //   exercises.add(exercise);
+    // }
 
-    return exercises;
+    // return exercises;
   }
 
   Future<List<Exercise>> getCustomExercisesFromIdsList(

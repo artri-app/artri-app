@@ -202,7 +202,7 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
       _customMobilityExerciseIds[2] = [];
       
       _customExercisesCache[startIndex] = await _physicalExercisesService.getCustomExercisesFromTraining(
-          TrainingType.custom, 
+          TrainingType.custom,
           _currentDifficulty ?? ExerciseDifficulty.easy, 
           startIndex,
       );
