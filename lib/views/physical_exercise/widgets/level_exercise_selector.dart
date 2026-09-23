@@ -68,8 +68,6 @@ class LevelExerciseSelector extends StatelessWidget {
                   builder: (context) => LevelSelectorDialog(),
                 ),
                 text: 'QUAL DEVO ESCOLHER?',
-                width: screenWidth * 0.60,
-                height: 46,
                 alignment: Alignment.center,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
