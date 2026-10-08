@@ -46,10 +46,7 @@ class PhysicalExercisesService {
       ),
     );
 
-    return await getExercises().then(
-      (exercises) =>
-          exercises.where((e) => training.exercises.contains(e.id)).toList(),
-    );
+    return getCustomExercisesFromIdsList(training.exercises);
   }
 
   Future<List<Exercise>> getCustomExercisesFromTraining(
@@ -77,11 +74,17 @@ class PhysicalExercisesService {
     return exercises;
   }
 
+  /// Returns the exercises in the same order as [ids], not catalog order.
   Future<List<Exercise>> getCustomExercisesFromIdsList(
     List<int> ids,
-  ) {
-    return getExercises().then(
-      (exercises) => exercises.where((e) => ids.contains(e.id)).toList(),
-    );
+  ) async {
+    final exercisesById = {
+      for (final exercise in await getExercises()) exercise.id: exercise,
+    };
+
+    return [
+      for (final id in ids)
+        if (exercisesById[id] != null) exercisesById[id]!,
+    ];
   }
 }

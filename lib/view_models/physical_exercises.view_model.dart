@@ -217,7 +217,7 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
   void handleUpdateIndexCustomTraining(BuildContext context, int currentIndex) async {
     int nextIndex = currentIndex + 1;
     if (nextIndex == _categoriesCount) {
-      var exercises = await _physicalExercisesService.getCustomExercisesFromIdsList(_customExercisesIds);
+      var exercises = await _physicalExercisesService.getCustomExercisesFromIdsList(_orderedCustomExercisesIds());
       _queuedExercises = _queueExercises(exercises);
 
       var currentPath = RouterHelper.getUriFromContext(context);
@@ -247,6 +247,16 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
         log('Error fetching next category: $e');
       }
     }
+  }
+
+  List<int> _orderedCustomExercisesIds() {
+    final categoryIndexes = _customExercisesCache.keys.toList()..sort();
+    final orderedIds = <int>{
+      for (final index in categoryIndexes)
+        for (final exercise in _customExercisesCache[index]!)
+          if (_customExercisesIds.contains(exercise.id)) exercise.id,
+    };
+    return orderedIds.toList();
   }
 
   void toggleCustomExerciseSelection(int id) {
