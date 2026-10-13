@@ -17,8 +17,8 @@ class NavBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.checklist),
-          label: 'Diário',
+          icon: Icon(Icons.home),
+          label: 'Início',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.fitness_center),
