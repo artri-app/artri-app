@@ -171,63 +171,69 @@ class MythTruthCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 70,
-                child: Center(
-                  child: useDefaultLeadingIcon
-                      ? Image.asset(
-                          'assets/images/mito.png',
-                          width: 64,
-                          height: 88,
-                          fit: BoxFit.contain,
-                          semanticLabel: 'Ícone de mito ou verdade',
-                        )
-                      : Icon(
-                          leadingIcon,
-                          size: 32,
-                          color: Colors.blueGrey[700],
-                        ),
-                ),
-              ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    RichText(
-                      text: TextSpan(
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          height: 1.2,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 70,
+                          child: Center(
+                            child: useDefaultLeadingIcon
+                                ? Image.asset(
+                                    'assets/images/mito.png',
+                                    width: 64,
+                                    height: 88,
+                                    fit: BoxFit.contain,
+                                    semanticLabel: 'Ícone de mito ou verdade',
+                                  )
+                                : Icon(
+                                    leadingIcon,
+                                    size: 32,
+                                    color: Colors.blueGrey[700],
+                                  ),
+                          ),
                         ),
-                        children: [
-                          const TextSpan(
-                            text: 'Mito',
-                            style: TextStyle(
-                              color: Colors.red,
+                        RichText(
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              height: 1.2,
                             ),
+                            children: [
+                              const TextSpan(
+                                text: 'Mito',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: ' ou ',
+                                style: TextStyle(
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: 'Verdade',
+                                style: TextStyle(
+                                  color: Colors.green,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: '?',
+                                style: TextStyle(
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                            ],
                           ),
-                          const TextSpan(
-                            text: ' ou ',
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                          const TextSpan(
-                            text: 'Verdade',
-                            style: TextStyle(
-                              color: Colors.green,
-                            ),
-                          ),
-                          const TextSpan(
-                            text: '?',
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(width: 24),
+                      ],
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -247,7 +253,7 @@ class MythTruthCard extends StatelessWidget {
                           icon: Icon(
                             Icons.check_circle,
                             color: Colors.green[700],
-                            size: 28,
+                            size: 48,
                           ),
                           onPressed: () {
                             _showResultDialog(
@@ -260,7 +266,7 @@ class MythTruthCard extends StatelessWidget {
                           icon: Icon(
                             Icons.cancel,
                             color: Colors.red[700],
-                            size: 28,
+                            size: 48,
                           ),
                           onPressed: () {
                             _showResultDialog(

@@ -113,7 +113,10 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
 
       _queuedExercises = _queueExercises(exercises);
 
-      context.push('$currentPath/${difficulty.toString()}');
+      _currentTrainingType == TrainingType.custom
+          ? handleStartCustomExercisesSelection(context)
+          : context.push('$currentPath/${difficulty.toString()}');
+        // context.push('$currentPath/${difficulty.toString()}');
     } catch (e) {
       log('Error fetching exercises: $e');
     }
@@ -208,7 +211,7 @@ class PhysicalExercisesViewModel extends ChangeNotifier {
       );
       
       notifyListeners();
-      context.push('$currentPath/selection/$startIndex');
+      context.push('$currentPath/$_currentDifficulty/selection/$startIndex');
     } catch (e) {
       log('Error fetching trainings: $e');
     }

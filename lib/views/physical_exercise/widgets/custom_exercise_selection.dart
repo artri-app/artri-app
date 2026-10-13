@@ -15,14 +15,13 @@ class CustomExerciseSelection extends StatefulWidget {
       _CustomExerciseSelectionState();
 }
 
-class _CustomExerciseSelectionState
-    extends State<CustomExerciseSelection> {
+class _CustomExerciseSelectionState extends State<CustomExerciseSelection> {
   bool orientationsOpen = false;
 
   void handleNextButton(
-      BuildContext context,
-      PhysicalExercisesViewModel viewModel,
-      int trainingId,
+    BuildContext context,
+    PhysicalExercisesViewModel viewModel,
+    int trainingId,
   ) {
     if (trainingId == viewModel.categoriesCount - 1) {
       if (orientationsOpen) {
@@ -47,17 +46,25 @@ class _CustomExerciseSelectionState
       builder: (context, viewModel, child) {
         final trainingId = viewModel.getTrainingId(context);
         final exercises = viewModel.getExercisesForIndex(trainingId);
-        final selectionNumber = viewModel.getSelectionNumber(viewModel.currentDifficulty)[trainingId];
+        final selectionNumber = viewModel
+            .getSelectionNumber(viewModel.currentDifficulty)[trainingId];
         final currentCategory = CustomType.values.elementAt(trainingId);
-        final prepositionCategory =
-          currentCategory == CustomType.legs ? 'para as' :
-          currentCategory == CustomType.arms ? 'para os' :
-          currentCategory == CustomType.core ? 'para o' :
-          'de';
-        final selectionNumberRequired = viewModel.getTotalExercisesNeeded(viewModel.currentDifficulty)[trainingId] ?? 0;
-        final firstPartMobility = viewModel.getCustomMobility(viewModel.currentDifficulty)[0];
-        final secondPartMobility = viewModel.getCustomMobility(viewModel.currentDifficulty)[1];
-        final thirdPartMobility = viewModel.getCustomMobility(viewModel.currentDifficulty)[2];
+        final prepositionCategory = currentCategory == CustomType.legs
+            ? 'para as'
+            : currentCategory == CustomType.arms
+                ? 'para os'
+                : currentCategory == CustomType.core
+                    ? 'para o'
+                    : 'de';
+        final selectionNumberRequired = viewModel.getTotalExercisesNeeded(
+                viewModel.currentDifficulty)[trainingId] ??
+            0;
+        final firstPartMobility =
+            viewModel.getCustomMobility(viewModel.currentDifficulty)[0];
+        final secondPartMobility =
+            viewModel.getCustomMobility(viewModel.currentDifficulty)[1];
+        final thirdPartMobility =
+            viewModel.getCustomMobility(viewModel.currentDifficulty)[2];
 
         if (trainingId == 0) {
           return Column(
@@ -72,20 +79,47 @@ class _CustomExerciseSelectionState
                     child: Column(
                       spacing: 16,
                       children: [
-                        // SEÇÃO 1
-                        Text(
-                          'Selecione $firstPartMobility ${firstPartMobility == 1 ? 'exercício' : 'exercícios'} de mobilidade para ${viewModel.mobilityParts[0]}:',
-                          style: GoogleFonts.montserrat(
-                            textStyle: const TextStyle(
-                              fontSize: 16,
-                              color: AppColors.darkGreen,
-                            ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Selecione ',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    '$firstPartMobility ${firstPartMobility == 1 ? 'exercício' : 'exercícios'}',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    ' de mobilidade para ${viewModel.mobilityParts[0]}:',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) => const SizedBox(height: 16),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 16),
                           itemCount: viewModel.totalMobility[0],
                           itemBuilder: (context, index) {
                             final exercise = exercises[index];
@@ -99,10 +133,15 @@ class _CustomExerciseSelectionState
                                   ),
                                 ),
                                 Checkbox(
-                                  value: viewModel.getMobilityIds(0).contains(exercise.id),
+                                  value: viewModel
+                                      .getMobilityIds(0)
+                                      .contains(exercise.id),
                                   onChanged: (value) {
-                                    viewModel.toggleCustomMobilityExerciseSelection(0, exercise.id);
-                                    viewModel.toggleCustomExerciseSelection(exercise.id);
+                                    viewModel
+                                        .toggleCustomMobilityExerciseSelection(
+                                            0, exercise.id);
+                                    viewModel.toggleCustomExerciseSelection(
+                                        exercise.id);
                                   },
                                 ),
                               ],
@@ -110,22 +149,51 @@ class _CustomExerciseSelectionState
                           },
                         ),
                         // SEÇÃO 2
-                        Text(
-                          'Selecione $secondPartMobility ${secondPartMobility == 1 ? 'exercício' : 'exercícios'} de mobilidade para ${viewModel.mobilityParts[1]}:',
-                          style: GoogleFonts.montserrat(
-                            textStyle: const TextStyle(
-                              fontSize: 16,
-                              color: AppColors.darkGreen,
-                            ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Selecione ',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    '$secondPartMobility ${secondPartMobility == 1 ? 'exercício' : 'exercícios'}',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    ' de mobilidade para ${viewModel.mobilityParts[1]}:',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) => const SizedBox(height: 16),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 16),
                           itemCount: viewModel.totalMobility[1],
                           itemBuilder: (context, index) {
-                            final exercise = exercises[index + viewModel.totalMobility[0]];
+                            final exercise =
+                                exercises[index + viewModel.totalMobility[0]];
                             return Row(
                               spacing: 8,
                               children: [
@@ -136,33 +204,67 @@ class _CustomExerciseSelectionState
                                   ),
                                 ),
                                 Checkbox(
-                                  value: viewModel.getMobilityIds(1).contains(exercise.id),
+                                  value: viewModel
+                                      .getMobilityIds(1)
+                                      .contains(exercise.id),
                                   onChanged: (value) {
-                                    viewModel.toggleCustomMobilityExerciseSelection(1, exercise.id);
-                                    viewModel.toggleCustomExerciseSelection(exercise.id);
+                                    viewModel
+                                        .toggleCustomMobilityExerciseSelection(
+                                            1, exercise.id);
+                                    viewModel.toggleCustomExerciseSelection(
+                                        exercise.id);
                                   },
                                 ),
                               ],
                             );
                           },
                         ),
-                        // SEÇÃO 3
-                        Text(
-                          'Selecione $thirdPartMobility ${thirdPartMobility == 1 ? 'exercício' : 'exercícios'} de mobilidade para ${viewModel.mobilityParts[2]}:',
-                          style: GoogleFonts.montserrat(
-                            textStyle: const TextStyle(
-                              fontSize: 16,
-                              color: AppColors.darkGreen,
-                            ),
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Selecione ',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    '$thirdPartMobility ${thirdPartMobility == 1 ? 'exercício' : 'exercícios'}',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    ' de mobilidade para ${viewModel.mobilityParts[2]}:',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    fontSize: 20,
+                                    color: AppColors.darkGreen,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          separatorBuilder: (context, index) => const SizedBox(height: 16),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 16),
                           itemCount: viewModel.totalMobility[2],
                           itemBuilder: (context, index) {
-                            final exercise = exercises[index + viewModel.totalMobility[0] + viewModel.totalMobility[1]];
+                            final exercise = exercises[index +
+                                viewModel.totalMobility[0] +
+                                viewModel.totalMobility[1]];
                             return Row(
                               spacing: 8,
                               children: [
@@ -173,10 +275,15 @@ class _CustomExerciseSelectionState
                                   ),
                                 ),
                                 Checkbox(
-                                  value: viewModel.getMobilityIds(2).contains(exercise.id),
+                                  value: viewModel
+                                      .getMobilityIds(2)
+                                      .contains(exercise.id),
                                   onChanged: (value) {
-                                    viewModel.toggleCustomMobilityExerciseSelection(2, exercise.id);
-                                    viewModel.toggleCustomExerciseSelection(exercise.id);
+                                    viewModel
+                                        .toggleCustomMobilityExerciseSelection(
+                                            2, exercise.id);
+                                    viewModel.toggleCustomExerciseSelection(
+                                        exercise.id);
                                   },
                                 ),
                               ],
@@ -190,7 +297,15 @@ class _CustomExerciseSelectionState
               ),
               CustomSolidButton(
                 text: 'Próximo'.toUpperCase(),
-                onPressed: (viewModel.getCustomMobility(viewModel.currentDifficulty)[0] == viewModel.getMobilityIds(0).length && viewModel.getCustomMobility(viewModel.currentDifficulty)[1] == viewModel.getMobilityIds(1).length && viewModel.getCustomMobility(viewModel.currentDifficulty)[2] == viewModel.getMobilityIds(2).length)
+                onPressed: (viewModel.getCustomMobility(
+                                viewModel.currentDifficulty)[0] ==
+                            viewModel.getMobilityIds(0).length &&
+                        viewModel.getCustomMobility(
+                                viewModel.currentDifficulty)[1] ==
+                            viewModel.getMobilityIds(1).length &&
+                        viewModel.getCustomMobility(
+                                viewModel.currentDifficulty)[2] ==
+                            viewModel.getMobilityIds(2).length)
                     ? () => handleNextButton(context, viewModel, trainingId)
                     : null,
                 gradientColors: AppGradients.greenGradient,
@@ -208,20 +323,48 @@ class _CustomExerciseSelectionState
             mainAxisSize: MainAxisSize.min,
             spacing: 16,
             children: [
-              Text(
-                'Selecione $selectionNumber ${selectionNumber == 1 ? 'exercício' : 'exercícios'} $prepositionCategory ${currentCategory.toString().toLowerCase()}:',
-                style: GoogleFonts.montserrat(
-                  textStyle: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.darkGreen,
-                  ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Selecione ',
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: AppColors.darkGreen,
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          '$selectionNumber ${selectionNumber == 1 ? 'exercício' : 'exercícios'}',
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkGreen,
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          ' de mobilidade para ${currentCategory.toString().toLowerCase()}:',
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: AppColors.darkGreen,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Flexible(
                 fit: FlexFit.tight,
                 child: Scrollbar(
                   child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(height: 16),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
                     itemCount: exercises.length,
                     itemBuilder: (context, index) {
                       final exercise = exercises[index];
@@ -235,9 +378,11 @@ class _CustomExerciseSelectionState
                             ),
                           ),
                           Checkbox(
-                            value: viewModel.customExercisesIds.contains(exercise.id),
+                            value: viewModel.customExercisesIds
+                                .contains(exercise.id),
                             onChanged: (value) {
-                              viewModel.toggleCustomExerciseSelection(exercise.id);
+                              viewModel
+                                  .toggleCustomExerciseSelection(exercise.id);
                             },
                           ),
                         ],
@@ -248,7 +393,8 @@ class _CustomExerciseSelectionState
               ),
               CustomSolidButton(
                 text: 'Próximo'.toUpperCase(),
-                onPressed: selectionNumberRequired == viewModel.customExercisesIds.length
+                onPressed: selectionNumberRequired ==
+                        viewModel.customExercisesIds.length
                     ? () => handleNextButton(context, viewModel, trainingId)
                     : null,
                 gradientColors: AppGradients.greenGradient,
@@ -266,20 +412,48 @@ class _CustomExerciseSelectionState
             mainAxisSize: MainAxisSize.min,
             spacing: 16,
             children: [
-              Text(
-                'Selecione $selectionNumber ${selectionNumber == 1 ? 'exercício' : 'exercícios'} $prepositionCategory ${currentCategory.toString().toLowerCase()}:',
-                style: GoogleFonts.montserrat(
-                  textStyle: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.darkGreen,
-                  ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Selecione ',
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: AppColors.darkGreen,
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          '$selectionNumber ${selectionNumber == 1 ? 'exercício' : 'exercícios'}',
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkGreen,
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          ' $prepositionCategory ${currentCategory.toString().toLowerCase()}:',
+                      style: GoogleFonts.montserrat(
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                          color: AppColors.darkGreen,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Flexible(
                 fit: FlexFit.tight,
                 child: Scrollbar(
                   child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(height: 16),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
                     itemCount: exercises.length,
                     itemBuilder: (context, index) {
                       final exercise = exercises[index];
@@ -293,9 +467,11 @@ class _CustomExerciseSelectionState
                             ),
                           ),
                           Checkbox(
-                            value: viewModel.customExercisesIds.contains(exercise.id),
+                            value: viewModel.customExercisesIds
+                                .contains(exercise.id),
                             onChanged: (value) {
-                              viewModel.toggleCustomExerciseSelection(exercise.id);
+                              viewModel
+                                  .toggleCustomExerciseSelection(exercise.id);
                             },
                           ),
                         ],
@@ -306,7 +482,8 @@ class _CustomExerciseSelectionState
               ),
               CustomSolidButton(
                 text: 'Começar'.toUpperCase(),
-                onPressed: selectionNumberRequired == viewModel.customExercisesIds.length
+                onPressed: selectionNumberRequired ==
+                        viewModel.customExercisesIds.length
                     ? () => handleNextButton(context, viewModel, trainingId)
                     : null,
                 gradientColors: AppGradients.greenGradient,
