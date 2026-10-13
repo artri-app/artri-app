@@ -3,7 +3,6 @@ import 'package:artriapp/routes/info.routes.dart';
 import 'package:flutter/material.dart';
 import 'package:artriapp/utils/enums/index.dart';
 import 'package:artriapp/models/index.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class MythTruthCard extends StatelessWidget {
