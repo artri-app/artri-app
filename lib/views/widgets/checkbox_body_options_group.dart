@@ -37,7 +37,7 @@ class _CheckboxBodyOptionsGroupState extends State<CheckboxBodyOptionsGroup> {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: 2,
-      childAspectRatio: 4,
+      mainAxisExtent: 48,
       children: _items.keys.map((BodyOptions key) {
         return GestureDetector(
           onTap: () {
@@ -58,16 +58,19 @@ class _CheckboxBodyOptionsGroupState extends State<CheckboxBodyOptionsGroup> {
                 },
                 activeColor: Colors.green,
                 checkColor: Colors.white,
+                visualDensity: VisualDensity.compact,
                 side:
                     const BorderSide(color: Color.fromARGB(255, 93, 196, 190)),
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              Text(
-                key.toString(),
-                style: GoogleFonts.montserrat(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
+              Flexible(
+                child: Text(
+                  key.toString(),
+                  style: GoogleFonts.montserrat(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ],
